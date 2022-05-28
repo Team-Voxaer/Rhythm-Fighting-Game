@@ -53,7 +53,7 @@ public class SongManager : MonoBehaviour
     private IEnumerator ReadFromWebsite() {
         using (UnityWebRequest www = UnityWebRequest.Get(Application.streamingAssetsPath + "/" + fileLocation)) {
             yield return www.SendWebRequest();
-            if (www.isNetworkError || www.isHttpError) {
+            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
                 Debug.LogError(www.error);
             } else {
                 byte[] results = www.downloadHandler.data;
