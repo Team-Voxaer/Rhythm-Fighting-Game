@@ -66,7 +66,7 @@ public class SongManager : MonoBehaviour
     }
 
     // Read midi file from local
-    private void GeadFromFile() {
+    private void ReadFromFile() {
         midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation);
         GetDataFromMidi();
     }
