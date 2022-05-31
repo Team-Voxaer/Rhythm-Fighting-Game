@@ -27,6 +27,7 @@ public class Lane : MonoBehaviour
     // Keep track of what timestamp needs to be detacted 
     int inputIndex = 0;
 
+    public ScoreManager scoreManager;
 
     // Start is called before the first frame update
     void Start()
@@ -97,12 +98,12 @@ public class Lane : MonoBehaviour
     private void Hit()
     {
         print("TODO: Hit");
-        //ScoreManager.Hit();
+        scoreManager.Hit();
     }
     private void Miss()
     {
         print("TODO: Miss");
-        //ScoreManager.Miss();
+        scoreManager.Miss();
     }
     
 }
