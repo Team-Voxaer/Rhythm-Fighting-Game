@@ -25,12 +25,12 @@ public static class CommonParameter
         public static int autoPlay = 1;
     }
 
-    public static class KeyCode {
-        // TODO: to survey how to represent KeyCode
-        public static KeyCode LeftSkill = KeyCode.D;
-        public static KeyCode RightSkill = KeyCode.L;
+    // public static class KeyCode {
+    //     // TODO: to survey how to represent KeyCode
+    //     public static KeyCode LeftSkill = KeyCode.D;
+    //     public static KeyCode RightSkill = KeyCode.L;
 
-    }
+    // }
 
 
 }
