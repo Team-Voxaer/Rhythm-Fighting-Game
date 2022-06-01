@@ -12,6 +12,10 @@ public class Bandit : MonoBehaviour {
     private bool                m_grounded = false;
     private bool                m_combatIdle = false;
     private bool                m_isDead = false;
+    public                      Transform attackPoint;
+    public                      float attackRange = 0.5f;
+    public                      LayerMask enemyLayers;
+    public                      int attackDamage = 30;
 
     // Use this for initialization
     void Start () {
@@ -19,9 +23,30 @@ public class Bandit : MonoBehaviour {
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Bandit>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void Attack()
+    {
+        m_animator.SetTrigger("Attack");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("we hit" + enemy.name);
+            enemy.GetComponent<Enemy>().TakenDamage(attackDamage);
+
+        }
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    // Update is called once per frame
+    void Update () {
         //Check if character just landed on the ground
         if (!m_grounded && m_groundSensor.State()) {
             m_grounded = true;
@@ -65,13 +90,14 @@ public class Bandit : MonoBehaviour {
             m_animator.SetTrigger("Hurt");
 
         //Attack
-        /*else if(Input.GetMouseButtonDown(0)) {
-            m_animator.SetTrigger("Attack");
+        /*else if (Input.GetKeyDown(KeyCode.J))
+        {
+            Attack();
         }*/
 
         //Change between idle and combat idle
-        else if (Input.GetKeyDown("f"))
-            m_combatIdle = !m_combatIdle;
+        /*else if (Input.GetKeyDown("f"))
+            m_combatIdle = !m_combatIdle;*/
 
         //Jump
         else if (Input.GetKeyDown("space") && m_grounded) {

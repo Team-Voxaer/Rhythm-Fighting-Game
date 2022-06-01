@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public TMPro.TextMeshPro scoreText;
+    public TextMeshProUGUI scoreText;
+    public Bandit bandit;
     int comboScore;
 
     // Start is called before the first frame update
@@ -16,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     public void Hit()
     {
         comboScore += 1;
+        bandit.Attack();
     }
     public void Miss()
     {
