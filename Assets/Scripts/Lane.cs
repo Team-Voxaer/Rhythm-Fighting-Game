@@ -3,14 +3,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Lane : MonoBehaviour
 {
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
 
+    public TextMeshProUGUI scoreText;
+
+    public Bandit bandit;
+
     // Key for this line
-    public KeyCode input;
+    public KeyCode inputKeyUp;
+    public KeyCode inputKeyDown;
+    public KeyCode inputKeyLeft;
+    public KeyCode inputKeyRight;
+    public KeyCode inputKeyCast;
 
     // Template for Note
     public GameObject notePrefab;
@@ -72,11 +81,46 @@ public class Lane : MonoBehaviour
             // Current timestamp of audio
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
 
-            if (Input.GetKeyDown(input))
-            {
+            if (Input.GetKeyDown(inputKeyUp)) {
                 if (Math.Abs(audioTime - timeStamp) < marginOfError)
                 {
-                    Hit();
+                    Hit(0);
+                    print($"Hit on {inputIndex} note");
+                    Destroy(notes[inputIndex].gameObject);
+                    inputIndex++;
+                }
+                else
+                {
+                    print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                }
+            } else if (Input.GetKeyDown(inputKeyDown)) {
+                if (Math.Abs(audioTime - timeStamp) < marginOfError)
+                {
+                    Hit(1);
+                    print($"Hit on {inputIndex} note");
+                    Destroy(notes[inputIndex].gameObject);
+                    inputIndex++;
+                }
+                else
+                {
+                    print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                }
+            } else if (Input.GetKeyDown(inputKeyLeft)) {
+                if (Math.Abs(audioTime - timeStamp) < marginOfError)
+                {
+                    Hit(2);
+                    print($"Hit on {inputIndex} note");
+                    Destroy(notes[inputIndex].gameObject);
+                    inputIndex++;
+                }
+                else
+                {
+                    print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                }
+            } else if (Input.GetKeyDown(inputKeyRight)) {
+                if (Math.Abs(audioTime - timeStamp) < marginOfError)
+                {
+                    Hit(3);
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
@@ -86,24 +130,34 @@ public class Lane : MonoBehaviour
                     print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                 }
             }
+            if (Input.GetKeyDown(inputKeyCast)) {
+                CastSkill();
+            }
+
             if (timeStamp + marginOfError <= audioTime)
             {
                 Miss();
                 print($"Missed {inputIndex} note");
                 inputIndex++;
+                // TODO: to add an animation for missing notes
             }
         }       
     }
 
-    private void Hit()
+    private void Hit(int inputKey)
     {
         print("TODO: Hit");
-        scoreManager.Hit();
+        scoreManager.Hit(inputKey);
     }
+
     private void Miss()
     {
         print("TODO: Miss");
         scoreManager.Miss();
     }
-    
+
+    private void CastSkill() {
+        scoreManager.CastSkill();
+    }
+
 }

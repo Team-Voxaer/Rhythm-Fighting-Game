@@ -9,20 +9,15 @@ public class ScoreManager : MonoBehaviour
     public Bandit bandit;
     int comboScore;
 
+    
+    // List of keys for skills
+    List<int> lsKey = new List<int>();
+    List<int> lsSkill = new List<int>();
+
     // Start is called before the first frame update
     void Start()
     {
         comboScore = 0;
-    }
-
-    public void Hit()
-    {
-        comboScore += 1;
-        bandit.Attack();
-    }
-    public void Miss()
-    {
-        comboScore -= 1;
     }
 
     // Update is called once per frame
@@ -31,5 +26,37 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = comboScore.ToString();
     }
 
+    public void Hit(int inputKey) {
+        lsKey.Add(inputKey);
+
+        comboScore += 10;
+        bandit.Attack();
+    }
+    
+    public void Miss()
+    {
+        comboScore -= 1;
+    }
+
+    public void CastSkill() {
+        CheckSkills();
+        if (lsSkill.Count > 0) {
+            bandit.Attack();
+            lsSkill.RemoveAt(0);
+        }
+    }
+
+    private void CheckSkills() {
+        while (lsKey.Count > 3) {
+            lsKey.RemoveAt(0);
+        }
+        if (lsKey[lsKey.Count - 1] == 3 && lsKey[lsKey.Count - 2] == 1 && lsKey[lsKey.Count - 3] == 1)  // Down Down Right
+        {
+            lsSkill.Add(0);
+            for (int i=0; i<3; i++) {
+                lsKey.RemoveAt(0);
+            }
+        }
+    }
     
 }
