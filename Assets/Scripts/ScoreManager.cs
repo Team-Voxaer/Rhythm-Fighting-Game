@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour
     public void Hit(int inputKey) {
         lsKey.Add(inputKey);
 
-        comboScore += 1;
+        comboScore += 10;
         bandit.Attack();
     }
     
@@ -50,11 +50,11 @@ public class ScoreManager : MonoBehaviour
         while (lsKey.Count > 3) {
             lsKey.RemoveAt(0);
         }
-        if (lsKey[-1] == 3 && lsKey[-2] == 1 && lsKey[-1] == 1)  // Down Down Right
+        if (lsKey[lsKey.Count - 1] == 3 && lsKey[lsKey.Count - 2] == 1 && lsKey[lsKey.Count - 3] == 1)  // Down Down Right
         {
             lsSkill.Add(0);
             for (int i=0; i<3; i++) {
-                lsKey.RemoveAt(-1);
+                lsKey.RemoveAt(0);
             }
         }
     }
