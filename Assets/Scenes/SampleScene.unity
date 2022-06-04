@@ -153,7 +153,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteRestriction: 7
-  input: 102
+  scoreText: {fileID: 0}
+  bandit: {fileID: 0}
+  inputKeyUp: 0
+  inputKeyDown: 0
+  inputKeyLeft: 0
+  inputKeyRight: 0
+  inputKeyCast: 0
   notePrefab: {fileID: 1721378617231138213, guid: e3a426fd3cee0f94589dcf3a4963ff5d, type: 3}
   timeStamps: []
   scoreManager: {fileID: 2049863574}
@@ -199,7 +205,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d7bb7f88cf2153f458fd1af859ceb354, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ee9e57159ef07aa408a73cb3bedfa441, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -329,7 +335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39aa4e19a3d6214b850addf07ff0cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 690238801}
+  scoreText: {fileID: 0}
+  bandit: {fileID: 0}
 --- !u!4 &407885279
 Transform:
   m_ObjectHideFlags: 0
@@ -897,7 +904,7 @@ MonoBehaviour:
   songDelayInSeconds: 0
   marginOfError: 0.1
   inputDelayInMilliseconds: 0
-  fileLocation: Maiden-s-Prayer.mid
+  fileLocation: All_The_Way_North.mid
   noteTime: 1
   noteSpawnY: 7
   noteTapY: -2
@@ -946,7 +953,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteRestriction: 7
-  input: 106
+  scoreText: {fileID: 0}
+  bandit: {fileID: 0}
+  inputKeyUp: 0
+  inputKeyDown: 0
+  inputKeyLeft: 0
+  inputKeyRight: 0
+  inputKeyCast: 0
   notePrefab: {fileID: 885671370697947387, guid: 5c83af6d080d3d24e8d7b43d07a6de0a, type: 3}
   timeStamps: []
   scoreManager: {fileID: 407885278}
@@ -1038,7 +1051,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39aa4e19a3d6214b850addf07ff0cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 723647615}
+  scoreText: {fileID: 0}
+  bandit: {fileID: 0}
 --- !u!4 &2049863575
 Transform:
   m_ObjectHideFlags: 0
