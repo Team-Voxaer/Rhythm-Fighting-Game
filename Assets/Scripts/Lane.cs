@@ -38,6 +38,9 @@ public class Lane : MonoBehaviour
 
     public ScoreManager scoreManager;
 
+    // Hitting Effect
+    public HitEffect hitEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -147,7 +150,9 @@ public class Lane : MonoBehaviour
     private void Hit(int inputKey)
     {
         print("TODO: Hit");
+        hitEffect.ChangeColor();
         scoreManager.Hit(inputKey);
+        
     }
 
     private void Miss()
