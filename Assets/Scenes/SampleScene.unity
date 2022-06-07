@@ -252,14 +252,15 @@ MonoBehaviour:
   noteRestriction: 7
   scoreText: {fileID: 0}
   bandit: {fileID: 0}
-  inputKeyUp: 0
-  inputKeyDown: 0
-  inputKeyLeft: 0
-  inputKeyRight: 0
+  inputKeyUp: 119
+  inputKeyDown: 115
+  inputKeyLeft: 97
+  inputKeyRight: 100
   inputKeyCast: 0
   notePrefab: {fileID: 1721378617231138213, guid: e3a426fd3cee0f94589dcf3a4963ff5d, type: 3}
   timeStamps: []
   scoreManager: {fileID: 2049863574}
+  hitEffect: {fileID: 0}
 --- !u!4 &179919839
 Transform:
   m_ObjectHideFlags: 0
@@ -1012,7 +1013,7 @@ MonoBehaviour:
   - {fileID: 179919838}
   - {fileID: 1486331065}
   songDelayInSeconds: 0
-  marginOfError: 0.1
+  marginOfError: 0.5
   inputDelayInMilliseconds: 0
   fileLocation: All_The_Way_North.mid
   noteTime: 1
@@ -1073,6 +1074,7 @@ MonoBehaviour:
   notePrefab: {fileID: 885671370697947387, guid: 5c83af6d080d3d24e8d7b43d07a6de0a, type: 3}
   timeStamps: []
   scoreManager: {fileID: 407885278}
+  hitEffect: {fileID: 0}
 --- !u!4 &1486331066
 Transform:
   m_ObjectHideFlags: 0
