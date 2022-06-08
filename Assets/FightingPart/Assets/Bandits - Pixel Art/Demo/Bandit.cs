@@ -39,6 +39,10 @@ public class Bandit : MonoBehaviour {
 
     }
 
+    public void Defend() {
+        // TODO:
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
@@ -86,8 +90,8 @@ public class Bandit : MonoBehaviour {
         }
             
         //Hurt
-        else if (Input.GetKeyDown("q"))
-            m_animator.SetTrigger("Hurt");
+        // else if (Input.GetKeyDown("q"))
+        //     m_animator.SetTrigger("Hurt");
 
         //Attack
         /*else if (Input.GetKeyDown(KeyCode.J))
