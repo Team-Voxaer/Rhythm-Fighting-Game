@@ -776,16 +776,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteRestriction: 7
-  scoreText: {fileID: 0}
-  bandit: {fileID: 0}
+  bandit: {fileID: 555589060}
   inputKeyUp: 119
-  inputKeyDown: 99
+  inputKeyDown: 115
   inputKeyLeft: 97
-  inputKeyRight: 118
+  inputKeyRight: 100
   inputKeyCast: 98
   notePrefab: {fileID: 1721378617231138213, guid: e3a426fd3cee0f94589dcf3a4963ff5d, type: 3}
   timeStamps: []
   scoreManager: {fileID: 32668165}
+  hitEffect: {fileID: 0}
 --- !u!4 &884347955
 Transform:
   m_ObjectHideFlags: 0
@@ -831,8 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteRestriction: 7
-  scoreText: {fileID: 0}
-  bandit: {fileID: 0}
+  bandit: {fileID: 2074948508}
   inputKeyUp: 273
   inputKeyDown: 274
   inputKeyLeft: 276
@@ -841,6 +840,7 @@ MonoBehaviour:
   notePrefab: {fileID: 885671370697947387, guid: 5c83af6d080d3d24e8d7b43d07a6de0a, type: 3}
   timeStamps: []
   scoreManager: {fileID: 198269270}
+  hitEffect: {fileID: 0}
 --- !u!4 &892135474
 Transform:
   m_ObjectHideFlags: 0
