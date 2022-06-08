@@ -10,8 +10,6 @@ public class Lane : MonoBehaviour
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
 
-    public TextMeshProUGUI scoreText;
-
     public Bandit bandit;
 
     // Key for this line
