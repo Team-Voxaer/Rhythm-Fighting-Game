@@ -740,8 +740,8 @@ MonoBehaviour:
   songDelayInSeconds: 0
   marginOfError: 0.1
   inputDelayInMilliseconds: 0
-  fileLocation: Maiden-s-Prayer.mid
-  noteTime: 1
+  fileLocation: All_The_Way_North.mid
+  noteTime: 2
   noteSpawnY: 7
   noteTapY: -1
 --- !u!4 &646343419
@@ -1773,7 +1773,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d7bb7f88cf2153f458fd1af859ceb354, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ee9e57159ef07aa408a73cb3bedfa441, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
