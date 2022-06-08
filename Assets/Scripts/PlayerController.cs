@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     int curHealth;
 
 
+
     // Use this for initialization
     void Start()
     {

@@ -39,6 +39,12 @@ public class Lane : MonoBehaviour
     // Hitting Effect
     public HitEffect hitEffect;
 
+    // Combo Queue
+    private Queue<string> comboQueue = new Queue<string>();
+
+    // Combo Display
+    public TextMeshProUGUI comboText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +95,7 @@ public class Lane : MonoBehaviour
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
+                    AddCombo("UP");
                 }
                 else
                 {
@@ -101,6 +108,7 @@ public class Lane : MonoBehaviour
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
+                    AddCombo("DOWN");
                 }
                 else
                 {
@@ -113,6 +121,7 @@ public class Lane : MonoBehaviour
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
+                    AddCombo("LEFT");
                 }
                 else
                 {
@@ -125,6 +134,7 @@ public class Lane : MonoBehaviour
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
+                    AddCombo("RIGHT");
                 }
                 else
                 {
@@ -142,6 +152,8 @@ public class Lane : MonoBehaviour
                 inputIndex++;
                 // TODO: to add an animation for missing notes
             }
+
+            ShowCombo();
         }       
     }
 
@@ -161,6 +173,21 @@ public class Lane : MonoBehaviour
 
     private void CastSkill() {
         scoreManager.CastSkill();
+    }
+
+    void AddCombo(string combo)
+    {
+        if (comboQueue.Count == 5)
+        {
+            comboQueue.Dequeue();
+        }
+        comboQueue.Enqueue(combo);
+    }
+
+    void ShowCombo()
+    {
+        string text = String.Join(" ", comboQueue);
+        comboText.text = text;
     }
 
 }
