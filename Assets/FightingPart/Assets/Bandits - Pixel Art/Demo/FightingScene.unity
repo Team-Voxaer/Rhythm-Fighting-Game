@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &16215483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 16215484}
+  m_Layer: 0
+  m_Name: ScoreTouchingBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &16215484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16215483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &32668164
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +756,7 @@ MonoBehaviour:
   - {fileID: 884347954}
   - {fileID: 892135473}
   songDelayInSeconds: 0
-  marginOfError: 0.1
+  marginOfError: 1
   inputDelayInMilliseconds: 0
   fileLocation: Maiden-s-Prayer.mid
   noteTime: 1
@@ -778,9 +809,9 @@ MonoBehaviour:
   noteRestriction: 7
   bandit: {fileID: 555589060}
   inputKeyUp: 119
-  inputKeyDown: 115
-  inputKeyLeft: 97
-  inputKeyRight: 100
+  inputKeyDown: 256
+  inputKeyLeft: 115
+  inputKeyRight: 118
   inputKeyCast: 98
   notePrefab: {fileID: 1721378617231138213, guid: e3a426fd3cee0f94589dcf3a4963ff5d, type: 3}
   timeStamps: []

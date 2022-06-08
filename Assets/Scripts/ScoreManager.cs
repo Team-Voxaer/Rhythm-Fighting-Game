@@ -9,6 +9,9 @@ public class ScoreManager : MonoBehaviour
     public Bandit bandit;
     int comboScore;
 
+    private int skillCodeDefend = 0;
+    private int skillCodeAttack = 1;
+
     
     // List of keys for skills
     List<int> lsKey = new List<int>();
@@ -30,7 +33,7 @@ public class ScoreManager : MonoBehaviour
         lsKey.Add(inputKey);
 
         comboScore += 10;
-        bandit.Attack();
+        // bandit.Attack();
     }
     
     public void Miss()
@@ -41,8 +44,14 @@ public class ScoreManager : MonoBehaviour
     public void CastSkill() {
         CheckSkills();
         if (lsSkill.Count > 0) {
-            bandit.Attack();
+            if (lsSkill[0] == skillCodeDefend) {
+                bandit.Defend();
+            } else if (lsSkill[0] == skillCodeAttack) {
+                bandit.Attack();
+            }
             lsSkill.RemoveAt(0);
+        } else {
+            // TODO: a visualization for no skills when casting
         }
     }
 
@@ -50,9 +59,19 @@ public class ScoreManager : MonoBehaviour
         while (lsKey.Count > 3) {
             lsKey.RemoveAt(0);
         }
-        if (lsKey[lsKey.Count - 1] == 3 && lsKey[lsKey.Count - 2] == 1 && lsKey[lsKey.Count - 3] == 1)  // Down Down Right
+        // 0: up
+        // 1: down
+        // 2: left
+        // 3: right
+        if (lsKey[lsKey.Count - 1] == 3 && lsKey[lsKey.Count - 2] == 3 && lsKey[lsKey.Count - 3] == 0)  // Up Right Right
         {
-            lsSkill.Add(0);
+            lsSkill.Add(skillCodeAttack);
+            for (int i=0; i<3; i++) {
+                lsKey.RemoveAt(0);
+            }
+        } else if (lsKey[lsKey.Count - 1] == 1 && lsKey[lsKey.Count - 2] == 1 && lsKey[lsKey.Count - 3] == 1)  // Down Down Down
+        {
+            lsSkill.Add(skillCodeDefend);
             for (int i=0; i<3; i++) {
                 lsKey.RemoveAt(0);
             }
