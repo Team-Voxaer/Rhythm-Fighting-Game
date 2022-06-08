@@ -9,6 +9,8 @@ public class HitEffect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Try Not Hardcode Y Position
+        // transform.localPosition = Vector3.up * SongManager.Instance.noteSpawnY;
         effectTimer = 0;
     }
 

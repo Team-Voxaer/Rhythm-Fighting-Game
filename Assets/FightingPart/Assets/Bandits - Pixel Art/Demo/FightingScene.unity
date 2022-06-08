@@ -741,7 +741,7 @@ MonoBehaviour:
   marginOfError: 0.1
   inputDelayInMilliseconds: 0
   fileLocation: Maiden-s-Prayer.mid
-  noteTime: 1
+  noteTime: 2
   noteSpawnY: 7
   noteTapY: -1
 --- !u!4 &646343419
