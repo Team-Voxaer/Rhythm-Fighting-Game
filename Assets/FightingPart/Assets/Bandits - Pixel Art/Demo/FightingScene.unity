@@ -776,7 +776,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteRestriction: 7
-  input: 102
+  scoreText: {fileID: 0}
+  bandit: {fileID: 0}
+  inputKeyUp: 119
+  inputKeyDown: 99
+  inputKeyLeft: 97
+  inputKeyRight: 118
+  inputKeyCast: 98
   notePrefab: {fileID: 1721378617231138213, guid: e3a426fd3cee0f94589dcf3a4963ff5d, type: 3}
   timeStamps: []
   scoreManager: {fileID: 32668165}
@@ -825,7 +831,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteRestriction: 7
-  input: 106
+  scoreText: {fileID: 0}
+  bandit: {fileID: 0}
+  inputKeyUp: 273
+  inputKeyDown: 274
+  inputKeyLeft: 276
+  inputKeyRight: 275
+  inputKeyCast: 92
   notePrefab: {fileID: 885671370697947387, guid: 5c83af6d080d3d24e8d7b43d07a6de0a, type: 3}
   timeStamps: []
   scoreManager: {fileID: 198269270}
