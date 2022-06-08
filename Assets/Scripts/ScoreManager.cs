@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public Bandit bandit;
+    public PlayerController player;
     int comboScore;
 
     private int skillCodeDefend = 0;
@@ -45,9 +45,9 @@ public class ScoreManager : MonoBehaviour
         CheckSkills();
         if (lsSkill.Count > 0) {
             if (lsSkill[0] == skillCodeDefend) {
-                bandit.Defend();
+                player.Defend();
             } else if (lsSkill[0] == skillCodeAttack) {
-                bandit.Attack();
+                player.Attack();
             }
             lsSkill.RemoveAt(0);
         } else {

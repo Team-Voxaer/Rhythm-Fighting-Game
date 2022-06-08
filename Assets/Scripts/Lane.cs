@@ -10,7 +10,7 @@ public class Lane : MonoBehaviour
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
 
-    public Bandit bandit;
+    public PlayerController player;
 
     // Key for this line
     public KeyCode inputKeyUp;
