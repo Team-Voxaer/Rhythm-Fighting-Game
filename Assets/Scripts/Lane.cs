@@ -10,14 +10,14 @@ public class Lane : MonoBehaviour
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
 
-    public Bandit bandit;
+    public PlayerController player;
 
     // Key for this line
     public KeyCode inputKeyUp;
     public KeyCode inputKeyDown;
     public KeyCode inputKeyLeft;
     public KeyCode inputKeyRight;
-    public KeyCode inputKeyCast;
+    
 
     // Template for Note
     public GameObject notePrefab;
@@ -38,6 +38,12 @@ public class Lane : MonoBehaviour
 
     // Hitting Effect
     public HitEffect hitEffect;
+
+    // Combo Queue
+    private Queue<string> comboQueue = new Queue<string>();
+
+    // Combo Display
+    public TextMeshProUGUI comboText;
 
     // Start is called before the first frame update
     void Start()
@@ -89,6 +95,7 @@ public class Lane : MonoBehaviour
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
+                    AddCombo("UP");
                 }
                 else
                 {
@@ -101,6 +108,7 @@ public class Lane : MonoBehaviour
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
+                    AddCombo("DOWN");
                 }
                 else
                 {
@@ -113,6 +121,7 @@ public class Lane : MonoBehaviour
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
+                    AddCombo("LEFT");
                 }
                 else
                 {
@@ -125,15 +134,14 @@ public class Lane : MonoBehaviour
                     print($"Hit on {inputIndex} note");
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
+                    AddCombo("RIGHT");
                 }
                 else
                 {
                     print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                 }
             }
-            if (Input.GetKeyDown(inputKeyCast)) {
-                CastSkill();
-            }
+            
 
             if (timeStamp + marginOfError <= audioTime)
             {
@@ -142,13 +150,15 @@ public class Lane : MonoBehaviour
                 inputIndex++;
                 // TODO: to add an animation for missing notes
             }
+
+            ShowCombo();
         }       
     }
 
     private void Hit(int inputKey)
     {
         print("TODO: Hit");
-        hitEffect.ChangeColor();
+        hitEffect.ChangeColor(inputKey);
         scoreManager.Hit(inputKey);
         
     }
@@ -159,8 +169,19 @@ public class Lane : MonoBehaviour
         scoreManager.Miss();
     }
 
-    private void CastSkill() {
-        scoreManager.CastSkill();
+    void AddCombo(string combo)
+    {
+        if (comboQueue.Count == 5)
+        {
+            comboQueue.Dequeue();
+        }
+        comboQueue.Enqueue(combo);
+    }
+
+    void ShowCombo()
+    {
+        string text = String.Join(" ", comboQueue);
+        comboText.text = text;
     }
 
 }

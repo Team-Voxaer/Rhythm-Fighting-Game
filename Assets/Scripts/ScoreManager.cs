@@ -6,8 +6,10 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public Bandit bandit;
+    public PlayerController player;
     int comboScore;
+
+    public KeyCode inputKeyCast;
 
     private int skillCodeDefend = 0;
     private int skillCodeAttack = 1;
@@ -26,7 +28,11 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = comboScore.ToString();
+        if (Input.GetKeyDown(inputKeyCast)) {
+            CastSkill();
+        }
+
+        scoreText.text = "Point: " + comboScore.ToString();
     }
 
     public void Hit(int inputKey) {
@@ -45,9 +51,9 @@ public class ScoreManager : MonoBehaviour
         CheckSkills();
         if (lsSkill.Count > 0) {
             if (lsSkill[0] == skillCodeDefend) {
-                bandit.Defend();
+                player.Defend();
             } else if (lsSkill[0] == skillCodeAttack) {
-                bandit.Attack();
+                player.Attack();
             }
             lsSkill.RemoveAt(0);
         } else {
@@ -63,13 +69,13 @@ public class ScoreManager : MonoBehaviour
         // 1: down
         // 2: left
         // 3: right
-        if (lsKey[lsKey.Count - 1] == 3 && lsKey[lsKey.Count - 2] == 0 && lsKey[lsKey.Count - 3] == 0)  // Up Up Right
+        if (lsKey.Count == 3 && lsKey[lsKey.Count - 1] == 3 && lsKey[lsKey.Count - 2] == 0 && lsKey[lsKey.Count - 3] == 0)  // Up Up Right
         {
             lsSkill.Add(skillCodeAttack);
             for (int i=0; i<3; i++) {
                 lsKey.RemoveAt(0);
             }
-        } else if (lsKey[lsKey.Count - 1] == 1 && lsKey[lsKey.Count - 2] == 1 && lsKey[lsKey.Count - 3] == 1)  // Down Down Down
+        } else if (lsKey.Count == 3 && lsKey[lsKey.Count - 1] == 1 && lsKey[lsKey.Count - 2] == 1 && lsKey[lsKey.Count - 3] == 1)  // Down Down Down
         {
             lsSkill.Add(skillCodeDefend);
             for (int i=0; i<3; i++) {
