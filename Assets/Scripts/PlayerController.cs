@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     public void Defend()
     {
         // TODO:
+        m_animator.SetTrigger("Defend");
     }
 
     private void OnDrawGizmosSelected()
@@ -93,10 +94,10 @@ public class PlayerController : MonoBehaviour
             m_animator.SetBool("Grounded", m_grounded);
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        /*if (Input.GetKeyDown(KeyCode.J))
         {
             Attack();
-        }
+        }*/
 
         /*// -- Handle input and movement --
         float inputX = Input.GetAxis("Horizontal");

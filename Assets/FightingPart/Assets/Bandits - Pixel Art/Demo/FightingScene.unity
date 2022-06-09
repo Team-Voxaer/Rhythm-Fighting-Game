@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 413583205}
   - component: {fileID: 413583204}
   m_Layer: 5
-  m_Name: ComboUI
+  m_Name: ComboUI1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,15 +510,15 @@ RectTransform:
   m_GameObject: {fileID: 413583202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0058655045, y: 0.0058655045, z: 0.0058655045}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 884347955}
-  m_RootOrder: 1
+  m_Father: {fileID: 1150320421}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.02, y: 1.51}
+  m_AnchoredPosition: {x: -709.2315, y: 257.4374}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &413583204
@@ -749,7 +749,7 @@ MonoBehaviour:
   - {fileID: 884347954}
   - {fileID: 892135473}
   songDelayInSeconds: 0
-  marginOfError: 1
+  marginOfError: 0.1
   inputDelayInMilliseconds: 0
   fileLocation: All_The_Way_North.mid
   noteTime: 2
@@ -805,7 +805,7 @@ MonoBehaviour:
   inputKeyDown: 115
   inputKeyLeft: 97
   inputKeyRight: 100
-  inputKeyCast: 98
+  inputKeyCast: 106
   notePrefab: {fileID: 1721378617231138213, guid: e3a426fd3cee0f94589dcf3a4963ff5d, type: 3}
   timeStamps: []
   scoreManager: {fileID: 32668165}
@@ -819,12 +819,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884347953}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -883.1295, y: 0, z: 0}
+  m_LocalPosition: {x: -883.1295, y: -45, z: 0}
   m_LocalScale: {x: 170.48833, y: 170.48833, z: 170.48833}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 617426953}
-  - {fileID: 413583203}
   m_Father: {fileID: 1150320421}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -877,12 +876,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892135472}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 860.96606, y: 0, z: 0}
+  m_LocalPosition: {x: 860.96606, y: -45, z: 0}
   m_LocalScale: {x: 170.48833, y: 170.48833, z: 170.48833}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1900457384}
-  - {fileID: 1767571162}
   m_Father: {fileID: 1150320421}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1232,6 +1230,8 @@ RectTransform:
   - {fileID: 1092591210}
   - {fileID: 884347955}
   - {fileID: 892135474}
+  - {fileID: 413583203}
+  - {fileID: 1767571162}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1859,7 +1859,7 @@ GameObject:
   - component: {fileID: 1767571164}
   - component: {fileID: 1767571163}
   m_Layer: 5
-  m_Name: ComboUI
+  m_Name: ComboUI2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1874,15 +1874,15 @@ RectTransform:
   m_GameObject: {fileID: 1767571161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0058700005, y: 0.0058700005, z: 0.0058700005}
+  m_LocalScale: {x: 1.0007665, y: 1.0007665, z: 1.0007665}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 892135474}
-  m_RootOrder: 1
+  m_Father: {fileID: 1150320421}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.25, y: 1.5100098}
+  m_AnchoredPosition: {x: 647.85565, y: 257.43903}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767571163
@@ -2040,12 +2040,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Can Only attack when notes hit ground.
+  m_text: 'Can Only attack when notes hit white bar.
 
-    F: left player attack
+    WASD for left player to
+    hit notes, J to cast skills
 
-    J:
-    right player attack
+    Arrow keys for right player to hit notes, \
+    to cast skills
+
+    Currently, only two available skills:
+
+    Attack: UP UP
+    RIGHT
+
+    Defend: DOWN DOWN DOWN
 
     R: restart
 
@@ -2112,7 +2120,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -139.29254, y: 0, z: -208.93874, w: -85.71852}
+  m_margin: {x: -139.29254, y: 0, z: -386.25818, w: -85.71852}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
