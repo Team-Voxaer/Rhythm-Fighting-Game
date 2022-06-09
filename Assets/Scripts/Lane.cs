@@ -158,7 +158,7 @@ public class Lane : MonoBehaviour
     private void Hit(int inputKey)
     {
         print("TODO: Hit");
-        hitEffect.ChangeColor();
+        hitEffect.ChangeColor(inputKey);
         scoreManager.Hit(inputKey);
         
     }
