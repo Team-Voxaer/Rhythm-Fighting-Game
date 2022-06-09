@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +18,11 @@ public class PlayerController : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public int attackDamage = 30;
-    public int maxHealth = 100;
+    public int maxHealth = 10;
+
+    // Health Text
+    public TextMeshProUGUI healthText;
+
     int curHealth;
 
 
@@ -94,6 +99,8 @@ public class PlayerController : MonoBehaviour
             m_animator.SetBool("Grounded", m_grounded);
         }
 
+
+        healthText.text = "HP: " + curHealth.ToString();
         /*if (Input.GetKeyDown(KeyCode.J))
         {
             Attack();

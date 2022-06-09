@@ -17,7 +17,7 @@ public class Lane : MonoBehaviour
     public KeyCode inputKeyDown;
     public KeyCode inputKeyLeft;
     public KeyCode inputKeyRight;
-    public KeyCode inputKeyCast;
+    
 
     // Template for Note
     public GameObject notePrefab;
@@ -141,9 +141,7 @@ public class Lane : MonoBehaviour
                     print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                 }
             }
-            if (Input.GetKeyDown(inputKeyCast)) {
-                CastSkill();
-            }
+            
 
             if (timeStamp + marginOfError <= audioTime)
             {
@@ -169,10 +167,6 @@ public class Lane : MonoBehaviour
     {
         print("TODO: Miss");
         scoreManager.Miss();
-    }
-
-    private void CastSkill() {
-        scoreManager.CastSkill();
     }
 
     void AddCombo(string combo)

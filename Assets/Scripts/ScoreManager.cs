@@ -9,6 +9,8 @@ public class ScoreManager : MonoBehaviour
     public PlayerController player;
     int comboScore;
 
+    public KeyCode inputKeyCast;
+
     private int skillCodeDefend = 0;
     private int skillCodeAttack = 1;
 
@@ -26,7 +28,11 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = comboScore.ToString();
+        if (Input.GetKeyDown(inputKeyCast)) {
+            CastSkill();
+        }
+
+        scoreText.text = "Point: " + comboScore.ToString();
     }
 
     public void Hit(int inputKey) {
