@@ -753,11 +753,11 @@ MonoBehaviour:
   - {fileID: 884347954}
   - {fileID: 892135473}
   songDelayInSeconds: 0
-  marginOfError: 0.1
+  marginOfError: 0.2
   inputDelayInMilliseconds: 0
   fileLocation: All_The_Way_North.mid
   noteTime: 2
-  noteSpawnY: 7
+  noteSpawnY: 3
   noteTapY: -1.05
 --- !u!4 &646343419
 Transform:
