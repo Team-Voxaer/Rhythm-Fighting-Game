@@ -5,8 +5,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
+
 public class Lane : MonoBehaviour
 {
+    public enum Direction
+    {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    }
+
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
 
@@ -18,7 +28,6 @@ public class Lane : MonoBehaviour
     public KeyCode inputKeyLeft;
     public KeyCode inputKeyRight;
     
-
     // Template for Note
     public GameObject notePrefab;
 
@@ -44,6 +53,9 @@ public class Lane : MonoBehaviour
 
     // Combo Display
     public TextMeshProUGUI comboText;
+
+    // Last Hit Level: Perfect / Good
+    private string lastHitLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -84,57 +96,53 @@ public class Lane : MonoBehaviour
             // Timestamp of current note should be pressed in
             double timeStamp = timeStamps[inputIndex];
             double marginOfError = SongManager.Instance.marginOfError;
-
+            double marginOfPerfect = marginOfError / 2;
             // Current timestamp of audio
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
 
             if (Input.GetKeyDown(inputKeyUp)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfError)
-                {
-                    Hit(0);
-                    print($"Hit on {inputIndex} note");
-                    Destroy(notes[inputIndex].gameObject);
-                    inputIndex++;
-                    AddCombo("UP");
+                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
+                    Hit(Direction.UP, true);
                 }
-                else
+                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
+                {
+                    Hit(Direction.UP, false);
+                }
+                else 
                 {
                     print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                 }
             } else if (Input.GetKeyDown(inputKeyDown)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfError)
+                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
+                    Hit(Direction.DOWN, true);
+                }
+                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
                 {
-                    Hit(1);
-                    print($"Hit on {inputIndex} note");
-                    Destroy(notes[inputIndex].gameObject);
-                    inputIndex++;
-                    AddCombo("DOWN");
+                    Hit(Direction.DOWN, false);
                 }
                 else
                 {
                     print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                 }
             } else if (Input.GetKeyDown(inputKeyLeft)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfError)
+                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
+                    Hit(Direction.LEFT, true);
+                }
+                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
                 {
-                    Hit(2);
-                    print($"Hit on {inputIndex} note");
-                    Destroy(notes[inputIndex].gameObject);
-                    inputIndex++;
-                    AddCombo("LEFT");
+                    Hit(Direction.LEFT, false);
                 }
                 else
                 {
                     print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                 }
             } else if (Input.GetKeyDown(inputKeyRight)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfError)
+                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
+                    Hit(Direction.RIGHT, true);
+                }
+                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
                 {
-                    Hit(3);
-                    print($"Hit on {inputIndex} note");
-                    Destroy(notes[inputIndex].gameObject);
-                    inputIndex++;
-                    AddCombo("RIGHT");
+                    Hit(Direction.RIGHT, false);
                 }
                 else
                 {
@@ -155,23 +163,43 @@ public class Lane : MonoBehaviour
         }       
     }
 
-    private void Hit(int inputKey)
+    private void Hit(Direction direction, bool isPerfect)
     {
-        print("TODO: Hit");
-        hitEffect.ChangeColor(inputKey);
-        scoreManager.Hit(inputKey);
-        
+        print($"Hit on {inputIndex} note");
+        Destroy(notes[inputIndex].gameObject);
+        inputIndex++;
+
+        if (isPerfect) lastHitLevel = "Perfect";
+        else lastHitLevel = "Good";
+
+        switch (direction)
+        {
+        case Direction.UP:
+            AddCombo("UP");
+            break;
+        case Direction.DOWN:
+            AddCombo("DOWN");
+            break;
+        case Direction.LEFT:
+            AddCombo("LEFT");
+            break;
+        case Direction.RIGHT:
+            AddCombo("RIGHT");
+            break;
+        }
+
+        hitEffect.ChangeColor((int) direction);
+        scoreManager.Hit((int) direction); 
     }
 
     private void Miss()
     {
-        print("TODO: Miss");
         scoreManager.Miss();
     }
 
     void AddCombo(string combo)
     {
-        if (comboQueue.Count == 5)
+        if (comboQueue.Count == 3)
         {
             comboQueue.Dequeue();
         }
@@ -180,7 +208,7 @@ public class Lane : MonoBehaviour
 
     void ShowCombo()
     {
-        string text = String.Join(" ", comboQueue);
+        string text = "Input History:" + String.Join(" ", comboQueue) + "\nHit Level: " + lastHitLevel;
         comboText.text = text;
     }
 
