@@ -6,6 +6,8 @@ public class Note : MonoBehaviour
 {
     double timeInstantiated;
     public float assignedTime;
+    public float horizontalVelocity;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,10 @@ public class Note : MonoBehaviour
         }
         else
         {
-            transform.localPosition = Vector3.Lerp(Vector3.up * SongManager.Instance.noteSpawnY, Vector3.up * SongManager.Instance.noteDespawnY, t); 
+            transform.localPosition = Vector3.Lerp(Vector3.up * SongManager.Instance.noteSpawnY, 
+            Vector3.up * SongManager.Instance.noteDespawnY + Vector3.right * horizontalVelocity,
+             t);
+           
             GetComponent<SpriteRenderer>().enabled = true;
         }
     }

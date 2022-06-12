@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignedTime: 0
+  horizontalVelocity: 3.5
 --- !u!212 &1721378617231138235
 SpriteRenderer:
   m_ObjectHideFlags: 0
