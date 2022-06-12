@@ -5,25 +5,32 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] float m_speed = 4.0f;
-    [SerializeField] float m_jumpForce = 7.5f;
+    /*[SerializeField] float m_speed = 4.0f;
+    [SerializeField] float m_jumpForce = 7.5f;*/
 
     private Animator m_animator;
     private Rigidbody2D m_body2d;
     private Sensor_Bandit m_groundSensor;
     private bool m_grounded = false;
-    private bool m_combatIdle = false;
-    private bool m_isDead = false;
+    /*private bool m_combatIdle = false;
+    private bool m_isDead = false;*/
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public int attackDamage = 30;
-    public int maxHealth = 10;
+    public int maxHealth = 150;
+    private int defenseIncrease = 0;
+    private float buffDuration = 10;
 
     // Health Text
     public TextMeshProUGUI healthText;
 
     int curHealth;
+
+    enum BuffType
+    {
+        DefenseIncrease
+    }
 
 
 
@@ -51,10 +58,19 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private IEnumerator RemoveBuff(float time, BuffType buff)
+    {
+        yield return new WaitForSeconds(time);
+        if (buff == BuffType.DefenseIncrease)
+        {
+            defenseIncrease = 0;
+        }
+    }
     public void Defend()
     {
-        // TODO:
+        defenseIncrease = 100;
         m_animator.SetTrigger("Defend");
+        StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
     }
 
     private void OnDrawGizmosSelected()
@@ -65,8 +81,16 @@ public class PlayerController : MonoBehaviour
 
     public void TakenDamage(int damage)
     {
-        curHealth -= damage;
-        m_animator.SetTrigger("Hurt");
+        if (damage > defenseIncrease)
+        {
+            curHealth -= (damage - defenseIncrease);
+            m_animator.SetTrigger("Hurt");
+        }
+        else
+        {
+            curHealth -= 1;
+            m_animator.SetTrigger("Defend");
+        }
         if (curHealth <= 0)
         {
             Die();
@@ -80,6 +104,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+        healthText.text = "HP: 0";
     }
 
     // Update is called once per frame
