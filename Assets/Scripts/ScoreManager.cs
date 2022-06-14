@@ -19,6 +19,11 @@ public class ScoreManager : MonoBehaviour
     List<int> lsKey = new List<int>();
     List<int> lsSkill = new List<int>();
 
+    public GameObject visCombo1;
+    public GameObject visCombo2;
+    public GameObject visCombo3;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +38,22 @@ public class ScoreManager : MonoBehaviour
         }
 
         scoreText.text = "Point: " + comboScore.ToString();
+
+        if (lsKey.Count == 0) {
+            visCombo1.SetActive(false);
+            visCombo2.SetActive(false);
+            visCombo3.SetActive(false);
+        } else {
+            if (lsKey.Count >= 1) {
+                visCombo1.SetActive(true);
+            }
+            if (lsKey.Count >= 2) {
+                visCombo2.SetActive(true);
+            }
+            if (lsKey.Count >= 3) {
+                visCombo3.SetActive(true);
+            }
+        }
     }
 
     public void Hit(int inputKey) {
