@@ -58,6 +58,21 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void Skill1()
+    {
+        m_animator.SetTrigger("Attack");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("we hit" + enemy.name);
+            enemy.GetComponent<PlayerController>().TakenDamage(attackDamage);
+
+        }
+
+    }
+
     private IEnumerator RemoveBuff(float time, BuffType buff)
     {
         yield return new WaitForSeconds(time);

@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
 
     private int skillCodeDefend = 0;
     private int skillCodeAttack = 1;
+    private int skillCodeSkill = 2;
 
     
     // List of keys for skills
@@ -47,12 +48,77 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(inputKeyCast)) {
-            CastSkill();
-        }
+        // if (Input.GetKeyDown(inputKeyCast)) {
+        //     CastSkill();
+        // }
+        // CastSkill();
 
         scoreText.text = "Point: " + comboScore.ToString();
 
+        VisualizeCombo();
+    }
+
+    public void Hit(int inputKey) {
+        lsKey.Add(inputKey);
+
+        comboScore += 10;
+        
+        VisualizeCombo();
+        CastSkill();
+    }
+    
+    public void Miss()
+    {
+        comboScore -= 1;
+    }
+
+    public void CastSkill() {
+        CheckSkills();
+        if (lsSkill.Count > 0) {
+            if (lsSkill[0] == skillCodeDefend) {
+                player.Defend();
+            } else if (lsSkill[0] == skillCodeAttack) {
+                player.Attack();
+            } else if (lsSkill[0] == skillCodeSkill) {
+                player.Skill1();
+            }
+            lsSkill.RemoveAt(0);
+        } else {
+            // TODO: a visualization for no skills when casting
+        }
+    }
+
+    private void CheckSkills() {
+        while (lsKey.Count > 3) {
+            lsKey.RemoveAt(0);
+        }
+        // 0: up
+        // 1: down
+        // 2: left
+        // 3: right
+        if (lsKey.Count == 3) {
+            if (lsKey[lsKey.Count - 1] == 3 && lsKey[lsKey.Count - 2] == 0 && lsKey[lsKey.Count - 3] == 0)  // Up Up Right
+            {
+                lsSkill.Add(skillCodeAttack);
+                for (int i=0; i<3; i++) {
+                    lsKey.RemoveAt(0);
+                }
+            } else if (lsKey[lsKey.Count - 1] == 1 && lsKey[lsKey.Count - 2] == 1 && lsKey[lsKey.Count - 3] == 1)  // Down Down Down
+            {
+                lsSkill.Add(skillCodeDefend);
+                for (int i=0; i<3; i++) {
+                    lsKey.RemoveAt(0);
+                }
+            } else {
+                lsSkill.Add(skillCodeSkill);
+                for (int i=0; i<3; i++) {
+                    lsKey.RemoveAt(0);
+                }
+            }
+        }
+    }
+
+    private void VisualizeCombo() {
         if (lsKey.Count == 0) {
             VisCombo(visCombo1, -1);
             VisCombo(visCombo2, -1);
@@ -75,56 +141,6 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
-
-    public void Hit(int inputKey) {
-        lsKey.Add(inputKey);
-
-        comboScore += 10;
-        // bandit.Attack();
-    }
-    
-    public void Miss()
-    {
-        comboScore -= 1;
-    }
-
-    public void CastSkill() {
-        CheckSkills();
-        if (lsSkill.Count > 0) {
-            if (lsSkill[0] == skillCodeDefend) {
-                player.Defend();
-            } else if (lsSkill[0] == skillCodeAttack) {
-                player.Attack();
-            }
-            lsSkill.RemoveAt(0);
-        } else {
-            // TODO: a visualization for no skills when casting
-        }
-    }
-
-    private void CheckSkills() {
-        while (lsKey.Count > 3) {
-            lsKey.RemoveAt(0);
-        }
-        // 0: up
-        // 1: down
-        // 2: left
-        // 3: right
-        if (lsKey.Count == 3 && lsKey[lsKey.Count - 1] == 3 && lsKey[lsKey.Count - 2] == 0 && lsKey[lsKey.Count - 3] == 0)  // Up Up Right
-        {
-            lsSkill.Add(skillCodeAttack);
-            for (int i=0; i<3; i++) {
-                lsKey.RemoveAt(0);
-            }
-        } else if (lsKey.Count == 3 && lsKey[lsKey.Count - 1] == 1 && lsKey[lsKey.Count - 2] == 1 && lsKey[lsKey.Count - 3] == 1)  // Down Down Down
-        {
-            lsSkill.Add(skillCodeDefend);
-            for (int i=0; i<3; i++) {
-                lsKey.RemoveAt(0);
-            }
-        }
-    }
-
     private void VisCombo(VisCombo visComboN, int idxKey) {
         if (idxKey == 0) {
             // visComboN = GetComponent<Image>();
