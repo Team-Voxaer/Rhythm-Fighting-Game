@@ -5,16 +5,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
-
 public class Lane : MonoBehaviour
 {
     public enum Direction
     {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
+        Up,
+        Down,
+        Left,
+        Right,
+        None
+    }
+
+    public enum HitLevel
+    {
+        Perfect,
+        Good,
+        Bad,
+        Invalid
     }
 
     // restrict note to certain Key
@@ -48,14 +55,11 @@ public class Lane : MonoBehaviour
     // Hitting Effect
     public HitEffect hitEffect;
 
-    /*// Combo Queue
-    private Queue<string> comboQueue = new Queue<string>();*/
-
     // Combo Display
     public TextMeshProUGUI comboText;
 
-    // Last Hit Level: Perfect / Good
-    private string lastHitLevel;
+    // Last Hit Level: Perfect / Good / Bad 
+    private HitLevel lastHitLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -95,74 +99,59 @@ public class Lane : MonoBehaviour
         {
             // Timestamp of current note should be pressed in
             double timeStamp = timeStamps[inputIndex];
-            double marginOfError = SongManager.Instance.marginOfError;
-            double marginOfPerfect = marginOfError / 4;
+            
+            // Range: Perfect / Good / Bad / Invalid 
+            double marginOfGood = SongManager.Instance.marginOfError;
+            double marginOfPerfect = marginOfGood / 4;
+            double marginOfBad = marginOfGood + marginOfPerfect; 
+
             // Current timestamp of audio
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
 
+            // Check Direction Key Input
+            Direction direction;
             if (Input.GetKeyDown(inputKeyUp)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
-                    Hit(Direction.UP, true);
-                    print($"Hit Up Perfect on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
-                {
-                    Hit(Direction.UP, false);
-                    print($"Hit Up Good on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-                else 
-                {
-                    print($"Hit Up Bad on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
+                direction = Direction.Up;
             } else if (Input.GetKeyDown(inputKeyDown)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
-                    Hit(Direction.DOWN, true);
-                    print($"Hit Down Perfect on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
-                {
-                    Hit(Direction.DOWN, false);
-                    print($"Hit Down Good on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-                else
-                {
-                    print($"Hit Down Bad on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
+                direction = Direction.Down;
             } else if (Input.GetKeyDown(inputKeyLeft)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
-                    Hit(Direction.LEFT, true);
-                    print($"Hit Left Perfect on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
-                {
-                    Hit(Direction.LEFT, false);
-                    print($"Hit Left Good on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-                else
-                {
-                    print($"Hit Left Bad on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
+                direction = Direction.Left;
             } else if (Input.GetKeyDown(inputKeyRight)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
-                    Hit(Direction.RIGHT, true);
-                    print($"Hit Right Perfect on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
-                {
-                    Hit(Direction.RIGHT, false);
-                    print($"Hit Right Good on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-                else
-                {
-                    print($"Hit Right Bad on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
+                direction = Direction.Right;
+            } else {
+                direction = Direction.None;
             }
             
+            // Which means someone actually hit a direction key
+            if (direction != Direction.None) { 
+                HitLevel hitLevel;
+                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
+                    hitLevel = HitLevel.Perfect;
+                }
+                else if (Math.Abs(audioTime - timeStamp) < marginOfGood)
+                {
+                    hitLevel = HitLevel.Good;
+                }
+                else if (Math.Abs(audioTime - timeStamp) < marginOfBad)
+                {
+                    hitLevel = HitLevel.Bad;
+                }
+                else {
+                    hitLevel = HitLevel.Invalid;
+                }
 
-            if (timeStamp + marginOfError <= audioTime)
+                if (hitLevel != HitLevel.Invalid) {
+                    Hit(direction, hitLevel);
+                }
+
+                print($"Input Direction {direction.ToString()} {hitLevel.ToString()} on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+            }
+
+            // If it is larger than Margin of Bad, so it can't even be hit anymore
+            if (timeStamp + marginOfBad <= audioTime)
             {
                 Miss();
-                print($"Missed {inputIndex} note");
+                print($"Missed {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                 inputIndex++;
                 // TODO: to add an animation for missing notes
             }
@@ -171,34 +160,12 @@ public class Lane : MonoBehaviour
         }       
     }
 
-    private void Hit(Direction direction, bool isPerfect)
+    private void Hit(Direction direction, HitLevel hitLevel)
     {
         // print($"Hit on {inputIndex} note");
         Destroy(notes[inputIndex].gameObject);
-        
 
-        if (isPerfect) {
-            lastHitLevel = "Perfect";
-        }
-        else {
-            lastHitLevel = "Good";
-        }
-
-        switch (direction)
-        {
-        case Direction.UP:
-            //AddCombo("UP");
-            break;
-        case Direction.DOWN:
-            //AddCombo("DOWN");
-            break;
-        case Direction.LEFT:
-            //AddCombo("LEFT");
-            break;
-        case Direction.RIGHT:
-            //AddCombo("RIGHT");
-            break;
-        }
+        lastHitLevel = hitLevel;
 
         hitEffect.ChangeColor((int) direction);
         scoreManager.Hit((int) direction); 
@@ -223,7 +190,7 @@ public class Lane : MonoBehaviour
 
     void ShowHitlevel()
     {
-        string text = "Hit Level: " + lastHitLevel;
+        string text = "Hit Level: " + lastHitLevel.ToString();
         comboText.text = text;
     }
 
