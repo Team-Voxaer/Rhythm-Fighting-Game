@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
+    // public TextMeshProUGUI scoreText;
     public PlayerController player;
     int comboScore;
 
@@ -55,7 +55,7 @@ public class ScoreManager : MonoBehaviour
         // }
         // CastSkill();
 
-        scoreText.text = "Point: " + comboScore.ToString();
+        // scoreText.text = "Point: " + comboScore.ToString();
 
         VisualizeCombo();
     }
