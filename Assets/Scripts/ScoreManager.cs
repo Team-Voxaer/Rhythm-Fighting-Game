@@ -14,9 +14,11 @@ public class ScoreManager : MonoBehaviour
 
     private int skillCodeDefend = 0;
     private int skillCodeAttack = 1;
-    private int skillCodeSkill = 2;
+    private int skillCodeSword = 2;
+    private int skillCodeGrandCross = 3;
+    private int skillCodeThunder = 4;
 
-    
+
     // List of keys for skills
     List<int> lsKey = new List<int>();
     List<int> lsSkill = new List<int>();
@@ -79,8 +81,14 @@ public class ScoreManager : MonoBehaviour
                 player.Defend();
             } else if (lsSkill[0] == skillCodeAttack) {
                 player.Attack();
-            } else if (lsSkill[0] == skillCodeSkill) {
-                player.Skill1();
+            } else if (lsSkill[0] == skillCodeSword) {
+                player.UseSword();
+            } else if (lsSkill[0] == skillCodeGrandCross)
+            {
+                player.UseGrandCross();
+            } else if (lsSkill[0] == skillCodeThunder)
+            {
+                player.UseThunder();
             }
             lsSkill.RemoveAt(0);
         } else {
@@ -109,9 +117,24 @@ public class ScoreManager : MonoBehaviour
                 for (int i=0; i<3; i++) {
                     lsKey.RemoveAt(0);
                 }
-            } else {
-                lsSkill.Add(skillCodeSkill);
+            } else if (lsKey[lsKey.Count - 1] == 0 && lsKey[lsKey.Count - 2] == 0 && lsKey[lsKey.Count - 3] == 0) // UP UP UP
+            {
+                lsSkill.Add(skillCodeGrandCross);
                 for (int i=0; i<3; i++) {
+                    lsKey.RemoveAt(0);
+                }
+            } else if (lsKey[lsKey.Count - 1] == 2 && lsKey[lsKey.Count - 2] == 2 && lsKey[lsKey.Count - 3] == 2)
+            {
+                lsSkill.Add(skillCodeSword);
+                for (int i = 0; i < 3; i++)
+                {
+                    lsKey.RemoveAt(0);
+                }
+            } else
+            {
+                lsSkill.Add(skillCodeThunder);
+                for (int i = 0; i < 3; i++)
+                {
                     lsKey.RemoveAt(0);
                 }
             }

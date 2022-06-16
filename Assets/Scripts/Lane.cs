@@ -48,8 +48,8 @@ public class Lane : MonoBehaviour
     // Hitting Effect
     public HitEffect hitEffect;
 
-    // Combo Queue
-    private Queue<string> comboQueue = new Queue<string>();
+    /*// Combo Queue
+    private Queue<string> comboQueue = new Queue<string>();*/
 
     // Combo Display
     public TextMeshProUGUI comboText;
@@ -159,7 +159,7 @@ public class Lane : MonoBehaviour
                 // TODO: to add an animation for missing notes
             }
 
-            ShowCombo();
+            //ShowCombo();
         }       
     }
 
@@ -175,16 +175,16 @@ public class Lane : MonoBehaviour
         switch (direction)
         {
         case Direction.UP:
-            AddCombo("UP");
+            //AddCombo("UP");
             break;
         case Direction.DOWN:
-            AddCombo("DOWN");
+            //AddCombo("DOWN");
             break;
         case Direction.LEFT:
-            AddCombo("LEFT");
+            //AddCombo("LEFT");
             break;
         case Direction.RIGHT:
-            AddCombo("RIGHT");
+            //AddCombo("RIGHT");
             break;
         }
 
@@ -197,7 +197,7 @@ public class Lane : MonoBehaviour
         scoreManager.Miss();
     }
 
-    void AddCombo(string combo)
+    /*void AddCombo(string combo)
     {
         if (comboQueue.Count == 3)
         {
@@ -210,6 +210,6 @@ public class Lane : MonoBehaviour
     {
         string text = "Input History:" + String.Join(" ", comboQueue) + "\nHit Level: " + lastHitLevel;
         comboText.text = text;
-    }
+    }*/
 
 }
