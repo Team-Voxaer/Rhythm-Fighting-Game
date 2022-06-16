@@ -1001,7 +1001,7 @@ MonoBehaviour:
   - {fileID: 884347954}
   - {fileID: 892135473}
   songDelayInSeconds: 0
-  marginOfError: 0.1
+  marginOfError: 0.2
   inputDelayInMilliseconds: 0
   fileLocation: All_The_Way_North_Simplified.mid
   noteTime: 2
