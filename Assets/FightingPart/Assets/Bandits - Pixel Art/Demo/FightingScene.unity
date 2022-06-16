@@ -1003,7 +1003,7 @@ MonoBehaviour:
   songDelayInSeconds: 0
   marginOfError: 0.1
   inputDelayInMilliseconds: 0
-  fileLocation: All_The_Way_North.mid
+  fileLocation: All_The_Way_North_Simplified.mid
   noteTime: 2
   noteSpawnY: 3
   noteTapY: -1.05
