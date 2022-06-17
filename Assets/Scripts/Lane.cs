@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Rhythm;
 
-public class Lane : MonoBehaviour
+namespace Rhythm
 {
     public enum Direction
     {
@@ -23,6 +24,13 @@ public class Lane : MonoBehaviour
         Bad,
         Invalid
     }
+}
+
+
+
+public class Lane : MonoBehaviour
+{
+    
 
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
@@ -152,7 +160,6 @@ public class Lane : MonoBehaviour
             {
                 Miss();
                 print($"Missed {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                inputIndex++;
                 // TODO: to add an animation for missing notes
             }
 
@@ -168,14 +175,15 @@ public class Lane : MonoBehaviour
         lastHitLevel = hitLevel;
 
         hitEffect.ChangeColor((int) direction);
-        scoreManager.Hit((int) direction); 
+        scoreManager.Hit(direction, hitLevel, inputIndex); 
 
         inputIndex++;
     }
 
     private void Miss()
     {
-        scoreManager.Miss();
+        scoreManager.Miss(inputIndex);
+        inputIndex++;
     }
 
     /*void AddCombo(string combo)

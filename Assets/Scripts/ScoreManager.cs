@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Rhythm;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -60,8 +61,8 @@ public class ScoreManager : MonoBehaviour
         VisualizeCombo();
     }
 
-    public void Hit(int inputKey) {
-        lsKey.Add(inputKey);
+    public void Hit(Direction direction, HitLevel hitLevel, int index) {
+        lsKey.Add((int) direction);
 
         comboScore += 10;
         
@@ -69,7 +70,7 @@ public class ScoreManager : MonoBehaviour
         CastSkill();
     }
     
-    public void Miss()
+    public void Miss(int index)
     {
         comboScore -= 1;
     }
