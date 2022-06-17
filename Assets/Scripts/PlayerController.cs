@@ -37,8 +37,9 @@ public class PlayerController : MonoBehaviour
     public GameObject thunder;
     private Quaternion quaternion;
 
-    /*the range between attackPoint and the skill location, currently, only used in UseThunder()*/
+    /*the range between attackPoint and the skill location*/
     private Vector3 Range;
+    private Vector3 shortRange;
 
     enum BuffType
     {
@@ -59,11 +60,13 @@ public class PlayerController : MonoBehaviour
         {
             quaternion = Quaternion.Euler(0, 180, 0);
             Range = new Vector3(-3, 0, 0);
+            shortRange = new Vector3(-1, 0, 0);
         }
         else
         {
             quaternion = Quaternion.Euler(0, 0, 0);
             Range = new Vector3(3, 0, 0);
+            shortRange = new Vector3(1, 0, 0);
         }
     }
 
@@ -83,7 +86,7 @@ public class PlayerController : MonoBehaviour
     public void UseSword()
     {
         if (m_isDead) return;
-        Instantiate(sword, attackPoint.position, quaternion, enemyLayers);
+        Instantiate(sword, attackPoint.position + shortRange, quaternion, enemyLayers);
     }
     public void UseThunder()
     {

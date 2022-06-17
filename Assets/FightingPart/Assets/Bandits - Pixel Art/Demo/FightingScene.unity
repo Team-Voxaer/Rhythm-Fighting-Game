@@ -159,7 +159,7 @@ MonoBehaviour:
   visCombo3: {fileID: 1121921659}
   imgComboUp: {fileID: 21300000, guid: 2a973eecfe759f043895b6585ad8814a, type: 3}
   imgComboDown: {fileID: 21300000, guid: 5102318cc0b67454fa7d07451b5e21d4, type: 3}
-  imgComboLeft: {fileID: 21300000, guid: 20be4e24efb709a4ba9ed585d8602fd2, type: 3}
+  imgComboLeft: {fileID: 21300000, guid: 597d9e8f7529c294c9473872c7253f4f, type: 3}
   imgComboRight: {fileID: 21300000, guid: 9b31949ceb4df084dbcce2ebfb1a1344, type: 3}
 --- !u!4 &32668166
 Transform:
@@ -1153,7 +1153,7 @@ PrefabInstance:
       objectReference: {fileID: 331276077}
     - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
       propertyPath: maxHealth
-      value: 150
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
       propertyPath: visCombo1
@@ -3143,7 +3143,7 @@ PrefabInstance:
       objectReference: {fileID: 508016610}
     - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: maxHealth
-      value: 150
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: grandCross
