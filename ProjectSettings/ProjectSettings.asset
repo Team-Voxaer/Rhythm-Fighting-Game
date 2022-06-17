@@ -656,11 +656,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: 8238361d-8629-4abf-9fcc-ef59e54e95f2
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Rhythm-Fighting-Game
+  organizationId: uschuanpu
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
