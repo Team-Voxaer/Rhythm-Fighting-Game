@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     /*[SerializeField] float m_speed = 4.0f;
     [SerializeField] float m_jumpForce = 7.5f;*/
 
+    public GameManager gameManager;
+
     private Animator m_animator;
     private Rigidbody2D m_body2d;
     private Sensor_Bandit m_groundSensor;
@@ -159,6 +161,14 @@ public class PlayerController : MonoBehaviour
         m_isDead = true;
         this.enabled = false;
         healthText.text = "HP: 0";
+        if (gameObject.name == "LightBandit")
+        {
+            gameManager.EndGame("Player 1");
+        }
+        else
+        {
+            gameManager.EndGame("Player 2");
+        }
     }
 
     // Update is called once per frame
