@@ -163,11 +163,11 @@ public class PlayerController : MonoBehaviour
         healthText.text = "HP: 0";
         if (gameObject.name == "LightBandit")
         {
-            gameManager.EndGame("Player 1");
+            gameManager.EndGame("Player 2");
         }
         else
         {
-            gameManager.EndGame("Player 2");
+            gameManager.EndGame("Player 1");
         }
     }
 
