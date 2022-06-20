@@ -1213,7 +1213,7 @@ MonoBehaviour:
   songDelayInSeconds: 0
   marginOfError: 0.2
   inputDelayInMilliseconds: 0
-  fileLocation: All_The_Way_North_Simplified.mid
+  fileLocation: Never_Gonna_Give_You_Up.mid
   noteTime: 2
   noteSpawnY: 3
   noteTapY: -1.05
@@ -3147,7 +3147,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ee9e57159ef07aa408a73cb3bedfa441, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b76a624ea2e238a4980dedd0d0f54d8a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
