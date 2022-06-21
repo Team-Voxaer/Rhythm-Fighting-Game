@@ -13,27 +13,22 @@ public class ScoreManager : MonoBehaviour
 
     public KeyCode inputKeyCast;
 
-    private int skillCodeDefend = 0;
-    private int skillCodeAttack = 1;
-    private int skillCodeSword = 2;
-    private int skillCodeGrandCross = 3;
-    private int skillCodeThunder = 4;
-
+    private const int skillCodeDefend = 0;
+    private const int skillCodeAttack = 1;
+    private const int skillCodeSword = 2;
+    private const int skillCodeGrandCross = 3;
+    private const int skillCodeThunder = 4;
 
     // List of keys for skills
-    List<int> lsKey = new List<int>();
+    List<Direction> lsKey = new List<Direction>();
     List<int> lsSkill = new List<int>();
 
-    // public GameObject visCombo1;
-    // public GameObject visCombo2;
-    // public GameObject visCombo3;
     public VisCombo visCombo1;
     public VisCombo visCombo2;
     public VisCombo visCombo3;
 
     public Sprite imgComboUp, imgComboDown, imgComboLeft, imgComboRight;
     
-
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +57,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void Hit(Direction direction, HitLevel hitLevel, int index) {
-        lsKey.Add((int) direction);
+        lsKey.Add(direction);
 
         comboScore += 10;
         
@@ -73,22 +68,22 @@ public class ScoreManager : MonoBehaviour
     public void Miss(int index)
     {
         comboScore -= 1;
+        lsKey.Clear();
     }
 
     public void CastSkill() {
         CheckSkills();
         if (lsSkill.Count > 0) {
-            if (lsSkill[0] == skillCodeDefend) {
-                player.Defend();
+            if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
+                player.Defend(); 
+                // player.Heal();
             } else if (lsSkill[0] == skillCodeAttack) {
                 player.Attack();
             } else if (lsSkill[0] == skillCodeSword) {
                 player.UseSword();
-            } else if (lsSkill[0] == skillCodeGrandCross)
-            {
+            } else if (lsSkill[0] == skillCodeGrandCross) {
                 player.UseGrandCross();
-            } else if (lsSkill[0] == skillCodeThunder)
-            {
+            } else if (lsSkill[0] == skillCodeThunder) {
                 player.UseThunder();
             }
             lsSkill.RemoveAt(0);
@@ -106,47 +101,37 @@ public class ScoreManager : MonoBehaviour
         // 2: left
         // 3: right
         if (lsKey.Count == 3) {
-            if (lsKey[lsKey.Count - 1] == 3 && lsKey[lsKey.Count - 2] == 0 && lsKey[lsKey.Count - 3] == 0)  // Up Up Right
-            {
-                lsSkill.Add(skillCodeAttack);
-                for (int i=0; i<3; i++) {
-                    lsKey.RemoveAt(0);
-                }
-            } else if (lsKey[lsKey.Count - 1] == 1 && lsKey[lsKey.Count - 2] == 1 && lsKey[lsKey.Count - 3] == 1)  // Down Down Down
-            {
-                lsSkill.Add(skillCodeDefend);
-                for (int i=0; i<3; i++) {
-                    lsKey.RemoveAt(0);
-                }
-            } else if (lsKey[lsKey.Count - 1] == 0 && lsKey[lsKey.Count - 2] == 0 && lsKey[lsKey.Count - 3] == 0) // UP UP UP
-            {
-                lsSkill.Add(skillCodeGrandCross);
-                for (int i=0; i<3; i++) {
-                    lsKey.RemoveAt(0);
-                }
-            } else if (lsKey[lsKey.Count - 1] == 2 && lsKey[lsKey.Count - 2] == 2 && lsKey[lsKey.Count - 3] == 2)
-            {
-                lsSkill.Add(skillCodeSword);
-                for (int i = 0; i < 3; i++)
-                {
-                    lsKey.RemoveAt(0);
-                }
-            } else
+            if (lsKey[lsKey.Count - 1] == Direction.Up && lsKey[lsKey.Count - 2] == Direction.Up && lsKey[lsKey.Count - 3] == Direction.Up)  // Up Up Up -> Thunder / Water
             {
                 lsSkill.Add(skillCodeThunder);
-                for (int i = 0; i < 3; i++)
-                {
-                    lsKey.RemoveAt(0);
-                }
+            } 
+            else if (lsKey[lsKey.Count - 1] == Direction.Left && lsKey[lsKey.Count - 2] == Direction.Left && lsKey[lsKey.Count - 3] == Direction.Left)  // Left Left Left -> Light
+            {
+                lsSkill.Add(skillCodeGrandCross);
+            } 
+            else if (lsKey[lsKey.Count - 1] == Direction.Down && lsKey[lsKey.Count - 2] == Direction.Down && lsKey[lsKey.Count - 3] == Direction.Down) // Down Down Down -> Earth 
+            {
+                lsSkill.Add(skillCodeDefend);
+            } 
+            else if (lsKey[lsKey.Count - 1] == Direction.Right && lsKey[lsKey.Count - 2] == Direction.Right && lsKey[lsKey.Count - 3] == Direction.Right) // Right Right Right -> Fire
+            {
+                lsSkill.Add(skillCodeSword);
+            } 
+            else
+            {
+                lsSkill.Add(skillCodeAttack);
+            }
+            for (int i=0; i<3; i++) {
+                lsKey.Clear();
             }
         }
     }
 
     private void VisualizeCombo() {
         if (lsKey.Count == 0) {
-            VisCombo(visCombo1, -1);
-            VisCombo(visCombo2, -1);
-            VisCombo(visCombo3, -1);
+            VisCombo(visCombo1, Direction.None);
+            VisCombo(visCombo2, Direction.None);
+            VisCombo(visCombo3, Direction.None);
         } else {
             if (lsKey.Count >= 1) {
                 VisCombo(visCombo1, lsKey[0]);
@@ -165,25 +150,25 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
-    private void VisCombo(VisCombo visComboN, int idxKey) {
-        if (idxKey == 0) {
+    private void VisCombo(VisCombo visComboN, Direction direction) {
+        if (direction == Direction.Up) {
             // visComboN = GetComponent<Image>();
             visComboN.changeImage(imgComboUp);
-        } else if (idxKey == 1) {
+        } else if (direction == Direction.Down) {
             // visComboN.GetComponent<Image>().overrideSprite = imgComboDown;
             visComboN.changeImage(imgComboDown);
             // visComboN.sprite = imgComboDown;
-        } else if (idxKey == 2) {
+        } else if (direction == Direction.Left) {
             // visComboN.GetComponent<Image>().overrideSprite = imgComboLeft;
             visComboN.changeImage(imgComboLeft);
 
             // visComboN.sprite = imgComboLeft;
-        } else if (idxKey == 3) {
+        } else if (direction == Direction.Right) {
             // visComboN.GetComponent<Image>().overrideSprite = imgComboRight;
             visComboN.changeImage(imgComboRight);
 
             // visComboN.sprite = imgComboRight;
-        } else if (idxKey == -1) {
+        } else if (direction == Direction.None) {
             visComboN.changeImage(null);
         }
         // visComboN.SetActive(true);
