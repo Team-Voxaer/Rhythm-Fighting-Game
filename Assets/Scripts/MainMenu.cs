@@ -24,6 +24,19 @@ public class MainMenu : MonoBehaviour
             OpenSceneNotExistWindow("Scene Level 2 doesn't exist");
         }
     }
+
+    public void PlayTutorial()
+    {
+        if (Application.CanStreamedLevelBeLoaded("Tutorial"))
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
+        else
+        {
+            OpenSceneNotExistWindow("Scene Tutorial doesn't exist");
+        }
+    }
+
     public void PlayFighting()
     {
         SceneManager.LoadScene("FightingScene");
