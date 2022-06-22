@@ -184,6 +184,7 @@ public class Lane : MonoBehaviour
     {
         scoreManager.Miss(inputIndex);
         inputIndex++;
+        lastHitLevel = HitLevel.Invalid;
     }
 
     /*void AddCombo(string combo)
