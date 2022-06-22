@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     // Update is called once per frame
     public static GameManager gameManager;
+    public static bool AIEnabled;
     [SerializeField] private EndGameWindow endGameWindow;
 
     private void Start()
@@ -24,6 +25,15 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            AIEnabled = !AIEnabled;
+        }
+    }
+
+    public static bool CheckAI()
+    {
+        return AIEnabled;
     }
 
     public static void ReturnToMenu()
