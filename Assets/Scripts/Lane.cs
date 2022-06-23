@@ -30,6 +30,7 @@ namespace Rhythm
 
 public class Lane : MonoBehaviour
 {
+    
 
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
@@ -174,9 +175,6 @@ public class Lane : MonoBehaviour
         lastHitLevel = hitLevel;
 
         hitEffect.ChangeColor((int) direction);
-
-        hitEffect.ShowHitKey(direction, hitLevel);
-
         scoreManager.Hit(direction, hitLevel, inputIndex); 
 
         inputIndex++;
