@@ -175,6 +175,8 @@ public class Lane : MonoBehaviour
         lastHitLevel = hitLevel;
 
         hitEffect.ChangeColor((int) direction);
+        //Energy bar not working if this line added
+        // hitEffect.ShowHitKey(direction, hitLevel);
         scoreManager.Hit(direction, hitLevel, inputIndex); 
 
         inputIndex++;
