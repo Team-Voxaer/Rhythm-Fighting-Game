@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2070a830b70b1a247b4e8bcdbb4e821d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   attackPoint: {fileID: 4920205284232888772}
   buffPoint: {fileID: 0}
   attackRange: 0.5
@@ -209,10 +210,13 @@ MonoBehaviour:
     m_Bits: 128
   attackDamage: 30
   maxHealth: 150
+  healingAmount: 30
   healthText: {fileID: 0}
+  damagePoint: {fileID: 8626500461163662690, guid: 8d53eef79f78c5446a13e8b0e33dc44e, type: 3}
   sword: {fileID: 3221987151840151120, guid: 3c595115d25457a4f84f79d2f42e1d1d, type: 3}
   grandCross: {fileID: 8318631505020191050, guid: 304aadcd62e2076418a6025b63a3661c, type: 3}
   thunder: {fileID: 7674381195626045742, guid: f37f402070b3ad543814fb3096aad6b4, type: 3}
+  healing: {fileID: 4967514570206004544, guid: 4f98b3ad198ce8645af02d453b85157a, type: 3}
 --- !u!1 &4922138774235971899
 GameObject:
   m_ObjectHideFlags: 0

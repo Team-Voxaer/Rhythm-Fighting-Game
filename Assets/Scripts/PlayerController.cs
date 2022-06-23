@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     // Health Text
     public TextMeshProUGUI healthText;
+    // Damage point Text
+    public GameObject damagePoint;
 
     int curHealth;
 
@@ -95,6 +97,7 @@ public class PlayerController : MonoBehaviour
     {
         if (m_isDead) return;
         curHealth = (curHealth + healingAmount > maxHealth) ? maxHealth : curHealth + healingAmount;
+        ShowTextPopUp(healingAmount, false);
         Instantiate(healing, buffPoint.position, quaternion);
     }
     public void UseSword()
@@ -147,6 +150,13 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
+    void ShowTextPopUp(int num, bool isDamage = true)
+    {
+        string text = isDamage == true ? "-" : "+";
+        GameObject damageNumber = Instantiate(damagePoint, transform.position, Quaternion.identity);
+        damageNumber.GetComponent<TMPro.TextMeshPro>().text = text + num.ToString();
+    }
+
     // physicalDefense works on damageType True
     public void TakenDamage(int damage, bool damageType = true)
     {
@@ -155,17 +165,20 @@ public class PlayerController : MonoBehaviour
             if (damage > physicalDefense)
             {
                 curHealth -= (damage - physicalDefense);
+                ShowTextPopUp(damage - physicalDefense);
                 m_animator.SetTrigger("Hurt");
             }
             else
             {
                 curHealth -= 1;
+                ShowTextPopUp(1);
                 m_animator.SetTrigger("Defend");
             }
         }
         else
         {
             curHealth -= damage;
+            ShowTextPopUp(damage);
             m_animator.SetTrigger("Hurt");
         }
         if (curHealth <= 0)
