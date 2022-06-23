@@ -21,7 +21,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Users/zanel/Desktop/Masters/CSCI_526/WebGL10;C:/Users/zanel/Desktop/Masters/CSCI_526/WebGL9;F:/CSCI526/builds/Rhythm-Fighting-WebGL;F:/CSCI526/builds/WebGL;F:/CSCI526/RF-Build;;;;;\"}"
+                "value": "{\"m_Value\":\"F:/CSCI526/builds/Rhythm-Fighting-WebGL;F:/CSCI526/builds/WebGL;F:/CSCI526/RF-Build;;;;;;;\"}"
             }
         ]
     }

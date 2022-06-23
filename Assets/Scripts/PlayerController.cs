@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
     public void UseGrandCross()
     {
         if (m_isDead) return;
-        physicalDefense += 100;
+        physicalDefense = 100;
         print("defense added");
         Instantiate(grandCross, buffPoint.position, quaternion);
         StopCoroutine("RemoveBuff");
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
         if (buff == BuffType.DefenseIncrease)
         {
             print("defense set to 0");
-            physicalDefense -= 100;
+            physicalDefense = 0;
         }
     }
     public void Defend()
