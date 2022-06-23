@@ -63,6 +63,9 @@ public class Lane : MonoBehaviour
     // Hitting Effect
     public HitEffect hitEffect;
 
+    //Keyboard Feedback
+    public HitKeyEffect hitKeyEffect;
+
     // Combo Display
     public TextMeshProUGUI comboText;
 
@@ -177,6 +180,8 @@ public class Lane : MonoBehaviour
         hitEffect.ChangeColor((int) direction);
         //Energy bar not working if this line added
         // hitEffect.ShowHitKey(direction, hitLevel);
+        hitKeyEffect.ShowHitKey(direction, hitLevel);
+
         scoreManager.Hit(direction, hitLevel, inputIndex); 
 
         inputIndex++;

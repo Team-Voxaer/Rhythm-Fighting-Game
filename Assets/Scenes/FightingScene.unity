@@ -3432,7 +3432,7 @@ GameObject:
   - component: {fileID: 1386098969}
   - component: {fileID: 1386098972}
   - component: {fileID: 1386098971}
-  - component: {fileID: 1386098970}
+  - component: {fileID: 1386098973}
   m_Layer: 5
   m_Name: p2hit
   m_TagString: Untagged
@@ -3460,24 +3460,6 @@ RectTransform:
   m_AnchoredPosition: {x: 320, y: 20}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1386098970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386098968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60025601cced3694ab6bf402cf23df94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oldImg: {fileID: 1386098971}
-  spriteA: {fileID: 21300000, guid: 03bc5e78060d991458b225716ca35256, type: 3}
-  spriteW: {fileID: 21300000, guid: c5232699a3f51f049b7371033809ea7b, type: 3}
-  spriteS: {fileID: 21300000, guid: a5200e1e77421114c87e39f09c2de25f, type: 3}
-  spriteD: {fileID: 21300000, guid: 841091fa76401554389c89b0a5f99c77, type: 3}
-  spriteOrigin: {fileID: 0}
 --- !u!114 &1386098971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3516,6 +3498,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386098968}
   m_CullTransparentMesh: 1
+--- !u!114 &1386098973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386098968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d6267adfd9ba74aa08371359c7fcc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oldImg: {fileID: 1386098971}
+  spriteA: {fileID: 21300000, guid: 03bc5e78060d991458b225716ca35256, type: 3}
+  spriteW: {fileID: 21300000, guid: c5232699a3f51f049b7371033809ea7b, type: 3}
+  spriteS: {fileID: 21300000, guid: a5200e1e77421114c87e39f09c2de25f, type: 3}
+  spriteD: {fileID: 21300000, guid: 841091fa76401554389c89b0a5f99c77, type: 3}
+  spriteOrigin: {fileID: 0}
 --- !u!1 &1430180619
 GameObject:
   m_ObjectHideFlags: 0
