@@ -29,7 +29,12 @@ public class ScoreManager : MonoBehaviour
     public VisCombo visCombo3;
 
     public Sprite imgComboUp, imgComboDown, imgComboLeft, imgComboRight;
+    public Sprite imgComboUpFade, imgComboDownFade, imgComboLeftFade, imgComboRightFade;
+    public Sprite imgBarLight, imgBarDark;
+    public GameObject comboBar;
     
+    int visComboFrameLength = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -112,17 +117,17 @@ public class ScoreManager : MonoBehaviour
             {
                 lsSkill.Add(skillCodeGrandCross);
             } 
-            else if (lsKey[lsKey.Count - 1] == Direction.Down && lsKey[lsKey.Count - 2] == Direction.Down && lsKey[lsKey.Count - 3] == Direction.Down) // Down Down Down -> Earth 
+            else if (lsKey[lsKey.Count - 1] == Direction.Down && lsKey[lsKey.Count - 2] == Direction.Down && lsKey[lsKey.Count - 3] == Direction.Down) // Down Down Down -> Earth (Healing)
             {
-                lsSkill.Add(skillCodeDefend);
+                lsSkill.Add(skillCodeHealing);
             } 
             else if (lsKey[lsKey.Count - 1] == Direction.Right && lsKey[lsKey.Count - 2] == Direction.Right && lsKey[lsKey.Count - 3] == Direction.Right) // Right Right Right -> Fire
             {
                 lsSkill.Add(skillCodeSword);
             }
-            else if (lsKey[lsKey.Count - 1] == Direction.Down && lsKey[lsKey.Count - 2] == Direction.Up && lsKey[lsKey.Count - 3] == Direction.Up)  // Up Up Down -> Healing
+            else if (lsKey[lsKey.Count - 1] == Direction.Down && lsKey[lsKey.Count - 2] == Direction.Up && lsKey[lsKey.Count - 3] == Direction.Up)  // Up Up Down -> Defense (Maybe delete)
             {
-                lsSkill.Add(skillCodeHealing);
+                lsSkill.Add(skillCodeDefend);
             }
             else
             {
@@ -136,45 +141,81 @@ public class ScoreManager : MonoBehaviour
 
     private void VisualizeCombo() {
         if (lsKey.Count == 0) {
-            VisCombo(visCombo1, Direction.None);
-            VisCombo(visCombo2, Direction.None);
-            VisCombo(visCombo3, Direction.None);
+            if (visComboFrameLength > 0){
+                visComboFrameLength --;
+            }
+            else{
+                VisCombo(visCombo1, Direction.None, false);
+                VisCombo(visCombo2, Direction.None, false);
+                VisCombo(visCombo3, Direction.None, false);
+                SpriteRenderer spriteRenderer = comboBar.GetComponent<SpriteRenderer>();
+                spriteRenderer.sprite = imgBarDark;
+            }
         } else {
             if (lsKey.Count >= 1) {
-                VisCombo(visCombo1, lsKey[0]);
+                VisCombo(visCombo1, lsKey[0], false);
+                VisCombo(visCombo2, lsKey[0], true);
+                VisCombo(visCombo3, lsKey[0], true);
                 // visCombo1.SetActive(true);
             }
             if (lsKey.Count == 2) {
-                VisCombo(visCombo1, lsKey[0]);
-                VisCombo(visCombo2, lsKey[1]);
+                if (lsKey[0] == lsKey[1]){
+                    VisCombo(visCombo1, lsKey[0], false);
+                    VisCombo(visCombo2, lsKey[1], false);
+                    VisCombo(visCombo3, lsKey[1], true);
+                }
+                else{
+                    VisCombo(visCombo1, lsKey[0], false);
+                    VisCombo(visCombo2, lsKey[1], false);
+                    VisCombo(visCombo3, Direction.None, false);
+                }
+                
                 // visCombo2.SetActive(true);
             }
             if (lsKey.Count >= 3) {
-                VisCombo(visCombo3, lsKey[lsKey.Count - 1]);
-                VisCombo(visCombo2, lsKey[lsKey.Count - 2]);
-                VisCombo(visCombo1, lsKey[lsKey.Count - 3]);
+                VisCombo(visCombo3, lsKey[0], false);
+                VisCombo(visCombo2, lsKey[1], false);
+                VisCombo(visCombo1, lsKey[2], false);
+                visComboFrameLength = 120;
+                if (lsKey[0] == lsKey[1] && lsKey[1] == lsKey[2]){
+                    SpriteRenderer spriteRenderer = comboBar.GetComponent<SpriteRenderer>();
+                    spriteRenderer.sprite = imgBarLight;
+                }
+                
                 // visCombo3.SetActive(true);
             }
         }
     }
-    private void VisCombo(VisCombo visComboN, Direction direction) {
+    private void VisCombo(VisCombo visComboN, Direction direction, bool isFade) {
         if (direction == Direction.Up) {
-            // visComboN = GetComponent<Image>();
-            visComboN.changeImage(imgComboUp);
+            if (isFade){
+                visComboN.changeImage(imgComboUpFade);
+            }
+            else{
+                visComboN.changeImage(imgComboUp);
+            }
+            
         } else if (direction == Direction.Down) {
-            // visComboN.GetComponent<Image>().overrideSprite = imgComboDown;
-            visComboN.changeImage(imgComboDown);
-            // visComboN.sprite = imgComboDown;
+            if (isFade){
+                visComboN.changeImage(imgComboDownFade);
+            }
+            else{
+                visComboN.changeImage(imgComboDown);
+            }
         } else if (direction == Direction.Left) {
-            // visComboN.GetComponent<Image>().overrideSprite = imgComboLeft;
-            visComboN.changeImage(imgComboLeft);
-
-            // visComboN.sprite = imgComboLeft;
+            if (isFade){
+                visComboN.changeImage(imgComboLeftFade);
+            }
+            else{
+                visComboN.changeImage(imgComboLeft);
+            }
         } else if (direction == Direction.Right) {
-            // visComboN.GetComponent<Image>().overrideSprite = imgComboRight;
-            visComboN.changeImage(imgComboRight);
-
-            // visComboN.sprite = imgComboRight;
+            if (isFade){
+                visComboN.changeImage(imgComboRightFade);
+            }
+            else{
+                visComboN.changeImage(imgComboRight);
+            }
         } else if (direction == Direction.None) {
             visComboN.changeImage(null);
         }
