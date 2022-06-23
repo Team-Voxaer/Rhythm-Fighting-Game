@@ -1962,7 +1962,7 @@ PrefabInstance:
     - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
       propertyPath: healing
       value: 
-      objectReference: {fileID: 69931926374847056, guid: b548fe5dd89da6d47b1471398f7f77de, type: 3}
+      objectReference: {fileID: 4967514570206004544, guid: 4f98b3ad198ce8645af02d453b85157a, type: 3}
     - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
       propertyPath: thunder
       value: 
@@ -4228,7 +4228,7 @@ PrefabInstance:
     - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: healing
       value: 
-      objectReference: {fileID: 69931926374847056, guid: b548fe5dd89da6d47b1471398f7f77de, type: 3}
+      objectReference: {fileID: 4967514570206004544, guid: 4f98b3ad198ce8645af02d453b85157a, type: 3}
     - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: thunder
       value: 
