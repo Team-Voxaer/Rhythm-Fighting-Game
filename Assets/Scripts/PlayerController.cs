@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour
 
     public int attackDamage = 30;
     public int maxHealth = 150;
-    private int defenseIncrease = 0;
+    public int healingAmount = 30;
+    private int physicalDefense = 0;
     private float buffDuration = 10;
 
     // Health Text
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public GameObject sword;
     public GameObject grandCross;
     public GameObject thunder;
+    public GameObject healing;
     private Quaternion quaternion;
 
     /*the range between attackPoint and the skill location*/
@@ -45,7 +47,8 @@ public class PlayerController : MonoBehaviour
 
     enum BuffType
     {
-        DefenseIncrease
+        DefenseIncrease,
+        Healing
     }
 
 
@@ -81,9 +84,18 @@ public class PlayerController : MonoBehaviour
     public void UseGrandCross()
     {
         if (m_isDead) return;
-        defenseIncrease = 100;
+        physicalDefense = 100;
+        print("defense added");
         Instantiate(grandCross, buffPoint.position, quaternion);
+        StopCoroutine("RemoveBuff");
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
+    }
+
+    public void UseHealing()
+    {
+        if (m_isDead) return;
+        curHealth = (curHealth + healingAmount > maxHealth) ? maxHealth : curHealth + healingAmount;
+        Instantiate(healing, buffPoint.position, quaternion);
     }
     public void UseSword()
     {
@@ -117,13 +129,14 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (buff == BuffType.DefenseIncrease)
         {
-            defenseIncrease = 0;
+            print("defense set to 0");
+            physicalDefense = 0;
         }
     }
     public void Defend()
     {
         if (m_isDead) return;
-        defenseIncrease = 30;
+        physicalDefense = 30;
         m_animator.SetTrigger("Defend");
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
     }
@@ -134,17 +147,26 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    public void TakenDamage(int damage)
+    // physicalDefense works on damageType True
+    public void TakenDamage(int damage, bool damageType = true)
     {
-        if (damage > defenseIncrease)
+        if (damageType)
         {
-            curHealth -= (damage - defenseIncrease);
-            m_animator.SetTrigger("Hurt");
+            if (damage > physicalDefense)
+            {
+                curHealth -= (damage - physicalDefense);
+                m_animator.SetTrigger("Hurt");
+            }
+            else
+            {
+                curHealth -= 1;
+                m_animator.SetTrigger("Defend");
+            }
         }
         else
         {
-            curHealth -= 1;
-            m_animator.SetTrigger("Defend");
+            curHealth -= damage;
+            m_animator.SetTrigger("Hurt");
         }
         if (curHealth <= 0)
         {

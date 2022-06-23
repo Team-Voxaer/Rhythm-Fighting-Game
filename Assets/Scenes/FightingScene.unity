@@ -1760,6 +1760,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3221987151840151120, guid: 3c595115d25457a4f84f79d2f42e1d1d, type: 3}
     - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
+      propertyPath: healing
+      value: 
+      objectReference: {fileID: 69931926374847056, guid: b548fe5dd89da6d47b1471398f7f77de, type: 3}
+    - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
       propertyPath: thunder
       value: 
       objectReference: {fileID: 7674381195626045742, guid: f37f402070b3ad543814fb3096aad6b4, type: 3}
@@ -3986,6 +3990,10 @@ PrefabInstance:
       propertyPath: sword
       value: 
       objectReference: {fileID: 3221987151840151120, guid: 3c595115d25457a4f84f79d2f42e1d1d, type: 3}
+    - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
+      propertyPath: healing
+      value: 
+      objectReference: {fileID: 69931926374847056, guid: b548fe5dd89da6d47b1471398f7f77de, type: 3}
     - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: thunder
       value: 

@@ -55,7 +55,7 @@ public class AttackSkill : MonoBehaviour
             }
             else if (skillName == SKILL.Thunder)
             {
-                enemy.GetComponent<PlayerController>().TakenDamage(40);
+                enemy.GetComponent<PlayerController>().TakenDamage(40, false);
             }
 
 

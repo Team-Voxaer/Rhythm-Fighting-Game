@@ -18,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     private const int skillCodeSword = 2;
     private const int skillCodeGrandCross = 3;
     private const int skillCodeThunder = 4;
+    private const int skillCodeHealing = 5;
 
     // List of keys for skills
     List<Direction> lsKey = new List<Direction>();
@@ -85,6 +86,8 @@ public class ScoreManager : MonoBehaviour
                 player.UseGrandCross();
             } else if (lsSkill[0] == skillCodeThunder) {
                 player.UseThunder();
+            } else if (lsSkill[0] == skillCodeHealing) {
+                player.UseHealing();
             }
             lsSkill.RemoveAt(0);
         } else {
@@ -116,7 +119,11 @@ public class ScoreManager : MonoBehaviour
             else if (lsKey[lsKey.Count - 1] == Direction.Right && lsKey[lsKey.Count - 2] == Direction.Right && lsKey[lsKey.Count - 3] == Direction.Right) // Right Right Right -> Fire
             {
                 lsSkill.Add(skillCodeSword);
-            } 
+            }
+            else if (lsKey[lsKey.Count - 1] == Direction.Down && lsKey[lsKey.Count - 2] == Direction.Up && lsKey[lsKey.Count - 3] == Direction.Up)  // Up Up Down -> Healing
+            {
+                lsSkill.Add(skillCodeHealing);
+            }
             else
             {
                 lsSkill.Add(skillCodeAttack);
