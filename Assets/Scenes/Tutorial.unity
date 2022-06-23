@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 32668166}
-  - component: {fileID: 32668165}
+  - component: {fileID: 32668167}
   m_Layer: 0
   m_Name: ScoreManager1
   m_TagString: Untagged
@@ -140,34 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &32668165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32668164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c39aa4e19a3d6214b850addf07ff0cba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 939828987}
-  inputKeyCast: 106
-  visCombo1: {fileID: 955303705}
-  visCombo2: {fileID: 380541025}
-  visCombo3: {fileID: 1121921659}
-  imgComboUp: {fileID: 21300000, guid: 586e724856c0aff4a9c31006a975ccf0, type: 3}
-  imgComboDown: {fileID: 21300000, guid: 220ad07025d860e45a730f12ee6263d0, type: 3}
-  imgComboLeft: {fileID: 21300000, guid: 23ad8728e985ad047a63712efbf38bd2, type: 3}
-  imgComboRight: {fileID: 21300000, guid: 6a5d514a8a20a064eb6c95ce049a38f1, type: 3}
-  imgComboUpFade: {fileID: 21300000, guid: 6522644da3863e5438f2aa1c4639e81b, type: 3}
-  imgComboDownFade: {fileID: 21300000, guid: 315bd9ccc959c12499da18bcf8caa9af, type: 3}
-  imgComboLeftFade: {fileID: 21300000, guid: 6f446569efbad4443b7349b006854a17, type: 3}
-  imgComboRightFade: {fileID: 21300000, guid: db84b93fdcba75849a77fb2bb218c342, type: 3}
-  imgBarLight: {fileID: 21300000, guid: c15cd8cd3cd2c2045b2c8ca4935d4ca6, type: 3}
-  imgBarDark: {fileID: 21300000, guid: 64240498e73205d499e8cb7f58a57eb7, type: 3}
-  comboBar: {fileID: 730039721}
 --- !u!4 &32668166
 Transform:
   m_ObjectHideFlags: 0
@@ -183,6 +155,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &32668167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32668164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063541094fa41dd47b46b0a4a12b4fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 939828987}
+  inputKeyCast: 8
+  visCombo1: {fileID: 955303705}
+  visCombo2: {fileID: 380541025}
+  visCombo3: {fileID: 1121921659}
+  imgComboUp: {fileID: 21300000, guid: 586e724856c0aff4a9c31006a975ccf0, type: 3}
+  imgComboDown: {fileID: 21300000, guid: 220ad07025d860e45a730f12ee6263d0, type: 3}
+  imgComboLeft: {fileID: 21300000, guid: 23ad8728e985ad047a63712efbf38bd2, type: 3}
+  imgComboRight: {fileID: 21300000, guid: 6a5d514a8a20a064eb6c95ce049a38f1, type: 3}
+  imgComboUpFade: {fileID: 21300000, guid: 6522644da3863e5438f2aa1c4639e81b, type: 3}
+  imgComboDownFade: {fileID: 21300000, guid: 315bd9ccc959c12499da18bcf8caa9af, type: 3}
+  imgComboLeftFade: {fileID: 21300000, guid: 6f446569efbad4443b7349b006854a17, type: 3}
+  imgComboRightFade: {fileID: 21300000, guid: db84b93fdcba75849a77fb2bb218c342, type: 3}
+  imgBarLight: {fileID: 21300000, guid: c15cd8cd3cd2c2045b2c8ca4935d4ca6, type: 3}
+  imgBarDark: {fileID: 21300000, guid: 64240498e73205d499e8cb7f58a57eb7, type: 3}
+  comboBar: {fileID: 730039721}
+  tutorialText: {fileID: 2000022663}
 --- !u!1 &56291310
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 198269271}
-  - component: {fileID: 198269270}
+  - component: {fileID: 198269272}
   m_Layer: 0
   m_Name: ScoreManager2
   m_TagString: Untagged
@@ -409,34 +410,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &198269270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198269269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c39aa4e19a3d6214b850addf07ff0cba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2070658244}
-  inputKeyCast: 92
-  visCombo1: {fileID: 1606267335}
-  visCombo2: {fileID: 1268656927}
-  visCombo3: {fileID: 56291314}
-  imgComboUp: {fileID: 21300000, guid: 586e724856c0aff4a9c31006a975ccf0, type: 3}
-  imgComboDown: {fileID: 21300000, guid: 220ad07025d860e45a730f12ee6263d0, type: 3}
-  imgComboLeft: {fileID: 21300000, guid: 23ad8728e985ad047a63712efbf38bd2, type: 3}
-  imgComboRight: {fileID: 21300000, guid: 6a5d514a8a20a064eb6c95ce049a38f1, type: 3}
-  imgComboUpFade: {fileID: 21300000, guid: 6522644da3863e5438f2aa1c4639e81b, type: 3}
-  imgComboDownFade: {fileID: 21300000, guid: 315bd9ccc959c12499da18bcf8caa9af, type: 3}
-  imgComboLeftFade: {fileID: 21300000, guid: 6f446569efbad4443b7349b006854a17, type: 3}
-  imgComboRightFade: {fileID: 21300000, guid: db84b93fdcba75849a77fb2bb218c342, type: 3}
-  imgBarLight: {fileID: 21300000, guid: c15cd8cd3cd2c2045b2c8ca4935d4ca6, type: 3}
-  imgBarDark: {fileID: 21300000, guid: 64240498e73205d499e8cb7f58a57eb7, type: 3}
-  comboBar: {fileID: 233392676}
 --- !u!4 &198269271
 Transform:
   m_ObjectHideFlags: 0
@@ -452,6 +425,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &198269272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198269269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063541094fa41dd47b46b0a4a12b4fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2070658244}
+  inputKeyCast: 8
+  visCombo1: {fileID: 1606267335}
+  visCombo2: {fileID: 1268656927}
+  visCombo3: {fileID: 56291314}
+  imgComboUp: {fileID: 21300000, guid: 586e724856c0aff4a9c31006a975ccf0, type: 3}
+  imgComboDown: {fileID: 21300000, guid: 220ad07025d860e45a730f12ee6263d0, type: 3}
+  imgComboLeft: {fileID: 21300000, guid: 23ad8728e985ad047a63712efbf38bd2, type: 3}
+  imgComboRight: {fileID: 21300000, guid: 6a5d514a8a20a064eb6c95ce049a38f1, type: 3}
+  imgComboUpFade: {fileID: 21300000, guid: 6522644da3863e5438f2aa1c4639e81b, type: 3}
+  imgComboDownFade: {fileID: 21300000, guid: 315bd9ccc959c12499da18bcf8caa9af, type: 3}
+  imgComboLeftFade: {fileID: 21300000, guid: 6f446569efbad4443b7349b006854a17, type: 3}
+  imgComboRightFade: {fileID: 21300000, guid: db84b93fdcba75849a77fb2bb218c342, type: 3}
+  imgBarLight: {fileID: 21300000, guid: c15cd8cd3cd2c2045b2c8ca4935d4ca6, type: 3}
+  imgBarDark: {fileID: 21300000, guid: 64240498e73205d499e8cb7f58a57eb7, type: 3}
+  comboBar: {fileID: 233392676}
+  tutorialText: {fileID: 2000022663}
 --- !u!1 &220513299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,7 +1738,7 @@ MonoBehaviour:
   inputKeyRight: 100
   notePrefab: {fileID: 1721378617231138213, guid: e3a426fd3cee0f94589dcf3a4963ff5d, type: 3}
   timeStamps: []
-  scoreManager: {fileID: 32668165}
+  scoreManager: {fileID: 32668167}
   hitEffect: {fileID: 617426951}
   comboText: {fileID: 413583204}
 --- !u!4 &884347955
@@ -1792,7 +1794,7 @@ MonoBehaviour:
   inputKeyRight: 275
   notePrefab: {fileID: 885671370697947387, guid: 5c83af6d080d3d24e8d7b43d07a6de0a, type: 3}
   timeStamps: []
-  scoreManager: {fileID: 198269270}
+  scoreManager: {fileID: 198269272}
   hitEffect: {fileID: 1900457382}
   comboText: {fileID: 1767571163}
 --- !u!4 &892135474
@@ -1971,7 +1973,7 @@ PrefabInstance:
       objectReference: {fileID: 331276077}
     - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
       propertyPath: visCombo1
@@ -2449,6 +2451,7 @@ RectTransform:
   - {fileID: 1450283895}
   - {fileID: 730039722}
   - {fileID: 233392677}
+  - {fileID: 2000022662}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3824,8 +3827,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -27, y: 363}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -27, y: 480}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1781507457
 MonoBehaviour:
@@ -3878,8 +3881,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4160,6 +4163,57 @@ Transform:
   m_Father: {fileID: 892135474}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2000022661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2000022662}
+  - component: {fileID: 2000022663}
+  m_Layer: 5
+  m_Name: TuturialTextInstance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2000022662
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000022661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1150320421}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2000022663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000022661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2172b27ea285b2478c81d26c6cff3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textInfo: {fileID: 1781507457}
+  lsSkill: 
 --- !u!1001 &2070658243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4185,7 +4239,7 @@ PrefabInstance:
       objectReference: {fileID: 508016610}
     - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: grandCross

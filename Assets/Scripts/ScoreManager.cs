@@ -12,17 +12,17 @@ public class ScoreManager : MonoBehaviour
     int comboScore;
 
     public KeyCode inputKeyCast;
-
-    private const int skillCodeDefend = 0;
-    private const int skillCodeAttack = 1;
-    private const int skillCodeSword = 2;
-    private const int skillCodeGrandCross = 3;
-    private const int skillCodeThunder = 4;
-    private const int skillCodeHealing = 5;
+    
+    protected const int skillCodeDefend = 0;
+    protected const int skillCodeAttack = 1;
+    protected const int skillCodeSword = 2;
+    protected const int skillCodeGrandCross = 3;
+    protected const int skillCodeThunder = 4;
+    protected const int skillCodeHealing = 5;
 
     // List of keys for skills
-    List<Direction> lsKey = new List<Direction>();
-    List<int> lsSkill = new List<int>();
+    protected List<Direction> lsKey = new List<Direction>();
+    protected List<int> lsSkill = new List<int>();
 
     public VisCombo visCombo1;
     public VisCombo visCombo2;
@@ -36,7 +36,7 @@ public class ScoreManager : MonoBehaviour
     int visComboFrameLength = 0;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         comboScore = 0;
         // imgComboUp = Sprite.Create(Resources.Load<Texture2D>("Assets/Sprites/up.png"), new Rect(0, 0, 20, 20), new Vector2(0.2f, 0.5f));
@@ -50,7 +50,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         // if (Input.GetKeyDown(inputKeyCast)) {
         //     CastSkill();
@@ -74,10 +74,10 @@ public class ScoreManager : MonoBehaviour
     public void Miss(int index)
     {
         comboScore -= 1;
-        lsKey.Clear();
+        // lsKey.Clear();
     }
 
-    public void CastSkill() {
+    public virtual void CastSkill() {
         CheckSkills();
         if (lsSkill.Count > 0) {
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
@@ -100,7 +100,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void CheckSkills() {
+    protected void CheckSkills() {
         while (lsKey.Count > 3) {
             lsKey.RemoveAt(0);
         }
@@ -176,7 +176,7 @@ public class ScoreManager : MonoBehaviour
                 VisCombo(visCombo3, lsKey[0], false);
                 VisCombo(visCombo2, lsKey[1], false);
                 VisCombo(visCombo1, lsKey[2], false);
-                visComboFrameLength = 120;
+                visComboFrameLength = 60;
                 if (lsKey[0] == lsKey[1] && lsKey[1] == lsKey[2]){
                     SpriteRenderer spriteRenderer = comboBar.GetComponent<SpriteRenderer>();
                     spriteRenderer.sprite = imgBarLight;

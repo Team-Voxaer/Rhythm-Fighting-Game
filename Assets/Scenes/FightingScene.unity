@@ -433,7 +433,7 @@ MonoBehaviour:
   imgComboUpFade: {fileID: 21300000, guid: 6522644da3863e5438f2aa1c4639e81b, type: 3}
   imgComboDownFade: {fileID: 21300000, guid: 315bd9ccc959c12499da18bcf8caa9af, type: 3}
   imgComboLeftFade: {fileID: 21300000, guid: 6f446569efbad4443b7349b006854a17, type: 3}
-  imgComboRightFade: {fileID: 21300000, guid: 6f446569efbad4443b7349b006854a17, type: 3}
+  imgComboRightFade: {fileID: 21300000, guid: db84b93fdcba75849a77fb2bb218c342, type: 3}
   imgBarLight: {fileID: 21300000, guid: c15cd8cd3cd2c2045b2c8ca4935d4ca6, type: 3}
   imgBarDark: {fileID: 21300000, guid: 64240498e73205d499e8cb7f58a57eb7, type: 3}
   comboBar: {fileID: 233392676}
@@ -3824,7 +3824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -27, y: 363}
+  m_AnchoredPosition: {x: -27, y: 500}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1781507457
