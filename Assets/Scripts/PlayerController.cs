@@ -267,4 +267,8 @@ public class PlayerController : MonoBehaviour
         else
             m_animator.SetInteger("AnimState", 0);*/
     }
+
+    public int GetCurHealth() {
+        return curHealth;
+    }
 }
