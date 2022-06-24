@@ -304,8 +304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  attackPoint: {fileID: 0}
-  buffPoint: {fileID: 0}
+  attackPoint: {fileID: 5337364487862372183}
+  buffPoint: {fileID: 7249153402817471030}
   attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
@@ -314,6 +314,7 @@ MonoBehaviour:
   maxHealth: 100
   healingAmount: 30
   healthText: {fileID: 0}
+  statusBar: {fileID: 4629817583905148638, guid: f88a05e64b155704f976da660004cce2, type: 3}
   damagePoint: {fileID: 8626500461163662690, guid: 8d53eef79f78c5446a13e8b0e33dc44e, type: 3}
   sword: {fileID: 3221987151840151120, guid: 3c595115d25457a4f84f79d2f42e1d1d, type: 3}
   grandCross: {fileID: 8318631505020191050, guid: 304aadcd62e2076418a6025b63a3661c, type: 3}

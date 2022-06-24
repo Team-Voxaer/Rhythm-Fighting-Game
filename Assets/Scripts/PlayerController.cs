@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     // Health Text
     public TextMeshProUGUI healthText;
+    // Health Bar
+    public FillStatusBar statusBar;
     // Damage point Text
     public GameObject damagePoint;
 
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         
         curHealth = maxHealth;
+        statusBar.SetMaxVal(maxHealth);
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Bandit>();
@@ -89,7 +92,6 @@ public class PlayerController : MonoBehaviour
         physicalDefense += 100;
         print("defense added");
         Instantiate(grandCross, buffPoint.position, quaternion);
-        StopCoroutine("RemoveBuff");
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
     }
 
@@ -154,6 +156,14 @@ public class PlayerController : MonoBehaviour
     {
         string text = isDamage == true ? "-" : "+";
         GameObject damageNumber = Instantiate(damagePoint, transform.position, Quaternion.identity);
+        if (isDamage)
+        {
+            damageNumber.GetComponent<TMPro.TextMeshPro>().color = Color.red;
+        }
+        else
+        {
+            damageNumber.GetComponent<TMPro.TextMeshPro>().color = Color.green;
+        }
         damageNumber.GetComponent<TMPro.TextMeshPro>().text = text + num.ToString();
     }
 
@@ -181,6 +191,7 @@ public class PlayerController : MonoBehaviour
             ShowTextPopUp(damage);
             m_animator.SetTrigger("Hurt");
         }
+        statusBar.UpdateStatusBar(curHealth);
         if (curHealth <= 0)
         {
             Die();
@@ -225,6 +236,7 @@ public class PlayerController : MonoBehaviour
 
 
         healthText.text = "HP: " + curHealth.ToString();
+        statusBar.UpdateStatusBar(curHealth);
         /*if (Input.GetKeyDown(KeyCode.J))
         {
             Attack();
