@@ -79,6 +79,7 @@ public class SongManager : MonoBehaviour
         foreach (var lane in lanes) {
             lane.SetTimeStamps(array);
         }
+        PauseSong();
         Invoke(nameof(StartSong), songDelayInSeconds);
     }
 
@@ -86,5 +87,13 @@ public class SongManager : MonoBehaviour
     public void StartSong()
     {
         audioSource.Play();
+        // print("OK");
+        // Instance.audioSource.PlayScheduled(songDelayInSeconds);
+    }
+
+    // pause song
+    public void PauseSong()
+    {
+        audioSource.Pause();
     }
 }
