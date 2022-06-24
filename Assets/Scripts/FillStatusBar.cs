@@ -8,11 +8,11 @@ public class FillStatusBar : MonoBehaviour
 
     public Image fillImage;
     public Slider slider;
-    private float maxVal;
+    private float maxVal = 1;
 
     void Start()
     {
-        maxVal = slider.maxValue;
+        // maxVal = slider.maxValue;
     }
     // Update is called once per frame
     void Update()
@@ -24,9 +24,10 @@ public class FillStatusBar : MonoBehaviour
     {
         slider.maxValue = val;
         slider.value = val;
+        // print($"Object name: {gameObject.name} maxVal {maxVal}, curVal: {slider.value}");
     }
 
-    public void UpdateStatusBar(int curVal)
+    public void UpdateStatusBar(int curVal = 1)
     {
         float fillValue = curVal / maxVal;
         slider.value = fillValue;

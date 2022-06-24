@@ -90,7 +90,6 @@ public class PlayerController : MonoBehaviour
     {
         if (m_isDead) return;
         physicalDefense += 100;
-        print("defense added");
         Instantiate(grandCross, buffPoint.position, quaternion);
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
     }
@@ -134,7 +133,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (buff == BuffType.DefenseIncrease)
         {
-            print("defense set to 0");
             physicalDefense -= 100;
         }
     }
@@ -191,9 +189,9 @@ public class PlayerController : MonoBehaviour
             ShowTextPopUp(damage);
             m_animator.SetTrigger("Hurt");
         }
-        statusBar.UpdateStatusBar(curHealth);
         if (curHealth <= 0)
         {
+            statusBar.UpdateStatusBar(curHealth);
             Die();
         }
     }
