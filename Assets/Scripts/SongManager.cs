@@ -87,13 +87,17 @@ public class SongManager : MonoBehaviour
     public void StartSong()
     {
         audioSource.Play();
-        // print("OK");
-        // Instance.audioSource.PlayScheduled(songDelayInSeconds);
     }
 
     // pause song
-    public void PauseSong()
+    public static void PauseSong()
     {
-        audioSource.Pause();
+        Instance.audioSource.Pause();
+    }
+
+    // unpause song
+    public static void UnPauseSong()
+    {
+        Instance.audioSource.UnPause();
     }
 }

@@ -29,6 +29,17 @@ public class GameManager : MonoBehaviour
         {
             AIEnabled = !AIEnabled;
         }
+        // RatsCommander
+        // P for pause the game, U for unpause the game
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SongManager.PauseSong();
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            SongManager.UnPauseSong();
+        }
+        // RatsCommander
     }
 
     public static bool CheckAI()
