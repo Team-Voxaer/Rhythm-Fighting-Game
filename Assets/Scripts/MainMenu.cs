@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
     [SerializeField] private SceneNotExistWindow sceneNotExistWindow;
 
     private void OpenSceneNotExistWindow(string message)
@@ -13,6 +12,7 @@ public class MainMenu : MonoBehaviour
         sceneNotExistWindow.gameObject.SetActive(true);
         sceneNotExistWindow.messageText.text = message;
     }
+
     public void PlayLevel2()
     {
         if (Application.CanStreamedLevelBeLoaded("Level2"))
@@ -29,6 +29,7 @@ public class MainMenu : MonoBehaviour
     {
         if (Application.CanStreamedLevelBeLoaded("Tutorial"))
         {
+            GameData.midiFileName = "Never_Gonna_Give_You_Up_Kindergarten.mid";  // Jiacheng
             SceneManager.LoadScene("Tutorial");
         }
         else
@@ -39,8 +40,10 @@ public class MainMenu : MonoBehaviour
 
     public void PlayFighting()
     {
+        GameData.midiFileName = "Never_Gonna_Give_You_Up.mid";  // Jiacheng
         SceneManager.LoadScene("FightingScene");
     }
+
     public void Quit()
     {
         Debug.Log("quit");

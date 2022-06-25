@@ -7,6 +7,10 @@ using System.IO;
 using UnityEngine.Networking;
 using System;
 
+/*
+ * Created by Jiacheng
+ */
+
 public class SongManager : MonoBehaviour
 {
     public static SongManager Instance;  // an instance of current class SongManager
@@ -27,21 +31,21 @@ public class SongManager : MonoBehaviour
     }
 
     // get audio source current playback time
-    public static double GetAudioSourceTime()
-    {
+    public static double GetAudioSourceTime() {
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         Instance = this;
-        if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://"))
-        {
-            StartCoroutine(ReadFromWebsite());  // read file from webgl resources
+        if (GameData.midiFileName != null) {
+            // if we have midi file name passed from menu, retrieve it as current midi file name
+            // otherwise use default midi file name initialized in Unity GameObject
+            fileLocation = GameData.midiFileName;
         }
-        else
-        {
+        if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://")) {
+            StartCoroutine(ReadFromWebsite());  // read file from webgl resources
+        } else {
             ReadFromFile();  // read file from local
         }
     }
@@ -84,20 +88,17 @@ public class SongManager : MonoBehaviour
     }
 
     // start song
-    public void StartSong()
-    {
+    public void StartSong() {
         audioSource.Play();
     }
 
     // pause song
-    public static void PauseSong()
-    {
+    public static void PauseSong() {
         Instance.audioSource.Pause();
     }
 
     // unpause song
-    public static void UnPauseSong()
-    {
+    public static void UnPauseSong() {
         Instance.audioSource.UnPause();
     }
 }
