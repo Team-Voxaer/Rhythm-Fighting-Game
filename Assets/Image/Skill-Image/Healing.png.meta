@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_0
+      name: Healing_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 295
-        width: 25
-        height: 40
+        x: 0
+        y: 816
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f312544b957a62044b3913460e1039be
-      internalID: 34865342
+      spriteID: 311a0c743b4f54443bfe3789b4d1fb44
+      internalID: -363201200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_1
+      name: Healing_9
       rect:
         serializedVersion: 2
-        x: 184
-        y: 294
-        width: 27
-        height: 42
+        x: 1508
+        y: 544
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1769ba6930967c14c97569e8dd17bc7c
-      internalID: -421996881
+      spriteID: 7bbb34834f761d049b37669da4bd6e6a
+      internalID: 1168809928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_2
+      name: Healing_10
       rect:
         serializedVersion: 2
-        x: 305
-        y: 294
-        width: 44
-        height: 61
+        x: 0
+        y: 272
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ec79430ed05c324e802111f9bb1ce7f
-      internalID: 62969312
+      spriteID: 4a17b115b7da88847afc3b699e3245f8
+      internalID: -1430528611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_3
+      name: Healing_12
       rect:
         serializedVersion: 2
-        x: 435
-        y: 294
-        width: 46
-        height: 62
+        x: 754
+        y: 272
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a46f9333271714408d7a1f833d317b5
-      internalID: 246617387
+      spriteID: 40e75e90d314cf344a95538a41d0e51d
+      internalID: -36156023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_4
+      name: Healing_13
       rect:
         serializedVersion: 2
-        x: 561
-        y: 294
-        width: 53
-        height: 71
+        x: 1131
+        y: 272
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,20 +214,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77f285faf80e4f943bd5237f362380b2
-      internalID: 1034795832
+      spriteID: 7a945048c099bf94ba9195b3aade24b7
+      internalID: 1498298762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_5
+      name: Healing_14
       rect:
         serializedVersion: 2
-        x: 33
-        y: 199
-        width: 65
-        height: 71
+        x: 1508
+        y: 272
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,20 +235,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5db3d1dc0a0cbda4283aa1160f097427
-      internalID: -1681095101
+      spriteID: acb72123fa1e1664e89dcc31f8477560
+      internalID: 839706452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_6
+      name: Healing_15
       rect:
         serializedVersion: 2
-        x: 158
-        y: 199
-        width: 76
-        height: 71
+        x: 0
+        y: 0
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,20 +256,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdfd2ece0a16e754ba01a3d91092885f
-      internalID: 405440569
+      spriteID: 4751375d75d2fa540bfd67403bd51543
+      internalID: -2042941240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_7
+      name: Healing_16
       rect:
         serializedVersion: 2
-        x: 287
-        y: 199
-        width: 80
-        height: 79
+        x: 377
+        y: 0
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,20 +277,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89234b8d08f5e6944969d292ef024c53
-      internalID: 573942562
+      spriteID: b40297ff8e4c50d4dac0eafbbb91fe08
+      internalID: -1305242907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_8
+      name: Healing_17
       rect:
         serializedVersion: 2
-        x: 418
-        y: 199
-        width: 81
-        height: 80
+        x: 754
+        y: 0
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,20 +298,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3310fd66220cade478f1672dc3648312
-      internalID: 35488002
+      spriteID: 410ea968be06b9e409860b06e57214ab
+      internalID: -956039351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_9
+      name: Healing_18
       rect:
         serializedVersion: 2
-        x: 547
-        y: 199
-        width: 84
-        height: 81
+        x: 1131
+        y: 0
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,20 +319,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d285cafed11b097409e7138a277be388
-      internalID: 514057014
+      spriteID: 5bc75473ac03cb445ab176312588ce9a
+      internalID: -877632256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_10
+      name: Healing_19
       rect:
         serializedVersion: 2
-        x: 21
-        y: 104
-        width: 85
-        height: 82
+        x: 1508
+        y: 0
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -340,20 +340,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa66fb0ea128f9e438ef82a8e6b48f7b
-      internalID: 529808113
+      spriteID: c4a41d844681f3a4fa25c691cf719511
+      internalID: 781500151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_11
+      name: Healing_1
       rect:
         serializedVersion: 2
-        x: 148
-        y: 104
-        width: 95
-        height: 81
+        x: 377
+        y: 816
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -361,20 +361,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9661a9a75dbbca44fbe67797589fd202
-      internalID: -633357130
+      spriteID: 5a05852eb74107047b7d4421750a4c7f
+      internalID: -709651170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_12
+      name: Healing_2
       rect:
         serializedVersion: 2
-        x: 269
-        y: 104
-        width: 115
-        height: 81
+        x: 754
+        y: 816
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -382,20 +382,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5848f2e7abb2d9145888612a59811782
-      internalID: 827986663
+      spriteID: 7b24ef3b4118a1345bc62f53e4f3bae9
+      internalID: 1518702342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_13
+      name: Healing_3
       rect:
         serializedVersion: 2
-        x: 398
-        y: 104
-        width: 120
-        height: 81
+        x: 1131
+        y: 816
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -403,20 +403,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b6bf86b9d967704489573ffabadfa7d
-      internalID: 644357488
+      spriteID: ff3c69ea5c8cb3e4aa503575c8e915f8
+      internalID: 1520078937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_14
+      name: Healing_4
       rect:
         serializedVersion: 2
-        x: 528
-        y: 104
-        width: 122
-        height: 80
+        x: 1508
+        y: 816
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -424,20 +424,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ca8d939195e193448c66703ab571f2c
-      internalID: -453762562
+      spriteID: e93266ae425389640861154cb118603a
+      internalID: -801392687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_15
+      name: Healing_5
       rect:
         serializedVersion: 2
-        x: 3
-        y: 9
-        width: 123
-        height: 80
+        x: 0
+        y: 544
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -445,20 +445,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: deb4144514bda1744a1773a9f8f1c840
-      internalID: -231712621
+      spriteID: 18f1c772245df1743bfa279f52a93e73
+      internalID: -1760547376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_16
+      name: Healing_6
       rect:
         serializedVersion: 2
-        x: 134
-        y: 9
-        width: 123
-        height: 79
+        x: 377
+        y: 544
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -466,20 +466,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ea4aeec7fd37f7459d9326e5382a677
-      internalID: 1330796206
+      spriteID: d3ebc7b030bc3774c9810aaa6e0fc066
+      internalID: 405378343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_17
+      name: Healing_7
       rect:
         serializedVersion: 2
-        x: 266
-        y: 9
-        width: 122
-        height: 64
+        x: 754
+        y: 544
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -487,20 +487,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7da1a34906f3ee04b9087eec4712e8b2
-      internalID: -649640976
+      spriteID: b93957c92175eaa4eaac6d1c73fa5d37
+      internalID: 1188001737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_18
+      name: Healing_8
       rect:
         serializedVersion: 2
-        x: 444
-        y: 64
-        width: 7
-        height: 9
+        x: 1131
+        y: 544
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -508,20 +508,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cd582825cc200e4ea6a826cffa3da4b
-      internalID: -872768647
+      spriteID: 4f2cd9fdfeb124e43b482a13beb41cb4
+      internalID: -370188644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ezgif-5-77d0d6b375_19
+      name: Healing_11
       rect:
         serializedVersion: 2
-        x: 398
-        y: 9
-        width: 138
-        height: 53
+        x: 377
+        y: 272
+        width: 377.2
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -529,8 +529,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b711842de97a104cb18916fa58f13df
-      internalID: -2051051610
+      spriteID: ca6924d1c103a74438fc74ac7697378d
+      internalID: 807130785
       vertices: []
       indices: 
       edges: []
@@ -546,26 +546,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ezgif-5-77d0d6b375_7: 573942562
-      ezgif-5-77d0d6b375_2: 62969312
-      ezgif-5-77d0d6b375_6: 405440569
-      ezgif-5-77d0d6b375_18: -872768647
-      ezgif-5-77d0d6b375_0: 34865342
-      ezgif-5-77d0d6b375_14: -453762562
-      ezgif-5-77d0d6b375_17: -649640976
-      ezgif-5-77d0d6b375_8: 35488002
-      ezgif-5-77d0d6b375_3: 246617387
-      ezgif-5-77d0d6b375_4: 1034795832
-      ezgif-5-77d0d6b375_11: -633357130
-      ezgif-5-77d0d6b375_9: 514057014
-      ezgif-5-77d0d6b375_15: -231712621
-      ezgif-5-77d0d6b375_19: -2051051610
-      ezgif-5-77d0d6b375_16: 1330796206
-      ezgif-5-77d0d6b375_10: 529808113
-      ezgif-5-77d0d6b375_12: 827986663
-      ezgif-5-77d0d6b375_5: -1681095101
-      ezgif-5-77d0d6b375_13: 644357488
-      ezgif-5-77d0d6b375_1: -421996881
+      Healing_8: -370188644
+      Healing_13: 1498298762
+      Healing_14: 839706452
+      Healing_4: -801392687
+      Healing_9: 1168809928
+      Healing_10: -1430528611
+      Healing_1: -709651170
+      Healing_19: 781500151
+      Healing_11: 807130785
+      Healing_2: 1518702342
+      Healing_12: -36156023
+      Healing_18: -877632256
+      Healing_3: 1520078937
+      Healing_0: -363201200
+      Healing_7: 1188001737
+      Healing_15: -2042941240
+      Healing_16: -1305242907
+      Healing_6: 405378343
+      Healing_5: -1760547376
+      Healing_17: -956039351
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

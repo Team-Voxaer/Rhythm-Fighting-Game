@@ -8,12 +8,12 @@ public class TutorialText : MonoBehaviour
     public TextMeshProUGUI textInfo;
     private List<string> textInfos = new List<string>()
     {
-        "Hit the Notes when it reachs White Bar with elements \n Left Player use WASD \n Right Player use Arrow Keys",
-        "Press W or ↑ three times in a row to use MAGIC attack element Thunder",
-        "Press D or → three times in a row to use strong PHYSICAL attack with element Fire",
-        "Press A or ← three times in a row to use shield with element Light \n Shield Can only guard PHYSICAL Damage",
-        "Press S or ↓ three times in a row to use healing with element Earth",
-        "You are good to go now, GLHF"
+        "Hit the Notes when power elements reach the ground \n Left Player uses WASD \n Right Player uses Arrow Keys",
+        "Press W (Player 1) or Up Arrow (Player 2) three times to use MAGIC attack, Thunder",
+        "Press D (Player 1) or Right Arrow (Player 2) three times to use PHYSICAL attack, Fire",
+        "Press A (Player 1) or Left Arrow (Player 2) three times to shield youself with Light \n Shield only prevents PHYSICAL Damage",
+        "Press S (Player 1) or Right Arrow (Player 2) three times to heal youself with Earth",
+        "Are You Ready Now? Good Luck Have Fun:)"
     };
 
     private List<int> skillUseNumber = new List<int>()

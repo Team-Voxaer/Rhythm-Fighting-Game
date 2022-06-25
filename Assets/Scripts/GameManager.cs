@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Update is called once per frame
     public static GameManager gameManager;
     public static bool AIEnabled;
     [SerializeField] private EndGameWindow endGameWindow;
@@ -15,6 +14,7 @@ public class GameManager : MonoBehaviour
         gameManager = this;
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
@@ -29,6 +29,17 @@ public class GameManager : MonoBehaviour
         {
             AIEnabled = !AIEnabled;
         }
+        // Jiacheng
+        // P for pause the game, U for unpause the game
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SongManager.PauseSong();
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            SongManager.UnPauseSong();
+        }
+        // Jiacheng
     }
 
     public static bool CheckAI()

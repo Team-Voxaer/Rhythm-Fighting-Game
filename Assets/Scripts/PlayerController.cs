@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
 
     // Health Text
     public TextMeshProUGUI healthText;
+    // Health Bar
+    public FillStatusBar statusBar;
+    // Damage point Text
+    public GameObject damagePoint;
 
     int curHealth;
 
@@ -58,6 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         
         curHealth = maxHealth;
+        statusBar.SetMaxVal(maxHealth);
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Bandit>();
@@ -85,9 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (m_isDead) return;
         physicalDefense += 100;
-        print("defense added");
         Instantiate(grandCross, buffPoint.position, quaternion);
-        StopCoroutine("RemoveBuff");
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
     }
 
@@ -95,6 +98,7 @@ public class PlayerController : MonoBehaviour
     {
         if (m_isDead) return;
         curHealth = (curHealth + healingAmount > maxHealth) ? maxHealth : curHealth + healingAmount;
+        ShowTextPopUp(healingAmount, false);
         Instantiate(healing, buffPoint.position, quaternion);
     }
     public void UseSword()
@@ -129,7 +133,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (buff == BuffType.DefenseIncrease)
         {
-            print("defense set to 0");
             physicalDefense -= 100;
         }
     }
@@ -147,6 +150,21 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
+    void ShowTextPopUp(int num, bool isDamage = true)
+    {
+        string text = isDamage == true ? "-" : "+";
+        GameObject damageNumber = Instantiate(damagePoint, transform.position, Quaternion.identity);
+        if (isDamage)
+        {
+            damageNumber.GetComponent<TMPro.TextMeshPro>().color = Color.red;
+        }
+        else
+        {
+            damageNumber.GetComponent<TMPro.TextMeshPro>().color = Color.green;
+        }
+        damageNumber.GetComponent<TMPro.TextMeshPro>().text = text + num.ToString();
+    }
+
     // physicalDefense works on damageType True
     public void TakenDamage(int damage, bool damageType = true)
     {
@@ -155,21 +173,25 @@ public class PlayerController : MonoBehaviour
             if (damage > physicalDefense)
             {
                 curHealth -= (damage - physicalDefense);
+                ShowTextPopUp(damage - physicalDefense);
                 m_animator.SetTrigger("Hurt");
             }
             else
             {
                 curHealth -= 1;
+                ShowTextPopUp(1);
                 m_animator.SetTrigger("Defend");
             }
         }
         else
         {
             curHealth -= damage;
+            ShowTextPopUp(damage);
             m_animator.SetTrigger("Hurt");
         }
         if (curHealth <= 0)
         {
+            statusBar.UpdateStatusBar(curHealth);
             Die();
         }
     }
@@ -212,6 +234,7 @@ public class PlayerController : MonoBehaviour
 
 
         healthText.text = "HP: " + curHealth.ToString();
+        statusBar.UpdateStatusBar(curHealth);
         /*if (Input.GetKeyDown(KeyCode.J))
         {
             Attack();
@@ -253,5 +276,9 @@ public class PlayerController : MonoBehaviour
         //Idle
         else
             m_animator.SetInteger("AnimState", 0);*/
+    }
+
+    public int GetCurHealth() {
+        return curHealth;
     }
 }
