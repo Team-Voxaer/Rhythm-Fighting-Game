@@ -26,15 +26,10 @@ namespace Rhythm
     }
 }
 
-
-
 public class Lane : MonoBehaviour
-{
-    
-
+{   
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
-
     public PlayerController player;
     public PlayerController playerOther;
 
@@ -64,8 +59,8 @@ public class Lane : MonoBehaviour
     // Hitting Effect
     public HitEffect hitEffect;
 
-    //Keyboard Feedback
-    public HitKeyEffect hitKeyEffect;
+    //Score Feedback
+    public ScoreEffect scoreEffect;
 
     // Combo Display
     public TextMeshProUGUI comboText;
@@ -76,10 +71,7 @@ public class Lane : MonoBehaviour
     private int isDefend = 0;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start(){}
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
     {
@@ -151,7 +143,6 @@ public class Lane : MonoBehaviour
                 }
                    
             } else {
-
                 // Check Direction Key Input
                 Direction direction;
                 if (Input.GetKeyDown(inputKeyUp)) {
@@ -198,7 +189,6 @@ public class Lane : MonoBehaviour
                     print($"Missed {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                     // TODO: to add an animation for missing notes
                 }
-
                 ShowHitlevel();
             }
         }       
@@ -212,15 +202,12 @@ public class Lane : MonoBehaviour
         lastHitLevel = hitLevel;
 
         hitEffect.ChangeColor((int) direction);
-        //Energy bar not working if this line added
-        // hitEffect.ShowHitKey(direction, hitLevel);
-        hitKeyEffect.ShowHitKey(direction, hitLevel);
+        //Update the score effect
+        scoreEffect.ScoreFeedback(hitLevel);
 
         scoreManager.Hit(direction, hitLevel, inputIndex); 
-
         inputIndex++;
     }
-
     private void Miss()
     {
         scoreManager.Miss(inputIndex);
@@ -237,11 +224,9 @@ public class Lane : MonoBehaviour
         comboQueue.Enqueue(combo);
     }
     */
-
     void ShowHitlevel()
     {
         string text = "Hit Level: " + lastHitLevel.ToString();
         comboText.text = text;
     }
-
 }
