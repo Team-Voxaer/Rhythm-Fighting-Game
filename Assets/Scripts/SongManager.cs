@@ -35,9 +35,17 @@ public class SongManager : MonoBehaviour
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
 
+    public static bool AudioEnded(){
+        // Debug.Log(Instance.audioSource.time);// Make sure analytics log has been uploaded
+        return Instance.audioSource.time < Instance.audioSource.clip.length;
+        
+    }
+    
     // Start is called before the first frame update
     void Start() {
         Instance = this;
+        Application.targetFrameRate = 60;
+
         if (GameData.midiFileName != null) {
             // if we have midi file name passed from menu, retrieve it as current midi file name
             // otherwise use default midi file name initialized in Unity GameObject

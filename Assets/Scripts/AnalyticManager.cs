@@ -52,6 +52,19 @@ public class AnalyticManager : MonoBehaviour
         Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
     }
 
+    public static void OnGameEnd(bool SongEnd)
+    {
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "Game End",
+                        new Dictionary<string, object>
+                        {
+                            { "Song Ended", SongEnd},
+                            { "MusicScene", GameData.midiFileName},
+                        }
+                    );//Record Related Data Whenever The Game Ended
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+    }
+
     private void OnDestroy()
 	{
 		Analytics.FlushEvents();
