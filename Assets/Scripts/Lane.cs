@@ -188,19 +188,6 @@ public class Lane : MonoBehaviour
 
                     print($"Input Direction {direction.ToString()} {hitLevel.ToString()} on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
 
-                    //Analytics.CustomEvent("HitLevel" + hitLevel.ToString()); //Record Whenever Hit A Note and HitLevel
-                    //Analytics.CustomEvent("Note Hit" + inputIndex); //Record Whenever Hit A Note and Which Note(Note1, Note2, Note3)
-                    AnalyticsResult analyticsResult = Analytics.CustomEvent(
-                        "Note Hit",
-                        new Dictionary<String, object>
-                        {
-                            { "Hit Level", hitLevel.ToString() },
-                            { "Note Number", inputIndex}
-
-                        }
-                    );//Record Related Data Whenever Hit A Note 1. Hit Level 2. Note Number
-                    Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
-
 
                 }
 
@@ -226,13 +213,14 @@ public class Lane : MonoBehaviour
 
         hitEffect.ChangeColor((int) direction);
         scoreManager.Hit(direction, hitLevel, inputIndex); 
-        AnalyticManager.OnHitNotes(direction, hitLevel, inputIndex); 
+        AnalyticManager.OnHitNotes(direction, hitLevel, inputIndex); //Send AnalyticsManager notehit data
         inputIndex++;
     }
 
     private void Miss()
     {
         scoreManager.Miss(inputIndex);
+        AnalyticManager.OnMissNotes(inputIndex);//Send AnalyticsManager notemiss data
         inputIndex++;
         lastHitLevel = HitLevel.Invalid;
     }

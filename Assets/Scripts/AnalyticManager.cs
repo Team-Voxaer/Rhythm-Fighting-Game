@@ -24,16 +24,33 @@ public class AnalyticManager : MonoBehaviour
     
     public static void OnHitNotes(Direction direction, HitLevel hitLevel, int inputIndex)
 	{
-		Dictionary<string, object> data = new Dictionary<string, object>();
-        data.Add("Direction", direction.ToString());
-		data.Add("KilledBy", hitLevel.ToString());
-        data.Add("Midi", GameData.midiFileName);
-        data.Add("Level", CurrentLevel);
 
-		Analytics.CustomEvent("HitNotes", data);
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "Note Hit",
+                        new Dictionary<string, object>
+                        {
+                            { "Hit Level", hitLevel.ToString() },
+                            { "Note Number", inputIndex},
+                            { "MusicScene", GameData.midiFileName},
+                            { "Direction", direction.ToString() }
+                        }
+                    );//Record Related Data Whenever Hit A Note 1. Hit Level 2. Note Number 3. Generated from which music scene 4. Hit Direction
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+    }
 
-        Debug.Log("AnalyticManager::OnHitNotes");
-	}
+    public static void OnMissNotes(int inputIndex)
+    {
+
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "Note Miss",
+                        new Dictionary<string, object>
+                        {
+                            { "Note Number", inputIndex},
+                            { "MusicScene", GameData.midiFileName},
+                        }
+                    );//Record Related Data Whenever Miss A Note 1. Note Number 2. Generated from which music scene
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+    }
 
     private void OnDestroy()
 	{
