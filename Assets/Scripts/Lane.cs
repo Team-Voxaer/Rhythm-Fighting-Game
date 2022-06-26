@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Rhythm;
+using UnityEngine.Analytics;
 
 namespace Rhythm
 {
@@ -186,6 +187,21 @@ public class Lane : MonoBehaviour
                     }
 
                     print($"Input Direction {direction.ToString()} {hitLevel.ToString()} on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+
+                    //Analytics.CustomEvent("HitLevel" + hitLevel.ToString()); //Record Whenever Hit A Note and HitLevel
+                    //Analytics.CustomEvent("Note Hit" + inputIndex); //Record Whenever Hit A Note and Which Note(Note1, Note2, Note3)
+                    AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "Note Hit",
+                        new Dictionary<String, object>
+                        {
+                            { "Hit Level", hitLevel.ToString() },
+                            { "Note Number", inputIndex}
+
+                        }
+                    );//Record Related Data Whenever Hit A Note 1. Hit Level 2. Note Number
+                    Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+
+
                 }
 
                 // If it is larger than Margin of Bad, so it can't even be hit anymore
