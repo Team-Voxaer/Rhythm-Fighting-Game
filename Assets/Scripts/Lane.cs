@@ -226,7 +226,7 @@ public class Lane : MonoBehaviour
 
         hitEffect.ChangeColor((int) direction);
         scoreManager.Hit(direction, hitLevel, inputIndex); 
-
+        AnalyticManager.OnHitNotes(direction, hitLevel, inputIndex); 
         inputIndex++;
     }
 
