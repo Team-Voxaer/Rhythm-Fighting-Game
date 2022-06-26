@@ -134,6 +134,7 @@ public class ScoreManager : MonoBehaviour
                 lsSkill.Add(skillCodeAttack);
             }
             for (int i=0; i<3; i++) {
+                // why 3 times?
                 lsKey.Clear();
             }
         }

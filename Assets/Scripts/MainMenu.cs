@@ -38,6 +38,18 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void PlayTutorialPlusPlus()
+    {
+        if (Application.CanStreamedLevelBeLoaded("Test"))
+        {
+            SceneManager.LoadScene("Test");
+        }
+        else
+        {
+            OpenSceneNotExistWindow("The Scene doesn't exist");
+        }
+    }
+
     public void PlayFighting()
     {
         GameData.midiFileName = "Never_Gonna_Give_You_Up.mid";  // Jiacheng

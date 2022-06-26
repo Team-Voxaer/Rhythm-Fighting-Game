@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private bool m_grounded = false;
     private bool m_isDead = false;
+    private bool isTutorial = false;
     // private bool m_combatIdle = false;
 
     public Transform attackPoint;
@@ -198,8 +199,15 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
+        if (isTutorial)
+        {
+            m_animator.SetTrigger("Death");
+            curHealth = maxHealth;
+            new WaitForSeconds(1);
+            m_animator.SetTrigger("Recover");
+            return;
+        }
         m_animator.SetTrigger("Death");
-        Debug.Log("Enemy died");
         GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         GetComponent<Collider2D>().enabled = false;
         m_isDead = true;
@@ -280,5 +288,10 @@ public class PlayerController : MonoBehaviour
 
     public int GetCurHealth() {
         return curHealth;
+    }
+
+    public void SetTutorial()
+    {
+        isTutorial = true;
     }
 }
