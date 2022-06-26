@@ -80,13 +80,13 @@ public class GameManager : MonoBehaviour
     {
         endGameWindow.gameObject.SetActive(true);
         endGameWindow.messageText.text = $"Congratulation, {name} Win !!";
-        AnalyticManager.OnGameEnd(false); //Send AnalyticsManager The Game Ended Because Song Ended
+        AnalyticManager.OnLevelEnd(false); //Send AnalyticsManager The Game Ended Because Song Ended
     }
 
     public void EndGameBecauseSongEnded()
     {
         endGameWindow.gameObject.SetActive(true);
         endGameWindow.messageText.text = $"The Song Ended";
-        AnalyticManager.OnGameEnd(true); //Send AnalyticsManager The Game Ended Because Song Ended
+        AnalyticManager.OnLevelEnd(true); //Send AnalyticsManager The Game Ended Because Song Ended
     }
 }

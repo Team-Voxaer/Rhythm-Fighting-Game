@@ -15,22 +15,16 @@ public class AnalyticManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
     }
-
-    /* Update is called once per frame
-    void Update()
-    {
-        
-    }*/
     
     public static void OnHitNotes(Direction direction, HitLevel hitLevel, int inputIndex)
 	{
 
         AnalyticsResult analyticsResult = Analytics.CustomEvent(
-                        "Note Hit",
+                        "noteHit",
                         new Dictionary<string, object>
                         {
-                            { "Hit Level", hitLevel.ToString() },
-                            { "Note Number", inputIndex},
+                            { "HitLevel", hitLevel.ToString() },
+                            { "NoteIndex", inputIndex},
                             { "MusicScene", GameData.midiFileName},
                             { "Direction", direction.ToString() }
                         }
@@ -42,23 +36,23 @@ public class AnalyticManager : MonoBehaviour
     {
 
         AnalyticsResult analyticsResult = Analytics.CustomEvent(
-                        "Note Miss",
+                        "noteMiss",
                         new Dictionary<string, object>
                         {
-                            { "Note Number", inputIndex},
+                            { "NoteIndex", inputIndex},
                             { "MusicScene", GameData.midiFileName},
                         }
                     );//Record Related Data Whenever Miss A Note 1. Note Number 2. Generated from which music scene
         Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
     }
 
-    public static void OnGameEnd(bool SongEnd)
+    public static void OnLevelEnd(bool SongEnd)
     {
         AnalyticsResult analyticsResult = Analytics.CustomEvent(
-                        "Game End",
+                        "levelEnd",
                         new Dictionary<string, object>
                         {
-                            { "Song Ended", SongEnd},
+                            { "SongEnded", SongEnd},
                             { "MusicScene", GameData.midiFileName},
                         }
                     );//Record Related Data Whenever The Game Ended
