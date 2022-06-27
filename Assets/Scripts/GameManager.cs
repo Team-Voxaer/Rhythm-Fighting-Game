@@ -20,10 +20,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             SceneManager.LoadScene("Menu");
+            AnalyticManager.OnLevelEnd("playerQuit"); //Send AnalyticsManager The Game Ended Because Player Quit
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            AnalyticManager.OnLevelEnd("playerReload"); //Send AnalyticsManager The Game Ended Because Player Reload
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -80,13 +82,13 @@ public class GameManager : MonoBehaviour
     {
         endGameWindow.gameObject.SetActive(true);
         endGameWindow.messageText.text = $"Congratulation, {name} Win !!";
-        AnalyticManager.OnLevelEnd(false); //Send AnalyticsManager The Game Ended Because Song Ended
+        AnalyticManager.OnLevelEnd("playerDied"); //Send AnalyticsManager The Game Ended Because The Player Died
     }
 
     public void EndGameBecauseSongEnded()
     {
         endGameWindow.gameObject.SetActive(true);
         endGameWindow.messageText.text = $"The Song Ended";
-        AnalyticManager.OnLevelEnd(true); //Send AnalyticsManager The Game Ended Because Song Ended
+        AnalyticManager.OnLevelEnd("songEnded"); //Send AnalyticsManager The Game Ended Because Song Ended
     }
 }

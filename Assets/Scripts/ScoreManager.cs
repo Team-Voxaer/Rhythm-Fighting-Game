@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
 
     public KeyCode inputKeyCast;
     
+    // Zhian Li: Also used in analytic manager so don't change
     protected const int skillCodeDefend = 0;
     protected const int skillCodeAttack = 1;
     protected const int skillCodeSword = 2;
@@ -81,8 +82,7 @@ public class ScoreManager : MonoBehaviour
         CheckSkills();
         if (lsSkill.Count > 0) {
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
-                player.Defend(); 
-                // player.Heal();
+                player.Defend();
             } else if (lsSkill[0] == skillCodeAttack) {
                 player.Attack();
             } else if (lsSkill[0] == skillCodeSword) {
@@ -94,7 +94,17 @@ public class ScoreManager : MonoBehaviour
             } else if (lsSkill[0] == skillCodeHealing) {
                 player.UseHealing();
             }
+
+            // Zhian Li: We always upload the Analytic when the AI is disabled
+            // or when we are tracking the left player (which we always upload)
+            if (!GameManager.CheckAI() || player.gameObject.name == "LightBandit"){
+                 // Send AnalyticsManager combo data
+                 AnalyticManager.OnComboReleased(lsSkill[0]);
+            }
+
             lsSkill.RemoveAt(0);
+
+            
         } else {
             // TODO: a visualization for no skills when casting
         }
@@ -174,9 +184,9 @@ public class ScoreManager : MonoBehaviour
                 // visCombo2.SetActive(true);
             }
             if (lsKey.Count >= 3) {
-                VisCombo(visCombo3, lsKey[0], false);
+                VisCombo(visCombo1, lsKey[0], false);
                 VisCombo(visCombo2, lsKey[1], false);
-                VisCombo(visCombo1, lsKey[2], false);
+                VisCombo(visCombo3, lsKey[2], false);
                 visComboFrameLength = 60;
                 if (lsKey[0] == lsKey[1] && lsKey[1] == lsKey[2]){
                     SpriteRenderer spriteRenderer = comboBar.GetComponent<SpriteRenderer>();
