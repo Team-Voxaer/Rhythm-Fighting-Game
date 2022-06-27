@@ -448,6 +448,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &276011775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4921893774645212013, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
+  m_PrefabInstance: {fileID: 939828986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &304871929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,10 +1608,22 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
   m_PrefabInstance: {fileID: 939828986}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 276011775}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2070a830b70b1a247b4e8bcdbb4e821d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &939828993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276011775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d91598c0de0894c9bef20148165281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &947273194
@@ -3046,7 +3063,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d91598c0de0894c9bef20148165281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfDamagePopup: {fileID: 8972591364678490135, guid: 683f8c1376bfafd44aba4f88129c149d, type: 3}
 --- !u!1 &1767571161
 GameObject:
   m_ObjectHideFlags: 0
@@ -3466,6 +3482,14 @@ PrefabInstance:
     - target: {fileID: 821110120229477046, guid: 683f8c1376bfafd44aba4f88129c149d, type: 3}
       propertyPath: m_Name
       value: pfDamagePopup
+      objectReference: {fileID: 0}
+    - target: {fileID: 899437711535791814, guid: 683f8c1376bfafd44aba4f88129c149d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 899437711535791814, guid: 683f8c1376bfafd44aba4f88129c149d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1470419921
       objectReference: {fileID: 0}
     - target: {fileID: 1809827207085148629, guid: 683f8c1376bfafd44aba4f88129c149d, type: 3}
       propertyPath: m_VerticalAlignment

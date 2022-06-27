@@ -12,7 +12,7 @@ public class DamagePopup : MonoBehaviour
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
         damagePopup.Setup(damageAmount);
 
-        return damageAmount;
+        return damagePopup;
     }
     private TextMeshPro textMesh;
 
