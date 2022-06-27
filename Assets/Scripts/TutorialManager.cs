@@ -7,7 +7,7 @@ public class TutorialManager : ScoreManager
 {
     public TutorialText tutorialText;
 
-    // Start is called before the first frame update
+    /* Start is called before the first frame update
     void Start()
     {
         base.Start();
@@ -18,7 +18,8 @@ public class TutorialManager : ScoreManager
     {
         base.Update();
     }
-
+    */
+    
     public override void CastSkill() {
         CheckSkills();
         if (lsSkill.Count > 0) {

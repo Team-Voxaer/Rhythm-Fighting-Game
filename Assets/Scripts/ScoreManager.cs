@@ -80,26 +80,35 @@ public class ScoreManager : MonoBehaviour
     public virtual void CastSkill() {
         CheckSkills();
         if (lsSkill.Count > 0) {
+            string skillName = null;
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
                 player.Defend();
-                AnalyticManager.OnComboReleased("Defend"); // Send AnalyticsManager combo data
+                skillName = "Defend";
             } else if (lsSkill[0] == skillCodeAttack) {
                 player.Attack();
-                AnalyticManager.OnComboReleased("Attack"); // Send AnalyticsManager combo data
+                skillName = "Attack";
             } else if (lsSkill[0] == skillCodeSword) {
                 player.UseSword();
-                AnalyticManager.OnComboReleased("Sword"); // Send AnalyticsManager combo data
+                skillName = "Sword";
             } else if (lsSkill[0] == skillCodeGrandCross) {
                 player.UseGrandCross();
-                AnalyticManager.OnComboReleased("GrandCross"); // Send AnalyticsManager combo data
+                skillName = "GrandCross";
             } else if (lsSkill[0] == skillCodeThunder) {
                 player.UseThunder();
-                AnalyticManager.OnComboReleased("Thunder"); // Send AnalyticsManager combo data
+                skillName = "Thunder";
             } else if (lsSkill[0] == skillCodeHealing) {
                 player.UseHealing();
-                AnalyticManager.OnComboReleased("Healing"); // Send AnalyticsManager combo data
+                skillName = "Healing";
             }
             lsSkill.RemoveAt(0);
+
+            // Zhian Li: We always upload the Analytic when the AI is disabled
+            // or when we are tracking the left player (which we always upload)
+            if (!GameManager.CheckAI() || player.gameObject.name == "LightBandit"){
+                if (skillName != null){
+                    AnalyticManager.OnComboReleased(skillName); // Send AnalyticsManager combo data
+                }
+            }
         } else {
             // TODO: a visualization for no skills when casting
         }
@@ -179,9 +188,9 @@ public class ScoreManager : MonoBehaviour
                 // visCombo2.SetActive(true);
             }
             if (lsKey.Count >= 3) {
-                VisCombo(visCombo3, lsKey[0], false);
+                VisCombo(visCombo1, lsKey[0], false);
                 VisCombo(visCombo2, lsKey[1], false);
-                VisCombo(visCombo1, lsKey[2], false);
+                VisCombo(visCombo3, lsKey[2], false);
                 visComboFrameLength = 60;
                 if (lsKey[0] == lsKey[1] && lsKey[1] == lsKey[2]){
                     SpriteRenderer spriteRenderer = comboBar.GetComponent<SpriteRenderer>();
