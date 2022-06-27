@@ -736,6 +736,7 @@ GameObject:
   - component: {fileID: 269240985}
   - component: {fileID: 269240983}
   - component: {fileID: 269240982}
+  - component: {fileID: 269240987}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -817,6 +818,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &269240987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269240981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fadc5e595860844c9f35a3c0c43e8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTextPrefeb: {fileID: 2671442774328928074, guid: 07d01dd011ffee54fafcbd07e1e106ae, type: 3}
+  playerInstance: {fileID: 4921893774645212013, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
+  textToDisplay: 
 --- !u!1 &304871929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,6 +1876,7 @@ MonoBehaviour:
   timeStamps: []
   scoreManager: {fileID: 32668165}
   hitEffect: {fileID: 617426951}
+  scoreEffect: {fileID: 0}
   comboText: {fileID: 413583204}
 --- !u!4 &884347955
 Transform:
@@ -1917,6 +1934,7 @@ MonoBehaviour:
   timeStamps: []
   scoreManager: {fileID: 198269270}
   hitEffect: {fileID: 1900457382}
+  scoreEffect: {fileID: 0}
   comboText: {fileID: 1767571163}
 --- !u!4 &892135474
 Transform:

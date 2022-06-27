@@ -21,9 +21,7 @@ public class PlayerController : MonoBehaviour
     public Transform attackPoint;
     public Transform buffPoint;
     public float attackRange = 0.5f;
-
     public LayerMask enemyLayers;
-
     public int attackDamage = 30;
     public int maxHealth = 150;
     public int healingAmount = 30;
@@ -36,9 +34,7 @@ public class PlayerController : MonoBehaviour
     public FillStatusBar statusBar;
     // Damage point Text
     public GameObject damagePoint;
-
     int curHealth;
-
     public GameObject sword;
     public GameObject grandCross;
     public GameObject thunder;

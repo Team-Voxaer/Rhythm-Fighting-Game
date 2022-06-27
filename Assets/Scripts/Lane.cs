@@ -157,7 +157,7 @@ public class Lane : MonoBehaviour
                     direction = Direction.None;
                 }
                 
-                // Which means someone actually hit a direction key
+                // Which means someone actually hits a direction key
                 if (direction != Direction.None) { 
                     HitLevel hitLevel;
                     if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
@@ -203,6 +203,9 @@ public class Lane : MonoBehaviour
 
         hitEffect.ChangeColor((int) direction);
         //Update the score effect
+
+        print("I AM THE HIT LEVEL:" + hitLevel);
+    
         scoreEffect.ScoreFeedback(hitLevel);
 
         scoreManager.Hit(direction, hitLevel, inputIndex); 

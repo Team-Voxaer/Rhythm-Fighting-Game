@@ -2,37 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rhythm;
-
+using TMPro;
 public class ScoreEffect : MonoBehaviour
 {
-    public GameObject floatingPoints;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Instantiate(floatingPoints, transform.position, Quaternion.identity);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject scoreTextPrefeb, playerInstance;
+    public string textToDisplay;  
     
-    //ScoreEffect
+    //ScoreEffect    
     public void ScoreFeedback(HitLevel hitLevel){
+        GameObject scoreText = Instantiate(scoreTextPrefeb, playerInstance.transform);
 
         if(hitLevel == Rhythm.HitLevel.Perfect){
-            Instantiate(floatingPoints, transform.position, Quaternion.identity);
+            textToDisplay = "Perfect!!";
+            scoreText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);    
         }
         else if(hitLevel == Rhythm.HitLevel.Good){
-            Instantiate(floatingPoints, transform.position, Quaternion.identity);
+            textToDisplay = "Good!";
+            scoreText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);    
         }
         else if(hitLevel == Rhythm.HitLevel.Bad){
-            Instantiate(floatingPoints, transform.position, Quaternion.identity);
+            textToDisplay = "Not Bad";
+            scoreText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);    
         }
         else{
-            Instantiate(floatingPoints, transform.position, Quaternion.identity);
+            print("Miss");
         }
-}
+             
+    }
+   
+
+
+
+
+
+
+
 }

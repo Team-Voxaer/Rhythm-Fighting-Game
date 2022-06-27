@@ -25,7 +25,6 @@ public class HitEffect : MonoBehaviour
             rend.material.SetColor("_Color", Color.white);
         }
     }
-
     public void ChangeColor(int inputKey){
         rend = GetComponent<Renderer>();
         Color c0 = Color.magenta;
@@ -46,7 +45,6 @@ public class HitEffect : MonoBehaviour
             rend.material.SetColor("_Color", c3);    
         }      
         effectTimer = 15;
-        
     }   
 
     }
