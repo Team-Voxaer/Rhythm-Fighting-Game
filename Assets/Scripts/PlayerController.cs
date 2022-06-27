@@ -295,3 +295,22 @@ public class PlayerController : MonoBehaviour
         isTutorial = true;
     }
 }
+
+public class PlayerController : MonoBehaviour
+{
+    private static PlayerController _i;
+
+    public static GameAssets i
+    {
+        get
+        {
+            if (_i == null) _i = Instantiate(Resources.Load<PlayerController>("PlayerController"));
+            return _i;
+        }
+    }
+
+
+    public Transform pfDamagePopup;
+
+
+}
