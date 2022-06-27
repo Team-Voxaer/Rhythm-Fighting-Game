@@ -68,6 +68,11 @@ public class TutorialScript : MonoBehaviour
         }
     }
 
+    void InstantiateNote()
+    {
+        GameObject note = Instantiate(tutorialNote, dropPoint.transform.position, Quaternion.identity);
+        note.GetComponent<TutorialNote>().SetTutorialScript(this);
+    }
 
 
     public void GetHitFeedBack(char c)
@@ -102,7 +107,7 @@ public class TutorialScript : MonoBehaviour
                            "consume three consecutive < D > stacks to cast physical attack on your opponent.", "Image/1");  // Jiacheng
         while (!DDDSkill)
         {
-            Instantiate(tutorialNote, dropPoint.transform.position, Quaternion.identity);
+            InstantiateNote();
             yield return new WaitForSeconds(1.6f);
         }
         ShowTutorialWindow("Press < A > when a white block hits the ground to gain one stack of defend energy, " + 
@@ -110,7 +115,7 @@ public class TutorialScript : MonoBehaviour
         while (!AAASkill)
         {
             player2.UseSword();
-            Instantiate(tutorialNote, dropPoint.transform.position, Quaternion.identity);
+            InstantiateNote();
             yield return new WaitForSeconds(1.6f);
         }
         player2.UseSword();
@@ -120,7 +125,7 @@ public class TutorialScript : MonoBehaviour
         while (!WWWSkill)
         {
             player2.UseGrandCross();
-            Instantiate(tutorialNote, dropPoint.transform.position, Quaternion.identity);
+            InstantiateNote();
             yield return new WaitForSeconds(1.6f);
         }
         player2.UseHealing();
@@ -128,7 +133,7 @@ public class TutorialScript : MonoBehaviour
                            "consume three consecutive < S > stacks to heal your character.", "Image/4");  // Jiacheng
         while (!SSSSkill)
         {
-            Instantiate(tutorialNote, dropPoint.transform.position, Quaternion.identity);
+            InstantiateNote();
             yield return new WaitForSeconds(1.6f);
         }
         ShowTutorialWindow("Tutorial ends.", "Image/5");  // Jiacheng

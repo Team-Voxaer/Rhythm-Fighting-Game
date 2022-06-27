@@ -6,14 +6,14 @@ public class TutorialNote : MonoBehaviour
 {
     public float speed = 1f;
     private bool triggerStay = false;
-    public TutorialScript tutorialScript;
+    private TutorialScript tutorialScript;
     // positive value move upward, negative value move downward
     public float moveDirection = -1f;
 
-    private void Start()
+    /*private void Start()
     {
         tutorialScript = GameObject.Find("TutorialScript").GetComponent<TutorialScript>();
-    }
+    }*/
 
 
     // Update is called once per frame
@@ -44,6 +44,11 @@ public class TutorialNote : MonoBehaviour
             tutorialScript.GetHitFeedBack('D');
             Destroy(gameObject);
         }
+    }
+
+    public void SetTutorialScript(TutorialScript script)
+    {
+        tutorialScript = script;
     }
 
     private void Move()
