@@ -29,6 +29,21 @@ public class AnalyticManager : MonoBehaviour
         HitLevelCounts[3] += 1; // 0 - Perfect; 1 - Good; 2 - Bad; 3 - Miss
     }
 
+    public static void OnFirstCombo(int comboCode, int inputIndex)
+	{
+        Debug.Log("OnFirstCombo " + comboCode.ToString());
+        /*
+        Zhian Li: comboCode list
+        protected const int skillCodeDefend = 0;
+        protected const int skillCodeAttack = 1;
+        protected const int skillCodeSword = 2;
+        protected const int skillCodeGrandCross = 3;
+        protected const int skillCodeThunder = 4;
+        protected const int skillCodeHealing = 5;
+        */
+        // Huanpu: Todo
+    }
+
     public static void OnSuccessDefense(bool defenseTrigger)
     {
         if (defenseTrigger) DefenseCounts[1] += 1;
