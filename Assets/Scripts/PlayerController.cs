@@ -184,12 +184,14 @@ public class PlayerController : MonoBehaviour
                 curHealth -= (damage - physicalDefense);
                 ShowDamageNumberPopUp(damage - physicalDefense);
                 m_animator.SetTrigger("Hurt");
+                AnalyticManager.OnSuccessDefense(false);
             }
             else
             {
                 curHealth -= 1;
                 ShowDamageNumberPopUp(1);
                 m_animator.SetTrigger("Defend");
+                AnalyticManager.OnSuccessDefense(true);
             }
         }
         else

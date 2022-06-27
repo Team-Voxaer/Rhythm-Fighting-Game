@@ -81,18 +81,23 @@ public class ScoreManager : MonoBehaviour
         CheckSkills();
         if (lsSkill.Count > 0) {
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
-                player.Defend(); 
-                // player.Heal();
+                player.Defend();
+                AnalyticManager.OnComboReleased("Defend"); // Send AnalyticsManager combo data
             } else if (lsSkill[0] == skillCodeAttack) {
                 player.Attack();
+                AnalyticManager.OnComboReleased("Attack"); // Send AnalyticsManager combo data
             } else if (lsSkill[0] == skillCodeSword) {
                 player.UseSword();
+                AnalyticManager.OnComboReleased("Sword"); // Send AnalyticsManager combo data
             } else if (lsSkill[0] == skillCodeGrandCross) {
                 player.UseGrandCross();
+                AnalyticManager.OnComboReleased("GrandCross"); // Send AnalyticsManager combo data
             } else if (lsSkill[0] == skillCodeThunder) {
                 player.UseThunder();
+                AnalyticManager.OnComboReleased("Thunder"); // Send AnalyticsManager combo data
             } else if (lsSkill[0] == skillCodeHealing) {
                 player.UseHealing();
+                AnalyticManager.OnComboReleased("Healing"); // Send AnalyticsManager combo data
             }
             lsSkill.RemoveAt(0);
         } else {

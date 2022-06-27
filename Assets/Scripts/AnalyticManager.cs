@@ -22,31 +22,13 @@ public class AnalyticManager : MonoBehaviour
                         "noteHit",
                         new Dictionary<string, object>
                         {
-                            { "HitLevel", hitLevel.ToString() },
-                            { "NoteIndex", inputIndex},
-                            { "MusicScene", GameData.midiFileName},
-                            { "Direction", direction.ToString() }
+                            { "hitLevel", hitLevel.ToString() },
+                            { "noteIndex", inputIndex},
+                            { "musicScene", GameData.midiFileName},
+                            { "direction", direction.ToString() }
                         }
                     );//Record Related Data Whenever Hit A Note 1. Hit Level 2. Note Number 3. Generated from which music scene 4. Hit Direction
         Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
-    }
-    
-    public static void OnLevelSelected(Direction direction, HitLevel hitLevel, int inputIndex)
-	{
-
-	    AnalyticsResult analyticsResult = Analytics.CustomEvent(
-			            "levelSelected",
-			            new Dictionary<string, object>
-			            {
-			                { "MusicScene", GameData.midiFileName}
-			            }
-		    );//Record Related Data Whenever Hit A Note 1. Hit Level 2. Note Number 3. Generated from which music scene 4. Hit Direction
-	    Debug.Log("analyticsResult: " + analyticsResult);// Select the game level and keep the level in memory
-    }
-	
-    public static void OnComboReleased()
-    {
-
     }
 	
     public static void OnMissNotes(int inputIndex)
@@ -56,21 +38,60 @@ public class AnalyticManager : MonoBehaviour
                         "noteMiss",
                         new Dictionary<string, object>
                         {
-                            { "NoteIndex", inputIndex},
-                            { "MusicScene", GameData.midiFileName},
+                            { "noteIndex", inputIndex},
+                            { "musicScene", GameData.midiFileName},
                         }
                     );//Record Related Data Whenever Miss A Note 1. Note Number 2. Generated from which music scene
         Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
     }
 
-    public static void OnLevelEnd(bool SongEnd)
+    public static void OnSuccessDefense(bool defenseTrigger)
+    {
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "successDefense",
+                        new Dictionary<string, object>
+                        {
+                            { "successDefense", defenseTrigger},
+                            { "musicScene", GameData.midiFileName},
+                        }
+                    );//Record Related Data Whenever The Game Ended
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+    }
+
+    public static void OnComboReleased(string playerCombo)
+    {
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "comboRelease",
+                        new Dictionary<string, object>
+                        {
+                            { "comboType", playerCombo},
+                            { "musicScene", GameData.midiFileName}
+                        }
+                    );//Record Related Data Whenever The Game Ended
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+    }
+
+    public static void OnLevelSelected(Direction direction, HitLevel hitLevel, int inputIndex)
+    {
+
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "levelSelected",
+                        new Dictionary<string, object>
+                        {
+                            { "musicScene", GameData.midiFileName}
+                        }
+            );//Record Related Data Whenever Select A Scene：Select the game level and keep the level in memory
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+    }
+
+    public static void OnLevelEnd(bool songEnd)
     {
         AnalyticsResult analyticsResult = Analytics.CustomEvent(
                         "levelEnd",
                         new Dictionary<string, object>
                         {
-                            { "SongEnded", SongEnd},
-                            { "MusicScene", GameData.midiFileName},
+                            { "songEnded", songEnd},
+                            { "musicScene", GameData.midiFileName},
                         }
                     );//Record Related Data Whenever The Game Ended
         Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
