@@ -16,12 +16,15 @@ public class PlayerController : MonoBehaviour
 
     private bool m_grounded = false;
     private bool m_isDead = false;
+    private bool isTutorial = false;
     // private bool m_combatIdle = false;
 
     public Transform attackPoint;
     public Transform buffPoint;
     public float attackRange = 0.5f;
+
     public LayerMask enemyLayers;
+
     public int attackDamage = 30;
     public int maxHealth = 150;
     public int healingAmount = 30;
@@ -33,8 +36,10 @@ public class PlayerController : MonoBehaviour
     // Health Bar
     public FillStatusBar statusBar;
     // Damage point Text
-    public GameObject damagePoint;
+    public GameObject popUpText;
+
     int curHealth;
+
     public GameObject sword;
     public GameObject grandCross;
     public GameObject thunder;
@@ -87,6 +92,7 @@ public class PlayerController : MonoBehaviour
         if (m_isDead) return;
         physicalDefense += 100;
         Instantiate(grandCross, buffPoint.position, quaternion);
+        ShowTextPopUp("Defense++");
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
     }
 
@@ -94,7 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         if (m_isDead) return;
         curHealth = (curHealth + healingAmount > maxHealth) ? maxHealth : curHealth + healingAmount;
-        ShowTextPopUp(healingAmount, false);
+        ShowDamageNumberPopUp(healingAmount, false);
         Instantiate(healing, buffPoint.position, quaternion);
     }
     public void UseSword()
@@ -117,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("we hit" + enemy.name);
+            // Debug.Log("we hit" + enemy.name);
             enemy.GetComponent<PlayerController>().TakenDamage(attackDamage);
 
         }
@@ -146,19 +152,26 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    void ShowTextPopUp(int num, bool isDamage = true)
+    void ShowDamageNumberPopUp(int num, bool isDamage = true)
     {
         string text = isDamage == true ? "-" : "+";
-        GameObject damageNumber = Instantiate(damagePoint, transform.position, Quaternion.identity);
+        GameObject textPopUp = Instantiate(popUpText, transform.position, Quaternion.identity);
         if (isDamage)
         {
-            damageNumber.GetComponent<TMPro.TextMeshPro>().color = Color.red;
+            textPopUp.GetComponent<TextMeshPro>().color = Color.red;
         }
         else
         {
-            damageNumber.GetComponent<TMPro.TextMeshPro>().color = Color.green;
+            textPopUp.GetComponent<TextMeshPro>().color = Color.green;
         }
-        damageNumber.GetComponent<TMPro.TextMeshPro>().text = text + num.ToString();
+        textPopUp.GetComponent<TextMeshPro>().text = text + num.ToString();
+    }
+
+    void ShowTextPopUp(string text, Color? color = null)
+    {
+        GameObject textPopUp = Instantiate(popUpText, transform.position, Quaternion.identity);
+        textPopUp.GetComponent<TextMeshPro>().text = text;
+
     }
 
     // physicalDefense works on damageType True
@@ -169,20 +182,20 @@ public class PlayerController : MonoBehaviour
             if (damage > physicalDefense)
             {
                 curHealth -= (damage - physicalDefense);
-                ShowTextPopUp(damage - physicalDefense);
+                ShowDamageNumberPopUp(damage - physicalDefense);
                 m_animator.SetTrigger("Hurt");
             }
             else
             {
                 curHealth -= 1;
-                ShowTextPopUp(1);
+                ShowDamageNumberPopUp(1);
                 m_animator.SetTrigger("Defend");
             }
         }
         else
         {
             curHealth -= damage;
-            ShowTextPopUp(damage);
+            ShowDamageNumberPopUp(damage);
             m_animator.SetTrigger("Hurt");
         }
         if (curHealth <= 0)
@@ -194,8 +207,15 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
+        if (isTutorial)
+        {
+            m_animator.SetTrigger("Death");
+            curHealth = maxHealth;
+            new WaitForSeconds(1);
+            m_animator.SetTrigger("Recover");
+            return;
+        }
         m_animator.SetTrigger("Death");
-        Debug.Log("Enemy died");
         GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         GetComponent<Collider2D>().enabled = false;
         m_isDead = true;
@@ -276,5 +296,10 @@ public class PlayerController : MonoBehaviour
 
     public int GetCurHealth() {
         return curHealth;
+    }
+
+    public void SetTutorial()
+    {
+        isTutorial = true;
     }
 }

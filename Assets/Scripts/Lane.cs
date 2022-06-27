@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Rhythm;
+using UnityEngine.Analytics;
 
 namespace Rhythm
 {
@@ -26,10 +27,15 @@ namespace Rhythm
     }
 }
 
+
+
 public class Lane : MonoBehaviour
-{   
+{
+    
+
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
+
     public PlayerController player;
     public PlayerController playerOther;
 
@@ -59,9 +65,6 @@ public class Lane : MonoBehaviour
     // Hitting Effect
     public HitEffect hitEffect;
 
-    //Score Feedback
-    public ScoreEffect scoreEffect;
-
     // Combo Display
     public TextMeshProUGUI comboText;
 
@@ -71,7 +74,10 @@ public class Lane : MonoBehaviour
     private int isDefend = 0;
 
     // Start is called before the first frame update
-    void Start(){}
+    void Start()
+    {
+        
+    }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
     {
@@ -143,6 +149,7 @@ public class Lane : MonoBehaviour
                 }
                    
             } else {
+
                 // Check Direction Key Input
                 Direction direction;
                 if (Input.GetKeyDown(inputKeyUp)) {
@@ -157,7 +164,7 @@ public class Lane : MonoBehaviour
                     direction = Direction.None;
                 }
                 
-                // Which means someone actually hits a direction key
+                // Which means someone actually hit a direction key
                 if (direction != Direction.None) { 
                     HitLevel hitLevel;
                     if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
@@ -180,6 +187,8 @@ public class Lane : MonoBehaviour
                     }
 
                     print($"Input Direction {direction.ToString()} {hitLevel.ToString()} on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+
+
                 }
 
                 // If it is larger than Margin of Bad, so it can't even be hit anymore
@@ -189,6 +198,7 @@ public class Lane : MonoBehaviour
                     print($"Missed {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                     // TODO: to add an animation for missing notes
                 }
+
                 ShowHitlevel();
             }
         }       
@@ -202,18 +212,19 @@ public class Lane : MonoBehaviour
         lastHitLevel = hitLevel;
 
         hitEffect.ChangeColor((int) direction);
-        //Update the score effect
-
-        print("I AM THE HIT LEVEL:" + hitLevel);
-    
-        scoreEffect.ScoreFeedback(hitLevel);
-
         scoreManager.Hit(direction, hitLevel, inputIndex); 
+        if (!(GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow)){ // If this is not an AI Hit
+            AnalyticManager.OnHitNotes(direction, hitLevel, inputIndex); // Send AnalyticsManager notehit data
+        }
         inputIndex++;
     }
+
     private void Miss()
     {
         scoreManager.Miss(inputIndex);
+        if (!(GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow)){ // If this is not an AI Miss
+            AnalyticManager.OnMissNotes(inputIndex); //Send AnalyticsManager notemiss data
+        }
         inputIndex++;
         lastHitLevel = HitLevel.Invalid;
     }
@@ -227,9 +238,11 @@ public class Lane : MonoBehaviour
         comboQueue.Enqueue(combo);
     }
     */
+
     void ShowHitlevel()
     {
         string text = "Hit Level: " + lastHitLevel.ToString();
         comboText.text = text;
     }
+
 }

@@ -1837,7 +1837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteRestriction: 7
   player: {fileID: 939828987}
-  playerOther: {fileID: 0}
+  playerOther: {fileID: 2070658244}
   inputKeyUp: 119
   inputKeyDown: 115
   inputKeyLeft: 97
@@ -1894,7 +1894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteRestriction: 7
   player: {fileID: 2070658244}
-  playerOther: {fileID: 0}
+  playerOther: {fileID: 939828987}
   inputKeyUp: 273
   inputKeyDown: 274
   inputKeyLeft: 276

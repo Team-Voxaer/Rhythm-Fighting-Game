@@ -40,6 +40,12 @@ public class GameManager : MonoBehaviour
             SongManager.UnPauseSong();
         }
         // Jiacheng
+
+        // Zhian Li
+        if (!SongManager.AudioEnded())
+        { 
+            EndGameBecauseSongEnded();
+        }
     }
 
     public static bool CheckAI()
@@ -74,5 +80,13 @@ public class GameManager : MonoBehaviour
     {
         endGameWindow.gameObject.SetActive(true);
         endGameWindow.messageText.text = $"Congratulation, {name} Win !!";
+        AnalyticManager.OnLevelEnd(false); //Send AnalyticsManager The Game Ended Because Song Ended
+    }
+
+    public void EndGameBecauseSongEnded()
+    {
+        endGameWindow.gameObject.SetActive(true);
+        endGameWindow.messageText.text = $"The Song Ended";
+        AnalyticManager.OnLevelEnd(true); //Send AnalyticsManager The Game Ended Because Song Ended
     }
 }

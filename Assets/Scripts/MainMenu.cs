@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
         if (Application.CanStreamedLevelBeLoaded("Tutorial"))
         {
             GameData.midiFileName = "Never_Gonna_Give_You_Up_Kindergarten.mid";  // Jiacheng
+            AnalyticManager.CurrentLevel = 0;
             SceneManager.LoadScene("Tutorial");
         }
         else
@@ -38,9 +39,25 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void PlayTutorialPlusPlus()
+    {
+        if (Application.CanStreamedLevelBeLoaded("Test"))
+        {
+            GameData.midiFileName = "TutorialPlusPlus.mid";  // This File Don't Exist, but we need this parameter
+            AnalyticManager.CurrentLevel = -1;
+            SceneManager.LoadScene("Test");
+            
+        }
+        else
+        {
+            OpenSceneNotExistWindow("The Scene doesn't exist");
+        }
+    }
+
     public void PlayFighting()
     {
         GameData.midiFileName = "Never_Gonna_Give_You_Up.mid";  // Jiacheng
+        AnalyticManager.CurrentLevel = 1;
         SceneManager.LoadScene("FightingScene");
     }
 

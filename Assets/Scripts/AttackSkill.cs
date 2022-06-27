@@ -48,7 +48,7 @@ public class AttackSkill : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("we hit " + enemy.name);
+            // Debug.Log("we hit " + enemy.name);
             if (skillName == SKILL.sword)
             {
                 enemy.GetComponent<PlayerController>().TakenDamage(50);
