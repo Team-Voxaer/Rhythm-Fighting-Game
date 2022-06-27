@@ -64,6 +64,7 @@ public class Lane : MonoBehaviour
 
     // Hitting Effect
     public HitEffect hitEffect;
+    public GameObject popUpHitLevel;
 
     // Combo Display
     public TextMeshProUGUI comboText;
@@ -210,6 +211,10 @@ public class Lane : MonoBehaviour
         Destroy(notes[inputIndex].gameObject);
 
         lastHitLevel = hitLevel;
+
+        GameObject hitLevelObj =  Instantiate(popUpHitLevel, hitEffect.transform.position, Quaternion.identity);
+        hitLevelObj.GetComponent<TextMeshPro>().text = hitLevel.ToString();
+
 
         hitEffect.ChangeColor((int) direction);
         scoreManager.Hit(direction, hitLevel, inputIndex); 
