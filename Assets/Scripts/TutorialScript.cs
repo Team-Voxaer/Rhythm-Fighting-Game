@@ -12,6 +12,8 @@ public class TutorialScript : MonoBehaviour
     public PlayerController player1;
     public PlayerController player2;
 
+    [SerializeField] private TutorialWindow tutorialWindow;  // Jiacheng
+
     bool WWWSkill = false;
     bool AAASkill = false;
     bool SSSSkill = false;
@@ -64,7 +66,6 @@ public class TutorialScript : MonoBehaviour
             WWWSkill = false;
             WWWSkill = false;
         }
-        // TODO: Pop a window and end tutorial or do it in the flow
     }
 
 
@@ -97,13 +98,15 @@ public class TutorialScript : MonoBehaviour
 
     IEnumerator WorkFlow()
     {
-        // TODO: Pop a window
+        ShowTutorialWindow("Press < D > when a white block hits the ground to gain one stack of physical attack energy, " + 
+                           "consume three consecutive < D > stacks to cast physical attack on your opponent.", "Image/1");  // Jiacheng
         while (!DDDSkill)
         {
             Instantiate(tutorialNote, dropPoint.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(1.6f);
         }
-        // TODO: Pop a window
+        ShowTutorialWindow("Press < A > when a white block hits the ground to gain one stack of defend energy, " + 
+                           "consume three consecutive < A > stacks to defend physical attack from your opponent.", "Image/2");  // Jiacheng
         while (!AAASkill)
         {
             player2.UseSword();
@@ -112,7 +115,8 @@ public class TutorialScript : MonoBehaviour
         }
         player2.UseSword();
         yield return new WaitForSeconds(1.6f);
-        // TODO: Pop a window
+        ShowTutorialWindow("Press < W > when a white block hits the ground to gain one stack of magical attack energy, " + 
+                           "consume three consecutive < W > stacks to cast magical attack that penetrate opponent's defense.", "Image/3");  // Jiacheng
         while (!WWWSkill)
         {
             player2.UseGrandCross();
@@ -120,17 +124,22 @@ public class TutorialScript : MonoBehaviour
             yield return new WaitForSeconds(1.6f);
         }
         player2.UseHealing();
-        // TODO: Pop a window
+        ShowTutorialWindow("Press < S > when a white block hits the ground to gain one stack of heal energy, " + 
+                           "consume three consecutive < S > stacks to heal your character.", "Image/4");  // Jiacheng
         while (!SSSSkill)
         {
             Instantiate(tutorialNote, dropPoint.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(1.6f);
         }
-        // TODO: Pop a window
-        print("reached the end");
+        ShowTutorialWindow("Tutorial ends.", "Image/5");  // Jiacheng
         yield break;
+    }
 
-
-
+    // Jiacheng
+    private void ShowTutorialWindow(string text, string imagePath)
+    {
+        tutorialWindow.gameObject.SetActive(true);
+        tutorialWindow.messageText.text = text;
+        tutorialWindow.image.sprite = Resources.Load(imagePath, typeof(Sprite)) as Sprite;
     }
 }
