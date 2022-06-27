@@ -6,7 +6,6 @@ using Rhythm;
 
 public class AnalyticManager : MonoBehaviour
 {
-
     public static int CurrentLevel;
 
     // Start is called before the first frame update
@@ -32,37 +31,23 @@ public class AnalyticManager : MonoBehaviour
         Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
     }
     
-     public static void OnLevelSelected(Direction direction, HitLevel hitLevel, int inputIndex)
+    public static void OnLevelSelected(Direction direction, HitLevel hitLevel, int inputIndex)
 	{
 
-	AnalyticsResult analyticsResult = Analytics.levelSelected(
-			"noteHit",
-			new Dictionary<string, object>
-			{
-			    { "HitLevel", hitLevel.ToString() },
-			    { "NoteIndex", inputIndex},
-			    { "MusicScene", GameData.midiFileName},
-			    { "Direction", direction.ToString() }
-			}
+	    AnalyticsResult analyticsResult = Analytics.CustomEvent(
+			            "levelSelected",
+			            new Dictionary<string, object>
+			            {
+			                { "MusicScene", GameData.midiFileName}
+			            }
 		    );//Record Related Data Whenever Hit A Note 1. Hit Level 2. Note Number 3. Generated from which music scene 4. Hit Direction
-	Debug.Log("analyticsResult: " + analyticsResult);// Select the game level and keep the level in memory
-        }
+	    Debug.Log("analyticsResult: " + analyticsResult);// Select the game level and keep the level in memory
+    }
 	
-      public static void OnComboReleased(Direction direction, HitLevel hitLevel, int inputIndex)
-      {
+    public static void OnComboReleased()
+    {
 
-          AnalyticsResult analyticsResult = Analytics.levelSelected(
-			"noteHit",
-			new Dictionary<string, object>
-			{
-			    { "HitLevel", hitLevel.ToString() },
-			    { "NoteIndex", inputIndex},
-			    { "MusicScene", GameData.midiFileName},
-			    { "Direction", direction.ToString() }
-			}
-		    );//Record Related Data Whenever Hit A Note 1. Hit Level 2. Note Number 3. Generated from which music scene 4. Hit Direction
-	Debug.Log("analyticsResult: " + analyticsResult);// Release one combo along with the music file
-       }
+    }
 	
     public static void OnMissNotes(int inputIndex)
     {
