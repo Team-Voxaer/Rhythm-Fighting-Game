@@ -27,7 +27,6 @@ public class TutorialManager : ScoreManager
                 player.Defend(); 
             } else if (lsSkill[0] == skillCodeAttack) {
                 player.Attack();
-
             } else if (lsSkill[0] == skillCodeSword) {
                 player.UseSword();
                 tutorialText.countdown(2);
@@ -42,6 +41,14 @@ public class TutorialManager : ScoreManager
                 tutorialText.countdown(4);
             }
             tutorialText.countdown(0);
+
+            // Zhian Li: We always upload the Analytic when the AI is disabled
+            // or when we are tracking the left player (which we always upload)
+            if (!GameManager.CheckAI() || player.gameObject.name == "LightBandit"){
+                 // Send AnalyticsManager combo data
+                 AnalyticManager.OnComboReleased(lsSkill[0]);
+            }
+
             lsSkill.RemoveAt(0);
         } else {
             // TODO: a visualization for no skills when casting

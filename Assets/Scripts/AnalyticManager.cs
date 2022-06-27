@@ -7,6 +7,10 @@ using Rhythm;
 public class AnalyticManager : MonoBehaviour
 {
     public static int CurrentLevel;
+    // 0 - Perfect / 1 - Good / 2 - Bad / 3 - Miss
+    private static List<int> HitLevelCounts = new List<int>(){0, 0, 0, 0}; 
+    private static List<int> ComboCounts = new List<int>(){0, 0, 0, 0, 0, 0}; 
+    private static List<int> DefenseCounts = new List<int>(){0, 0};
 
     // Start is called before the first frame update
     void Start()
@@ -17,58 +21,24 @@ public class AnalyticManager : MonoBehaviour
     
     public static void OnHitNotes(Direction direction, HitLevel hitLevel, int inputIndex)
 	{
-
-        AnalyticsResult analyticsResult = Analytics.CustomEvent(
-                        "noteHit",
-                        new Dictionary<string, object>
-                        {
-                            { "hitLevel", hitLevel.ToString() },
-                            { "noteIndex", inputIndex},
-                            { "musicScene", GameData.midiFileName},
-                            { "direction", direction.ToString() }
-                        }
-                    );//Record Related Data Whenever Hit A Note 1. Hit Level 2. Note Number 3. Generated from which music scene 4. Hit Direction
-        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+        HitLevelCounts[(int) hitLevel] += 1;  // 0 - Perfect; 1 - Good; 2 - Bad; 3 - Miss
     }
 	
     public static void OnMissNotes(int inputIndex)
     {
-
-        AnalyticsResult analyticsResult = Analytics.CustomEvent(
-                        "noteMiss",
-                        new Dictionary<string, object>
-                        {
-                            { "noteIndex", inputIndex},
-                            { "musicScene", GameData.midiFileName},
-                        }
-                    );//Record Related Data Whenever Miss A Note 1. Note Number 2. Generated from which music scene
-        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+        HitLevelCounts[3] += 1; // 0 - Perfect; 1 - Good; 2 - Bad; 3 - Miss
     }
 
     public static void OnSuccessDefense(bool defenseTrigger)
     {
-        AnalyticsResult analyticsResult = Analytics.CustomEvent(
-                        "successDefense",
-                        new Dictionary<string, object>
-                        {
-                            { "successDefense", defenseTrigger},
-                            { "musicScene", GameData.midiFileName},
-                        }
-                    );//Record Related Data Whenever The Game Ended
-        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+        if (defenseTrigger) DefenseCounts[1] += 1;
+        else DefenseCounts[0] += 1;
+
     }
 
-    public static void OnComboReleased(string playerCombo)
+    public static void OnComboReleased(int comboCode)
     {
-        AnalyticsResult analyticsResult = Analytics.CustomEvent(
-                        "comboRelease",
-                        new Dictionary<string, object>
-                        {
-                            { "comboType", playerCombo},
-                            { "musicScene", GameData.midiFileName}
-                        }
-                    );//Record Related Data Whenever The Game Ended
-        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+        ComboCounts[comboCode] += 1; 
     }
 
     public static void OnLevelSelected(Direction direction, HitLevel hitLevel, int inputIndex)
@@ -84,17 +54,100 @@ public class AnalyticManager : MonoBehaviour
         Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
     }
 
-    public static void OnLevelEnd(bool songEnd)
+    public static void OnLevelEnd(string reason)
     {
         AnalyticsResult analyticsResult = Analytics.CustomEvent(
                         "levelEnd",
                         new Dictionary<string, object>
                         {
-                            { "songEnded", songEnd},
-                            { "musicScene", GameData.midiFileName},
+                            { "endReason", reason},
+                            { "musicScene", GameData.midiFileName}
                         }
                     );//Record Related Data Whenever The Game Ended
         Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+
+        UploadHitLevelCounts();
+        UploadComboCounts();
+        UploadDefenseCounts();
+
+        ClearStats();
+    }
+
+    private static void UploadHitLevelCounts(){
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "hitLevelCounts",
+                        new Dictionary<string, object>
+                        {
+                            { "perfect", HitLevelCounts[0]},
+                            { "good", HitLevelCounts[1]},
+                            { "bad", HitLevelCounts[2]},
+                            { "miss", HitLevelCounts[3]},
+                            { "musicScene", GameData.midiFileName}
+                        }
+                    );
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+        /*
+        Debug.Log("HitLevelCounts " + HitLevelCounts[0].ToString() + " " + HitLevelCounts[1].ToString() 
+         + " " + HitLevelCounts[2].ToString()  + " " + HitLevelCounts[3].ToString()); // Confirm
+         */
+    }
+
+    private static void UploadComboCounts(){
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "comboCounts",
+                        new Dictionary<string, object>
+                        {
+                            { "defend", ComboCounts[0]},
+                            { "attack", ComboCounts[1]},
+                            { "sword", ComboCounts[2]},
+                            { "grandCross", ComboCounts[3]},
+                            { "thunder", ComboCounts[4]},
+                            { "healing", ComboCounts[5]},
+                            { "musicScene", GameData.midiFileName}
+                        }
+                    );
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+        
+        /*
+        Debug.Log("ComboCounts " + ComboCounts[2].ToString() + " " + ComboCounts[3].ToString() 
+         + " " + ComboCounts[4].ToString()  + " " + ComboCounts[5].ToString()); // Confirm
+        */
+         
+    }
+
+    private static void UploadDefenseCounts(){
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "defenseCounts",
+                        new Dictionary<string, object>
+                        {
+                            { "defenseFail", DefenseCounts[0]},
+                            { "defenseSuccess", DefenseCounts[1]},
+                            { "musicScene", GameData.midiFileName},
+                        }
+                    );
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+        
+        /*
+        Debug.Log("DefenseCounts " + DefenseCounts[0].ToString() + " " + DefenseCounts[1].ToString()); // Confirm
+        */
+         
+    }
+
+    private static void ClearStats()
+    {
+        for(int i = 0; i < HitLevelCounts.Count; i++)
+        {
+            HitLevelCounts[i] = 0;
+        }
+
+        for(int i = 0; i < ComboCounts.Count; i++)
+        {
+            ComboCounts[i] = 0;
+        }
+
+        for(int i = 0; i < DefenseCounts.Count; i++){
+            DefenseCounts[i] = 0;
+        }
     }
 
     private void OnDestroy()

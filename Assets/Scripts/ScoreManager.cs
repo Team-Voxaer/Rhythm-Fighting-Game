@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
 
     public KeyCode inputKeyCast;
     
+    // Zhian Li: Also used in analytic manager so don't change
     protected const int skillCodeDefend = 0;
     protected const int skillCodeAttack = 1;
     protected const int skillCodeSword = 2;
@@ -80,35 +81,30 @@ public class ScoreManager : MonoBehaviour
     public virtual void CastSkill() {
         CheckSkills();
         if (lsSkill.Count > 0) {
-            string skillName = null;
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
                 player.Defend();
-                skillName = "Defend";
             } else if (lsSkill[0] == skillCodeAttack) {
                 player.Attack();
-                skillName = "Attack";
             } else if (lsSkill[0] == skillCodeSword) {
                 player.UseSword();
-                skillName = "Sword";
             } else if (lsSkill[0] == skillCodeGrandCross) {
                 player.UseGrandCross();
-                skillName = "GrandCross";
             } else if (lsSkill[0] == skillCodeThunder) {
                 player.UseThunder();
-                skillName = "Thunder";
             } else if (lsSkill[0] == skillCodeHealing) {
                 player.UseHealing();
-                skillName = "Healing";
             }
-            lsSkill.RemoveAt(0);
 
             // Zhian Li: We always upload the Analytic when the AI is disabled
             // or when we are tracking the left player (which we always upload)
             if (!GameManager.CheckAI() || player.gameObject.name == "LightBandit"){
-                if (skillName != null){
-                    AnalyticManager.OnComboReleased(skillName); // Send AnalyticsManager combo data
-                }
+                 // Send AnalyticsManager combo data
+                 AnalyticManager.OnComboReleased(lsSkill[0]);
             }
+
+            lsSkill.RemoveAt(0);
+
+            
         } else {
             // TODO: a visualization for no skills when casting
         }
