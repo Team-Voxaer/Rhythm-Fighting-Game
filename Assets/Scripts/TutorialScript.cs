@@ -33,10 +33,6 @@ public class TutorialScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hitNoteFeedBack.Length > 3)
-        {
-            hitNoteFeedBack = "";
-        }
         if (hitNoteFeedBack == "DDD")
         {
             DDDSkill = true;
@@ -68,6 +64,10 @@ public class TutorialScript : MonoBehaviour
             AAASkill = false;
             WWWSkill = false;
             WWWSkill = false;
+        }
+        else if (hitNoteFeedBack.Length >= 3)
+        {
+            hitNoteFeedBack = "";
         }
     }
 
