@@ -213,14 +213,18 @@ public class Lane : MonoBehaviour
 
         hitEffect.ChangeColor((int) direction);
         scoreManager.Hit(direction, hitLevel, inputIndex); 
-        AnalyticManager.OnHitNotes(direction, hitLevel, inputIndex); //Send AnalyticsManager notehit data
+        if (!(GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow)){ // If this is not an AI Hit
+            AnalyticManager.OnHitNotes(direction, hitLevel, inputIndex); // Send AnalyticsManager notehit data
+        }
         inputIndex++;
     }
 
     private void Miss()
     {
         scoreManager.Miss(inputIndex);
-        AnalyticManager.OnMissNotes(inputIndex);//Send AnalyticsManager notemiss data
+        if (!(GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow)){ // If this is not an AI Miss
+            AnalyticManager.OnMissNotes(inputIndex); //Send AnalyticsManager notemiss data
+        }
         inputIndex++;
         lastHitLevel = HitLevel.Invalid;
     }
