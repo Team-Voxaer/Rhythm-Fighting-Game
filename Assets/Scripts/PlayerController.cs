@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     public GameObject thunder;
     public GameObject healing;
     private Quaternion quaternion;
+  
 
     /*the range between attackPoint and the skill location*/
     private Vector3 Range;
@@ -294,13 +295,10 @@ public class PlayerController : MonoBehaviour
     {
         isTutorial = true;
     }
-}
 
-public class PlayerController : MonoBehaviour
-{
+
     private static PlayerController _i;
-
-    public static GameAssets i
+    public static PlayerController i
     {
         get
         {
@@ -309,8 +307,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     public Transform pfDamagePopup;
-
-
 }
+

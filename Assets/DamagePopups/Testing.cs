@@ -10,6 +10,6 @@ public class Testing : MonoBehaviour
     {
         Transform damagePopupTransform = Instantiate(pfDamagePopup, Vector3.zero, Quaternion.identity);
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-        damagePopup.Setup(500);
+        damagePopup.Setup(300);
     }
 }
