@@ -74,10 +74,13 @@ public class Lane : MonoBehaviour
 
     private int isDefend = 0;
 
+    // TODO: to change this parameter to an API
+    private int AILevel = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
@@ -123,31 +126,15 @@ public class Lane : MonoBehaviour
             
             if (GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow) {
                 // Use an AI script to operate the right fighter to fight against the left fighter
-
-                Direction direction;
-                if (isDefend > 15) {
-                    isDefend = 0;
+                AILevel = 2;
+                if (AILevel == 1) {
+                    AIEasy(audioTime, timeStamp, marginOfBad);
+                } else if (AILevel == 2) {
+                    AIMedium(audioTime, timeStamp, marginOfBad);
+                } else if (AILevel == 3) {
+                    AIHard(audioTime, timeStamp);
                 }
-                if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
-                    direction = Direction.Down;
-                } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
-                    direction = Direction.Up;
-                } else if (isDefend < 3) {
-                    direction = Direction.Left;
-                } else {
-                    direction = Direction.Right;
-                }
-                    
-                if (inputIndex % 1 == 0){
-                    // HitLevel, Direction = AI.Analyse(audioTime, timeStamp)
-                    if (audioTime > timeStamp) {
-                        Hit(direction, HitLevel.Perfect);
-                        isDefend = isDefend + 1;
-                    }
-                }
-                else{
-                    Miss();
-                }
+                
                    
             } else {
 
@@ -248,6 +235,99 @@ public class Lane : MonoBehaviour
     {
         string text = "Hit Level: " + lastHitLevel.ToString();
         comboText.text = text;
+    }
+
+
+    void AIEasy(double audioTime, double timeStamp, double marginOfBad) {
+        Direction direction;
+        if (isDefend > 15) {
+            isDefend = 0;
+        }
+        if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+            direction = Direction.Down;
+        } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
+            direction = Direction.Up;
+        } else if (isDefend < 3) {
+            direction = Direction.Left;
+        } else {
+            direction = Direction.Right;
+        }
+
+        if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
+            double rndDouble = UnityEngine.Random.value;
+            if (rndDouble > 0.9) {
+                Hit(direction, HitLevel.Perfect);
+                isDefend = isDefend + 1;
+            } else if (rndDouble > 0.6) {
+                Hit(direction, HitLevel.Good);
+                isDefend = isDefend + 1;
+            } else if (rndDouble > 0.5) {
+                Hit(direction, HitLevel.Bad);
+                isDefend = isDefend + 1;
+            } else {
+                Miss();
+            }
+        }
+    }
+
+
+    void AIMedium(double audioTime, double timeStamp, double marginOfBad) {
+        Direction direction;
+        if (isDefend > 15) {
+            isDefend = 0;
+        }
+        if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+            direction = Direction.Down;
+        } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
+            direction = Direction.Up;
+        } else if (isDefend < 3) {
+            direction = Direction.Left;
+        } else {
+            direction = Direction.Right;
+        }
+
+        if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
+            double rndDouble = UnityEngine.Random.value;
+            if (rndDouble > 0.7) {
+                Hit(direction, HitLevel.Perfect);
+                isDefend = isDefend + 1;
+            } else if (rndDouble > 0.5) {
+                Hit(direction, HitLevel.Good);
+                isDefend = isDefend + 1;
+            } else if (rndDouble > 0.4) {
+                Hit(direction, HitLevel.Bad);
+                isDefend = isDefend + 1;
+            } else {
+                Miss();
+            }
+        }
+    }
+
+
+    void AIHard(double audioTime, double timeStamp) {
+        Direction direction;
+        if (isDefend > 15) {
+            isDefend = 0;
+        }
+        if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+            direction = Direction.Down;
+        } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
+            direction = Direction.Up;
+        } else if (isDefend < 3) {
+            direction = Direction.Left;
+        } else {
+            direction = Direction.Right;
+        }
+        
+        if (audioTime > timeStamp) {
+            if (inputIndex % 1 == 0){
+                // HitLevel, Direction = AI.Analyse(audioTime, timeStamp)
+                Hit(direction, HitLevel.Perfect);
+                isDefend = isDefend + 1;
+            } else {
+                Miss();
+            }
+        }
     }
 
 }
