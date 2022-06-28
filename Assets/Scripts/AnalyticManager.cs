@@ -7,9 +7,11 @@ using Rhythm;
 public class AnalyticManager : MonoBehaviour
 {
     public static int CurrentLevel;
+    public static int inputIndexDistributionBit;
     // 0 - Perfect / 1 - Good / 2 - Bad / 3 - Miss
     private static List<int> HitLevelCounts = new List<int>(){0, 0, 0, 0}; 
-    private static List<int> ComboCounts = new List<int>(){0, 0, 0, 0, 0, 0}; 
+    private static List<int> ComboCounts = new List<int>(){0, 0, 0, 0, 0, 0};
+    private static List<int> InputIndexDistribution = new List<int>() { 0, 0, 0, 0, 0, 0 };
     private static List<int> DefenseCounts = new List<int>(){0, 0};
 
     // Start is called before the first frame update
@@ -31,7 +33,17 @@ public class AnalyticManager : MonoBehaviour
 
     public static void OnFirstCombo(int comboCode, int inputIndex)
 	{
-        Debug.Log("OnFirstCombo " + comboCode.ToString());
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "firstCombo",
+                        new Dictionary<string, object>
+                        {   { "comboType", comboCode.ToString()},
+                            { "noteIndex", inputIndex},
+                            { "musicScene", GameData.midiFileName}
+                        }
+            );//Record Related Data Whenever Player Hit first combo
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+
+        //Debug.Log("OnFirstCombo " + comboCode.ToString());
         /*
         Zhian Li: comboCode list
         protected const int skillCodeDefend = 0;
@@ -41,7 +53,7 @@ public class AnalyticManager : MonoBehaviour
         protected const int skillCodeThunder = 4;
         protected const int skillCodeHealing = 5;
         */
-        // Huanpu: Todo
+
     }
 
     public static void OnSuccessDefense(bool defenseTrigger)
@@ -53,9 +65,40 @@ public class AnalyticManager : MonoBehaviour
 
     public static void OnComboReleased(int comboCode)
     {
-        ComboCounts[comboCode] += 1; 
-    }
+        ComboCounts[comboCode] += 1;
+        /*
+        if (index <= 5)
+        {
+            inputIndexDistributionBit = 0;
+            InputIndexDistribution[inputIndexDistributionBit] += 1;
+        }
+        else if ((index > 5) && (index<= 10))
+        {
+            inputIndexDistributionBit = 1;
+            InputIndexDistribution[inputIndexDistributionBit] += 1;
+        }
+        else if ((index > 10) && (index <= 20))
+        {
+            inputIndexDistributionBit = 2;
+            InputIndexDistribution[inputIndexDistributionBit] += 1;
+        }
+        else if ((index > 20) && (index <= 30))
+        {
+            inputIndexDistributionBit = 3;
+            InputIndexDistribution[inputIndexDistributionBit] += 1;
+        }
+        else if ((index > 30) && (index <= 40))
+        {
+            inputIndexDistributionBit = 4;
+            InputIndexDistribution[inputIndexDistributionBit] += 1;
+        }
+        else if (index > 41)
+        {
+            inputIndexDistributionBit = 5;
+            InputIndexDistribution[inputIndexDistributionBit] += 1;
+        }*/
 
+    }
     public static void OnLevelSelected(Direction direction, HitLevel hitLevel, int inputIndex)
     {
 
@@ -129,6 +172,30 @@ public class AnalyticManager : MonoBehaviour
         */
          
     }
+    /*
+    private static void UploadComboHitIndexDistribution()
+    {
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+                        "comboHitIndexDistri",
+                        new Dictionary<string, object>
+                        {
+                            { "index5", ComboCounts[0]},
+                            { "index10", ComboCounts[1]},
+                            { "index20", ComboCounts[2]},
+                            { "index30", ComboCounts[3]},
+                            { "index40", ComboCounts[4]},
+                            { "index50", ComboCounts[5]},
+                            { "musicScene", GameData.midiFileName}
+                        }
+                    );
+        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+
+        
+        Debug.Log("ComboCounts " + ComboCounts[2].ToString() + " " + ComboCounts[3].ToString() 
+         + " " + ComboCounts[4].ToString()  + " " + ComboCounts[5].ToString()); // Confirm
+        
+
+    }*/
 
     private static void UploadDefenseCounts(){
         AnalyticsResult analyticsResult = Analytics.CustomEvent(
