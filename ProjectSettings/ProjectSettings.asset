@@ -643,6 +643,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Collab: 0
     Legacy Analytics: 1
   luminIcon:
     m_Name: 

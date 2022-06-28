@@ -65,6 +65,8 @@ public class Lane : MonoBehaviour
     // Hitting Effect
     public HitEffect hitEffect;
 
+    public ScoreEffect scoreEffect;
+
     // Combo Display
     public TextMeshProUGUI comboText;
 
@@ -212,6 +214,14 @@ public class Lane : MonoBehaviour
         lastHitLevel = hitLevel;
 
         hitEffect.ChangeColor((int) direction);
+
+        //ScoreEffect
+        print("I AM THE HIT LEVEL: " + hitLevel + hitLevel.GetType());
+        if(scoreEffect != null){
+            scoreEffect.printScore(hitLevel);
+
+        }else{print("scoreEffect is null!");}      
+
         scoreManager.Hit(direction, hitLevel, inputIndex); 
         if (!(GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow)){ // If this is not an AI Hit
             AnalyticManager.OnHitNotes(direction, hitLevel, inputIndex); // Send AnalyticsManager notehit data
