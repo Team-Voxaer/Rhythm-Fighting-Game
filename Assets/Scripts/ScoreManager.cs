@@ -35,6 +35,8 @@ public class ScoreManager : MonoBehaviour
     public GameObject comboBar;
     
     int visComboFrameLength = 0;
+    int noteIndex = 0;
+    bool firstCombo = true;
 
     // Start is called before the first frame update
     protected void Start()
@@ -65,7 +67,7 @@ public class ScoreManager : MonoBehaviour
 
     public void Hit(Direction direction, HitLevel hitLevel, int index) {
         lsKey.Add(direction);
-
+        noteIndex = index;
         comboScore += 10;
         
         VisualizeCombo();
@@ -74,6 +76,7 @@ public class ScoreManager : MonoBehaviour
     
     public void Miss(int index)
     {
+        noteIndex = index;
         comboScore -= 1;
         // lsKey.Clear();
     }
@@ -81,6 +84,9 @@ public class ScoreManager : MonoBehaviour
     public virtual void CastSkill() {
         CheckSkills();
         if (lsSkill.Count > 0) {
+
+            
+            
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
                 player.Defend();
             } else if (lsSkill[0] == skillCodeAttack) {
@@ -100,6 +106,12 @@ public class ScoreManager : MonoBehaviour
             if (!GameManager.CheckAI() || player.gameObject.name == "LightBandit"){
                  // Send AnalyticsManager combo data
                  AnalyticManager.OnComboReleased(lsSkill[0]);
+
+                if (firstCombo && lsSkill[0] > 1){
+                    firstCombo = false;
+                    AnalyticManager.OnFirstCombo(lsSkill[0], noteIndex);
+                }
+            
             }
 
             lsSkill.RemoveAt(0);
@@ -163,6 +175,11 @@ public class ScoreManager : MonoBehaviour
                 spriteRenderer.sprite = imgBarDark;
             }
         } else {
+            if (visComboFrameLength > 0){
+                visComboFrameLength = 0;
+                SpriteRenderer spriteRenderer = comboBar.GetComponent<SpriteRenderer>();
+                spriteRenderer.sprite = imgBarDark;
+            }
             if (lsKey.Count >= 1) {
                 VisCombo(visCombo1, lsKey[0], false);
                 VisCombo(visCombo2, lsKey[0], true);
