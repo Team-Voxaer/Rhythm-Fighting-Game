@@ -13,15 +13,17 @@ public class MainMenu : MonoBehaviour
         sceneNotExistWindow.messageText.text = message;
     }
 
-    public void PlayLevel2()
+    public void PlayTutorialPlusPlus()
     {
-        if (Application.CanStreamedLevelBeLoaded("Level2"))
+        if (Application.CanStreamedLevelBeLoaded("Test"))
         {
-            SceneManager.LoadScene("Level2");
+            GameData.midiFileName = "TutorialPlusPlus.mid";  // This File Don't Exist, but we need this parameter
+            AnalyticManager.CurrentLevel = -1;
+            SceneManager.LoadScene("Test");
         }
         else
         {
-            OpenSceneNotExistWindow("Scene Level 2 doesn't exist");
+            OpenSceneNotExistWindow("The Scene doesn't exist");
         }
     }
 
@@ -29,7 +31,7 @@ public class MainMenu : MonoBehaviour
     {
         if (Application.CanStreamedLevelBeLoaded("Tutorial"))
         {
-            GameData.midiFileName = "Never_Gonna_Give_You_Up_Kindergarten.mid";  // Jiacheng
+            GameData.midiFileName = CommonParameter.midiFiles[0];  // Jiacheng
             AnalyticManager.CurrentLevel = 0;
             SceneManager.LoadScene("Tutorial");
         }
@@ -39,26 +41,33 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void PlayTutorialPlusPlus()
+    public void PlayLevel1()
     {
-        if (Application.CanStreamedLevelBeLoaded("Test"))
+        if (Application.CanStreamedLevelBeLoaded("FightingScene"))
         {
-            GameData.midiFileName = "TutorialPlusPlus.mid";  // This File Don't Exist, but we need this parameter
-            AnalyticManager.CurrentLevel = -1;
-            SceneManager.LoadScene("Test");
-            
+            GameData.midiFileName = CommonParameter.midiFiles[1];  // Jiacheng
+            AnalyticManager.CurrentLevel = 1;
+            SceneManager.LoadScene("FightingScene");
         }
         else
         {
-            OpenSceneNotExistWindow("The Scene doesn't exist");
+            OpenSceneNotExistWindow("Scene Level 2 doesn't exist");
         }
     }
 
-    public void PlayFighting()
+    // Jiacheng
+    public void PlayLevel2()
     {
-        GameData.midiFileName = "Never_Gonna_Give_You_Up.mid";  // Jiacheng
-        AnalyticManager.CurrentLevel = 1;
-        SceneManager.LoadScene("FightingScene");
+        if (Application.CanStreamedLevelBeLoaded("FightingScene"))
+        {
+            GameData.midiFileName = CommonParameter.midiFiles[2];
+            AnalyticManager.CurrentLevel = 2;
+            SceneManager.LoadScene("FightingScene");
+        }
+        else
+        {
+            OpenSceneNotExistWindow("Scene Level 2 doesn't exist");
+        }
     }
 
     public void Quit()

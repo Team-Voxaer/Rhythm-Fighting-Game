@@ -1434,6 +1434,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1430180620}
+  audioClip:
+  - {fileID: 8300000, guid: b76a624ea2e238a4980dedd0d0f54d8a, type: 3}
+  - {fileID: 8300000, guid: b76a624ea2e238a4980dedd0d0f54d8a, type: 3}
+  - {fileID: 8300000, guid: ee9e57159ef07aa408a73cb3bedfa441, type: 3}
   lanes:
   - {fileID: 884347954}
   - {fileID: 892135473}

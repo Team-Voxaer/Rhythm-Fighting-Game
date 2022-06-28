@@ -7,7 +7,9 @@ public static class CommonParameter
     // skills and combo
     public static int comboThreshold = 10;
 
-    
+    public static string[] midiFiles = { "Never_Gonna_Give_You_Up_Kindergarten.mid", 
+                                         "Never_Gonna_Give_You_Up.mid", 
+                                         "All_The_Way_North_Simplified.mid" };
 
     public static class Skill {
         public static int none = 0;

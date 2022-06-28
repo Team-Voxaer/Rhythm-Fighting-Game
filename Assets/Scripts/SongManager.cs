@@ -16,6 +16,7 @@ public class SongManager : MonoBehaviour
     public static SongManager Instance;  // an instance of current class SongManager
     public static MidiFile midiFile;  // midi file
     public AudioSource audioSource;  // to play audio, imported from UnityEngine
+    public AudioClip[] audioClip;  // store audio clips
     public Lane[] lanes;  // how many lanes of note
     public float songDelayInSeconds;  // delay playing song after a certain amount of time
     public double marginOfError;  // user mis-tap error line, in seconds
@@ -38,7 +39,6 @@ public class SongManager : MonoBehaviour
     public static bool AudioEnded(){
         // Debug.Log(Instance.audioSource.time);// Make sure analytics log has been uploaded
         return Instance.audioSource.time < Instance.audioSource.clip.length;
-        
     }
     
     // Start is called before the first frame update
@@ -96,7 +96,8 @@ public class SongManager : MonoBehaviour
     }
 
     // start song
-    public void StartSong() {
+    public void StartSong() { 
+        audioSource.clip = audioClip[AnalyticManager.CurrentLevel];
         audioSource.Play();
     }
 

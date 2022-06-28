@@ -67,10 +67,13 @@ public class GameManager : MonoBehaviour
 
     public static void LoadNextScene()
     {
-        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-        if (Application.CanStreamedLevelBeLoaded(nextScene))
+        // int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        // Jiacheng
+        if (AnalyticManager.CurrentLevel + 1 < 3 && Application.CanStreamedLevelBeLoaded("FightingScene"))
         {
-            SceneManager.LoadScene(nextScene);
+            AnalyticManager.CurrentLevel += 1;
+            GameData.midiFileName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            SceneManager.LoadScene("FightingScene");
         }
         else
         {
