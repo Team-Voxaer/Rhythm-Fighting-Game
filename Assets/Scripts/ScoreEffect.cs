@@ -7,8 +7,6 @@ public class ScoreEffect : MonoBehaviour
 {
     public GameObject scoreTextPrefeb, playerInstance;
     public string textToDisplay;  
-
-     
     
     //ScoreEffect    
     public void ScoreFeedback(HitLevel hitLevel){
@@ -29,12 +27,8 @@ public class ScoreEffect : MonoBehaviour
         else{
             print("Miss");
         }
+             
     }
-
-    public void printScore(Rhythm.HitLevel hitLevel){
-        print("SCOREEFFECT METHOD TEST!!!!" + hitLevel);
-    }
-        
    
 
 
