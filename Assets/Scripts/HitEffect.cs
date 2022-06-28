@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Rhythm;
+
 public class HitEffect : MonoBehaviour
 {
     Renderer rend;
     int effectTimer;
+    // Start is called before the first frame update
     void Start()
     {
         // Try Not Hardcode Y Position
@@ -25,6 +25,7 @@ public class HitEffect : MonoBehaviour
             rend.material.SetColor("_Color", Color.white);
         }
     }
+
     public void ChangeColor(int inputKey){
         rend = GetComponent<Renderer>();
         Color c0 = Color.magenta;
@@ -44,9 +45,9 @@ public class HitEffect : MonoBehaviour
         else{
             rend.material.SetColor("_Color", c3);    
         }      
+        
         effectTimer = 15;
-    }   
-
+        
+        
     }
-
-
+}
