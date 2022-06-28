@@ -63,9 +63,10 @@ public class AnalyticManager : MonoBehaviour
 
     }
 
-    public static void OnComboReleased(int comboCode)
+    public static void OnComboReleased(int comboCode, int noteIndex)
     {
         ComboCounts[comboCode] += 1;
+        Debug.Log("OnComboReleased" + noteIndex.ToString());
         /*
         if (index <= 5)
         {

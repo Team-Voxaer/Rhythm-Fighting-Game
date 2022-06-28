@@ -35,8 +35,8 @@ public class ScoreManager : MonoBehaviour
     public GameObject comboBar;
     
     int visComboFrameLength = 0;
-    int noteIndex = 0;
-    bool firstCombo = true;
+    protected int noteIndex = 0;
+    protected bool firstCombo = true;
 
     // Start is called before the first frame update
     protected void Start()
@@ -55,10 +55,6 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        // if (Input.GetKeyDown(inputKeyCast)) {
-        //     CastSkill();
-        // }
-        // CastSkill();
 
         // scoreText.text = "Point: " + comboScore.ToString();
 
@@ -71,6 +67,9 @@ public class ScoreManager : MonoBehaviour
         comboScore += 10;
         
         VisualizeCombo();
+
+        CheckSkills();
+
         CastSkill();
     }
     
@@ -82,11 +81,9 @@ public class ScoreManager : MonoBehaviour
     }
 
     public virtual void CastSkill() {
-        CheckSkills();
+        
         if (lsSkill.Count > 0) {
 
-            
-            
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
                 player.Defend();
             } else if (lsSkill[0] == skillCodeAttack) {
@@ -105,7 +102,7 @@ public class ScoreManager : MonoBehaviour
             // or when we are tracking the left player (which we always upload)
             if (!GameManager.CheckAI() || player.gameObject.name == "LightBandit"){
                  // Send AnalyticsManager combo data
-                 AnalyticManager.OnComboReleased(lsSkill[0]);
+                 AnalyticManager.OnComboReleased(lsSkill[0], noteIndex);
 
                 if (firstCombo && lsSkill[0] > 1){
                     firstCombo = false;

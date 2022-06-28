@@ -1846,6 +1846,7 @@ MonoBehaviour:
   timeStamps: []
   scoreManager: {fileID: 32668167}
   hitEffect: {fileID: 617426951}
+  popUpHitLevel: {fileID: 8626500461163662690, guid: 8d53eef79f78c5446a13e8b0e33dc44e, type: 3}
   comboText: {fileID: 413583204}
 --- !u!4 &884347955
 Transform:
@@ -1903,6 +1904,7 @@ MonoBehaviour:
   timeStamps: []
   scoreManager: {fileID: 198269272}
   hitEffect: {fileID: 1900457382}
+  popUpHitLevel: {fileID: 8626500461163662690, guid: 8d53eef79f78c5446a13e8b0e33dc44e, type: 3}
   comboText: {fileID: 1767571163}
 --- !u!4 &892135474
 Transform:
