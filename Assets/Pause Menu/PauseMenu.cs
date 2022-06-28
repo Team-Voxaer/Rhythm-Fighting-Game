@@ -11,12 +11,14 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
+        SongManager.PauseSong();
     }
 
     public void Resume()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+        SongManager.UnPauseSong();
     }
     public void Home(int sceneID)
     {
