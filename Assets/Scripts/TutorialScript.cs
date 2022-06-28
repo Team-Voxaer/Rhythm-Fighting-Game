@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class TutorialScript : MonoBehaviour
@@ -12,7 +11,6 @@ public class TutorialScript : MonoBehaviour
     static string hitNoteFeedBack;
     public PlayerController player1;
     public PlayerController player2;
-    public GameObject jumpingText;
 
     [SerializeField] private TutorialWindow tutorialWindow;  // Jiacheng
 
@@ -24,7 +22,6 @@ public class TutorialScript : MonoBehaviour
     void Start()
     {
         hitNoteFeedBack = "";
-        jumpingText.SetActive(false);
         StartCoroutine(WorkFlow());
         player1.SetTutorial();
         player2.SetTutorial();
@@ -33,6 +30,10 @@ public class TutorialScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hitNoteFeedBack.Length > 3)
+        {
+            hitNoteFeedBack = "";
+        }
         if (hitNoteFeedBack == "DDD")
         {
             DDDSkill = true;
@@ -64,10 +65,6 @@ public class TutorialScript : MonoBehaviour
             AAASkill = false;
             WWWSkill = false;
             WWWSkill = false;
-        }
-        else if (hitNoteFeedBack.Length >= 3)
-        {
-            hitNoteFeedBack = "";
         }
     }
 
@@ -108,10 +105,6 @@ public class TutorialScript : MonoBehaviour
     {
         ShowTutorialWindow("Press < D > when a white block hits the ground to gain one stack of physical attack energy, " + 
                            "consume three consecutive < D > stacks to cast physical attack on your opponent.", "Image/1");  // Jiacheng
-
-        jumpingText.GetComponent<TextMeshPro>().text = "D";
-        jumpingText.SetActive(true);
-
         while (!DDDSkill)
         {
             InstantiateNote();
@@ -119,8 +112,6 @@ public class TutorialScript : MonoBehaviour
         }
         ShowTutorialWindow("Press < A > when a white block hits the ground to gain one stack of defend energy, " + 
                            "consume three consecutive < A > stacks to defend physical attack from your opponent.", "Image/2");  // Jiacheng
-
-        jumpingText.GetComponent<TextMeshPro>().text = "A";
         while (!AAASkill)
         {
             player2.UseSword();
@@ -129,13 +120,8 @@ public class TutorialScript : MonoBehaviour
         }
         player2.UseSword();
         yield return new WaitForSeconds(1.6f);
-        player2.UseSword();
-        yield return new WaitForSeconds(1.6f);
-
         ShowTutorialWindow("Press < W > when a white block hits the ground to gain one stack of magical attack energy, " + 
                            "consume three consecutive < W > stacks to cast magical attack that penetrate opponent's defense.", "Image/3");  // Jiacheng
-
-        jumpingText.GetComponent<TextMeshPro>().text = "W";
         while (!WWWSkill)
         {
             player2.UseGrandCross();
@@ -145,14 +131,11 @@ public class TutorialScript : MonoBehaviour
         player2.UseHealing();
         ShowTutorialWindow("Press < S > when a white block hits the ground to gain one stack of heal energy, " + 
                            "consume three consecutive < S > stacks to heal your character.", "Image/4");  // Jiacheng
-
-        jumpingText.GetComponent<TextMeshPro>().text = "S";
         while (!SSSSkill)
         {
             InstantiateNote();
             yield return new WaitForSeconds(1.6f);
         }
-        jumpingText.SetActive(false);
         ShowTutorialWindow("Tutorial ends.", "Image/5");  // Jiacheng
         yield break;
     }

@@ -184,19 +184,12 @@ public class PlayerController : MonoBehaviour
                 curHealth -= (damage - physicalDefense);
                 ShowDamageNumberPopUp(damage - physicalDefense);
                 m_animator.SetTrigger("Hurt");
-                if (!GameManager.CheckAI() || gameObject.name == "LightBandit"){
-                    AnalyticManager.OnSuccessDefense(false);
-                }
-                
             }
             else
             {
                 curHealth -= 1;
                 ShowDamageNumberPopUp(1);
                 m_animator.SetTrigger("Defend");
-                if (!GameManager.CheckAI() || gameObject.name == "LightBandit"){
-                    AnalyticManager.OnSuccessDefense(true);
-                }
             }
         }
         else

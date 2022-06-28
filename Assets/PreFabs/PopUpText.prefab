@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 566002124517895808}
   - component: {fileID: 4222662289741168278}
   - component: {fileID: 847072081522294023}
+  - component: {fileID: 243903618373389048}
   - component: {fileID: -8140208263976487750}
-  - component: {fileID: 2121930702353183657}
   m_Layer: 0
   m_Name: PopUpText
   m_TagString: Untagged
@@ -37,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.4}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0.4823, y: 0}
+  m_SizeDelta: {x: 2.9647, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4222662289741168278
 MeshRenderer:
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5
-  m_fontSizeBase: 5
+  m_fontSize: 6
+  m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -174,6 +174,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 4222662289741168278}
   m_maskType: 0
+--- !u!111 &243903618373389048
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8626500461163662690}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 8cdd7167b4b949d42a71b6a5867e4069, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 8cdd7167b4b949d42a71b6a5867e4069, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &-8140208263976487750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,23 +202,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcac74cce2df74149896d555e0e61b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &2121930702353183657
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8626500461163662690}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0d0a56f3f4de63642b3c4ba559a3da03, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
