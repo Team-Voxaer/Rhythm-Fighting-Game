@@ -15,7 +15,6 @@ public class TutorialScript : MonoBehaviour
     public GameObject jumpingText;
 
     [SerializeField] private TutorialWindow tutorialWindow;  // Jiacheng
-    [SerializeField] private TutorialEndWindow tutorialEndWindow;  // Jiacheng
 
     bool WWWSkill = false;
     bool AAASkill = false;
@@ -107,7 +106,8 @@ public class TutorialScript : MonoBehaviour
 
     IEnumerator WorkFlow()
     {
-        ShowTutorialWindow("Physical attack deals 50 damage.", "Image/1");  // Jiacheng
+        ShowTutorialWindow("Press < D > when a white block hits the ground to gain one stack of physical attack energy, " + 
+                           "consume three consecutive < D > stacks to cast physical attack on your opponent.", "Image/1");  // Jiacheng
 
         jumpingText.GetComponent<TextMeshPro>().text = "D";
         jumpingText.SetActive(true);
@@ -117,7 +117,8 @@ public class TutorialScript : MonoBehaviour
             InstantiateNote();
             yield return new WaitForSeconds(1.6f);
         }
-        ShowTutorialWindow("Shield can reduce physical attack damage to 1.", "Image/2");  // Jiacheng
+        ShowTutorialWindow("Press < A > when a white block hits the ground to gain one stack of defend energy, " + 
+                           "consume three consecutive < A > stacks to defend physical attack from your opponent.", "Image/2");  // Jiacheng
 
         jumpingText.GetComponent<TextMeshPro>().text = "A";
         while (!AAASkill)
@@ -131,7 +132,8 @@ public class TutorialScript : MonoBehaviour
         player2.UseSword();
         yield return new WaitForSeconds(1.6f);
 
-        ShowTutorialWindow("Magical attack can penetrate shield and deals 40 damage.", "Image/3");  // Jiacheng
+        ShowTutorialWindow("Press < W > when a white block hits the ground to gain one stack of magical attack energy, " + 
+                           "consume three consecutive < W > stacks to cast magical attack that penetrate opponent's defense.", "Image/3");  // Jiacheng
 
         jumpingText.GetComponent<TextMeshPro>().text = "W";
         while (!WWWSkill)
@@ -141,7 +143,8 @@ public class TutorialScript : MonoBehaviour
             yield return new WaitForSeconds(1.6f);
         }
         player2.UseHealing();
-        ShowTutorialWindow("Heal spell recovers 30 health.", "Image/4");  // Jiacheng
+        ShowTutorialWindow("Press < S > when a white block hits the ground to gain one stack of heal energy, " + 
+                           "consume three consecutive < S > stacks to heal your character.", "Image/4");  // Jiacheng
 
         jumpingText.GetComponent<TextMeshPro>().text = "S";
         while (!SSSSkill)
@@ -150,8 +153,7 @@ public class TutorialScript : MonoBehaviour
             yield return new WaitForSeconds(1.6f);
         }
         jumpingText.SetActive(false);
-        tutorialWindow.gameObject.SetActive(false);  // Jiacheng
-        ShowTutorialEndWindow();  // Jiacheng
+        ShowTutorialWindow("Tutorial ends.", "Image/5");  // Jiacheng
         yield break;
     }
 
@@ -161,11 +163,5 @@ public class TutorialScript : MonoBehaviour
         tutorialWindow.gameObject.SetActive(true);
         tutorialWindow.messageText.text = text;
         tutorialWindow.image.sprite = Resources.Load(imagePath, typeof(Sprite)) as Sprite;
-    }
-
-    // Jiacheng
-    private void ShowTutorialEndWindow()
-    {
-        tutorialEndWindow.gameObject.SetActive(true);
     }
 }
