@@ -67,37 +67,37 @@ public class AnalyticManager : MonoBehaviour
     {
         ComboCounts[comboCode] += 1;
         Debug.Log("OnComboReleased" + noteIndex.ToString());
-        /*
-        if (index <= 5)
+        
+        if (noteIndex <= 5)
         {
             inputIndexDistributionBit = 0;
             InputIndexDistribution[inputIndexDistributionBit] += 1;
         }
-        else if ((index > 5) && (index<= 10))
+        else if ((noteIndex > 5) && (noteIndex <= 10))
         {
             inputIndexDistributionBit = 1;
             InputIndexDistribution[inputIndexDistributionBit] += 1;
         }
-        else if ((index > 10) && (index <= 20))
+        else if ((noteIndex > 10) && (noteIndex <= 20))
         {
             inputIndexDistributionBit = 2;
             InputIndexDistribution[inputIndexDistributionBit] += 1;
         }
-        else if ((index > 20) && (index <= 30))
+        else if ((noteIndex > 20) && (noteIndex <= 30))
         {
             inputIndexDistributionBit = 3;
             InputIndexDistribution[inputIndexDistributionBit] += 1;
         }
-        else if ((index > 30) && (index <= 40))
+        else if ((noteIndex > 30) && (noteIndex <= 40))
         {
             inputIndexDistributionBit = 4;
             InputIndexDistribution[inputIndexDistributionBit] += 1;
         }
-        else if (index > 41)
+        else if (noteIndex > 41)
         {
             inputIndexDistributionBit = 5;
             InputIndexDistribution[inputIndexDistributionBit] += 1;
-        }*/
+        }
 
     }
     public static void OnLevelSelected(Direction direction, HitLevel hitLevel, int inputIndex)
@@ -128,6 +128,7 @@ public class AnalyticManager : MonoBehaviour
         UploadHitLevelCounts();
         UploadComboCounts();
         UploadDefenseCounts();
+        UploadComboHitIndexDistribution();
 
         ClearStats();
     }
@@ -173,30 +174,28 @@ public class AnalyticManager : MonoBehaviour
         */
          
     }
-    /*
+    
     private static void UploadComboHitIndexDistribution()
     {
         AnalyticsResult analyticsResult = Analytics.CustomEvent(
                         "comboHitIndexDistri",
                         new Dictionary<string, object>
                         {
-                            { "index5", ComboCounts[0]},
-                            { "index10", ComboCounts[1]},
-                            { "index20", ComboCounts[2]},
-                            { "index30", ComboCounts[3]},
-                            { "index40", ComboCounts[4]},
-                            { "index50", ComboCounts[5]},
+                            { "index5", InputIndexDistribution[0]},
+                            { "index10", InputIndexDistribution[1]},
+                            { "index20", InputIndexDistribution[2]},
+                            { "index30", InputIndexDistribution[3]},
+                            { "index40", InputIndexDistribution[4]},
+                            { "index50", InputIndexDistribution[5]},
                             { "musicScene", GameData.midiFileName}
                         }
                     );
-        Debug.Log("analyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
+        Debug.Log("UploadComboHitIndexDistributionanalyticsResult: " + analyticsResult);// Make sure analytics log has been uploaded
 
         
-        Debug.Log("ComboCounts " + ComboCounts[2].ToString() + " " + ComboCounts[3].ToString() 
-         + " " + ComboCounts[4].ToString()  + " " + ComboCounts[5].ToString()); // Confirm
         
 
-    }*/
+    }
 
     private static void UploadDefenseCounts(){
         AnalyticsResult analyticsResult = Analytics.CustomEvent(
