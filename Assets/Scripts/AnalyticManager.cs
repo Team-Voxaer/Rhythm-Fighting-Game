@@ -186,7 +186,7 @@ public class AnalyticManager : MonoBehaviour
                             { "index20", InputIndexDistribution[2]},
                             { "index30", InputIndexDistribution[3]},
                             { "index40", InputIndexDistribution[4]},
-                            { "index50", InputIndexDistribution[5]},
+                            { "indexMorethan40", InputIndexDistribution[5]},
                             { "musicScene", GameData.midiFileName}
                         }
                     );
