@@ -175,6 +175,11 @@ public class ScoreManager : MonoBehaviour
                 spriteRenderer.sprite = imgBarDark;
             }
         } else {
+            if (visComboFrameLength > 0){
+                visComboFrameLength = 0;
+                SpriteRenderer spriteRenderer = comboBar.GetComponent<SpriteRenderer>();
+                spriteRenderer.sprite = imgBarDark;
+            }
             if (lsKey.Count >= 1) {
                 VisCombo(visCombo1, lsKey[0], false);
                 VisCombo(visCombo2, lsKey[0], true);
