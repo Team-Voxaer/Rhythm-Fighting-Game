@@ -291,10 +291,10 @@ public class Lane : MonoBehaviour
             if (rndDouble > 0.7) {
                 Hit(direction, HitLevel.Perfect);
                 isDefend = isDefend + 1;
-            } else if (rndDouble > 0.5) {
+            } else if (rndDouble > 0.4) {
                 Hit(direction, HitLevel.Good);
                 isDefend = isDefend + 1;
-            } else if (rndDouble > 0.4) {
+            } else if (rndDouble > 0.3) {
                 Hit(direction, HitLevel.Bad);
                 isDefend = isDefend + 1;
             } else {
