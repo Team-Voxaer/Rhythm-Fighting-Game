@@ -16,4 +16,12 @@ public class TutorialWindow : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseClicked();
+        }
+    }
 }

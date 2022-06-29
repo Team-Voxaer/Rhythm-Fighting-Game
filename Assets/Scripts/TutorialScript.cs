@@ -34,6 +34,22 @@ public class TutorialScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (jumpingText.GetComponent<TextMeshPro>().text == "D" && Input.GetKeyDown(KeyCode.D))
+        {
+            tutorialWindow.gameObject.SetActive(false);
+        }
+        if (jumpingText.GetComponent<TextMeshPro>().text == "A" && Input.GetKeyDown(KeyCode.A))
+        {
+            tutorialWindow.gameObject.SetActive(false);
+        }
+        if (jumpingText.GetComponent<TextMeshPro>().text == "W" && Input.GetKeyDown(KeyCode.W))
+        {
+            tutorialWindow.gameObject.SetActive(false);
+        }
+        if (jumpingText.GetComponent<TextMeshPro>().text == "S" && Input.GetKeyDown(KeyCode.S))
+        {
+            tutorialWindow.gameObject.SetActive(false);
+        }
         if (hitNoteFeedBack == "DDD")
         {
             DDDSkill = true;

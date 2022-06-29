@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private string midiFileName;
     [SerializeField] private SceneNotExistWindow sceneNotExistWindow;
 
     private void OpenSceneNotExistWindow(string message)

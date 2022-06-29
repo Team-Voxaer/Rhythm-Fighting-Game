@@ -1139,7 +1139,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 882555316}
-        m_TargetAssemblyTypeName: InstructionDialog, Assembly-CSharp
+        m_TargetAssemblyTypeName: TutorialWindow, Assembly-CSharp
         m_MethodName: CloseClicked
         m_Mode: 1
         m_Arguments:
@@ -3188,6 +3188,10 @@ PrefabInstance:
     - target: {fileID: 566002124517895808, guid: af636cd135a6d9140aa61feee3c32615, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847072081522294023, guid: af636cd135a6d9140aa61feee3c32615, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8626500461163662690, guid: af636cd135a6d9140aa61feee3c32615, type: 3}
       propertyPath: m_Name
