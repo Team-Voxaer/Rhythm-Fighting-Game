@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 226247879281638318}
   - component: {fileID: 7442410191960737354}
   - component: {fileID: 1616548507051523427}
-  - component: {fileID: 5630811156136748707}
+  - component: {fileID: 5085240143044069649}
   m_Layer: 0
   m_Name: Perfect
   m_TagString: Untagged
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f494f6755eecba4a8010065aa62c783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &5630811156136748707
+--- !u!95 &5085240143044069649
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ Animator:
   m_GameObject: {fileID: 393828528554979504}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df7cbf62f52b8d841b1f742b3c4f5746, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
