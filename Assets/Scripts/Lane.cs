@@ -66,6 +66,12 @@ public class Lane : MonoBehaviour
     public HitEffect hitEffect;
     public GameObject popUpHitLevel;
 
+    //Score Effect
+    public GameObject floatingPoints;
+    public GameObject perfect;
+    public GameObject good;
+    public GameObject bad;
+
     // Combo Display
     public TextMeshProUGUI comboText;
 
@@ -186,6 +192,22 @@ public class Lane : MonoBehaviour
         }       
     }
 
+    //My Score Function
+    void showScore(HitLevel hitLevel){
+         if(hitLevel == Rhythm.HitLevel.Perfect){
+            GameObject perfectText = Instantiate(perfect, gameObject.transform.position, Quaternion.identity);   
+        }
+        else if(hitLevel == Rhythm.HitLevel.Good){
+            GameObject perfectText = Instantiate(good, gameObject.transform.position, Quaternion.identity); 
+        }
+        else if(hitLevel == Rhythm.HitLevel.Bad){
+            GameObject perfectText = Instantiate(bad, gameObject.transform.position, Quaternion.identity); 
+        }
+        else{
+            print("Miss");
+        }
+    }
+
     private void Hit(Direction direction, HitLevel hitLevel)
     {
         // print($"Hit on {inputIndex} note");
@@ -196,8 +218,10 @@ public class Lane : MonoBehaviour
         GameObject hitLevelObj =  Instantiate(popUpHitLevel, hitEffect.transform.position, Quaternion.identity);
         hitLevelObj.GetComponent<TextMeshPro>().text = hitLevel.ToString();
 
-
         hitEffect.ChangeColor((int) direction);
+        //Show Score Sprite
+        showScore(hitLevel);
+
         scoreManager.Hit(direction, hitLevel, inputIndex); 
         if (!(GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow)){ // If this is not an AI Hit
             AnalyticManager.OnHitNotes(direction, hitLevel, inputIndex); // Send AnalyticsManager notehit data
