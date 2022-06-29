@@ -13,10 +13,12 @@ public class DestroyOnAnimEnd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.localPosition += new Vector3(-0.001f, 0.04f, 0);
     }
     public void DestroyParent(){
         //Destroy(gameObject.transform.parent.gameObject);
+        
         Destroy(gameObject);
+        
     }
 }
