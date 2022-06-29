@@ -2020,18 +2020,18 @@ PrefabInstance:
     - target: {fileID: 7140972778612632264, guid: f05a0a730ec5bba44858869cfde7801c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5381106380870673980, guid: 37b854cf22f65134d87c3f0a8d7aacc1, type: 3}
+      objectReference: {fileID: 1150320422}
     - target: {fileID: 7140972778612632264, guid: f05a0a730ec5bba44858869cfde7801c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7140972778612632264, guid: f05a0a730ec5bba44858869cfde7801c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: NewText
       objectReference: {fileID: 0}
     - target: {fileID: 7140972778612632264, guid: f05a0a730ec5bba44858869cfde7801c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: 
+      value: ChangeText, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7140972778612632264, guid: f05a0a730ec5bba44858869cfde7801c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -2039,7 +2039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7140972778612632264, guid: f05a0a730ec5bba44858869cfde7801c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8940859482914051752, guid: f05a0a730ec5bba44858869cfde7801c, type: 3}
       propertyPath: m_Pivot.x
