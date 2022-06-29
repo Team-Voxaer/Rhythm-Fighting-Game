@@ -13,13 +13,13 @@ public class MainMenu : MonoBehaviour
         sceneNotExistWindow.messageText.text = message;
     }
 
-    public void PlayTutorialPlusPlus()
+    public void PlayTutorial()
     {
-        if (Application.CanStreamedLevelBeLoaded("Test"))
+        if (Application.CanStreamedLevelBeLoaded("Tutorial"))
         {
-            GameData.midiFileName = "TutorialPlusPlus.mid";  // This File Don't Exist, but we need this parameter
-            AnalyticManager.CurrentLevel = -1;
-            SceneManager.LoadScene("Test");
+            GameData.midiFileName = "Tutorial.mid";  // This File Don't Exist, but we need this parameter
+            AnalyticManager.CurrentLevel = 0;
+            SceneManager.LoadScene("Tutorial");
         }
         else
         {
@@ -27,19 +27,19 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void PlayTutorial()
-    {
-        if (Application.CanStreamedLevelBeLoaded("Tutorial"))
-        {
-            GameData.midiFileName = CommonParameter.midiFiles[0];  // Jiacheng
-            AnalyticManager.CurrentLevel = 0;
-            SceneManager.LoadScene("Tutorial");
-        }
-        else
-        {
-            OpenSceneNotExistWindow("Scene Tutorial doesn't exist");
-        }
-    }
+    // public void PlayTutorial()
+    // {
+    //     if (Application.CanStreamedLevelBeLoaded("Tutorial"))
+    //     {
+    //         GameData.midiFileName = CommonParameter.midiFiles[0];  // Jiacheng
+    //         AnalyticManager.CurrentLevel = 0;
+    //         SceneManager.LoadScene("Tutorial");
+    //     }
+    //     else
+    //     {
+    //         OpenSceneNotExistWindow("The Scene doesn't exist");
+    //     }
+    // }
 
     public void PlayLevel1()
     {
@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            OpenSceneNotExistWindow("Scene Level 2 doesn't exist");
+            OpenSceneNotExistWindow("The Scene doesn't exist");
         }
     }
 
@@ -66,13 +66,12 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            OpenSceneNotExistWindow("Scene Level 2 doesn't exist");
+            OpenSceneNotExistWindow("The Scene doesn't exist");
         }
     }
 
     public void Quit()
     {
-        Debug.Log("quit");
         Application.Quit();
     }
 }
