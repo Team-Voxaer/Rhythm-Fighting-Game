@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         {
             AnalyticManager.CurrentLevel += 1;
             GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
-            difficultySelectionWindow.gameObject.SetActive(true);
+            ShowDifficultySelectionWindow();
         }
         else
         {
@@ -82,18 +82,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ShowDifficultySelectionWindow()
+    {
+        difficultySelectionWindow.gameObject.SetActive(true);
+        difficultySelectionWindow.messageText.text = string.Join(" ", GameData.songName.Split('_'));
+    }
+
     public void EndGame(string name)
     {
         SongManager.PauseSong();
         endGameWindow.gameObject.SetActive(true);
-        endGameWindow.messageText.text = $"Congratulation, {name} Win !!";
+        endGameWindow.messageText.text = $"Congratulation, {name} Win !!\nLevel " + AnalyticManager.CurrentLevel + "  " + GameData.difficulty + 
+                                          "\n" + string.Join(" ", GameData.songName.Split('_'));
         AnalyticManager.OnLevelEnd("playerDied"); //Send AnalyticsManager The Game Ended Because The Player Died
     }
 
     public void EndGameBecauseSongEnded()
     {
         endGameWindow.gameObject.SetActive(true);
-        endGameWindow.messageText.text = $"The Song Ended";
+        endGameWindow.messageText.text = $"The Song Ended.\nLevel " + AnalyticManager.CurrentLevel + ", " + GameData.difficulty + 
+                                          "\n" + string.Join(" ", GameData.songName.Split('_'));
         AnalyticManager.OnLevelEnd("songEnded"); //Send AnalyticsManager The Game Ended Because Song Ended
     }
 }

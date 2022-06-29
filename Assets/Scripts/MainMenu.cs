@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
         {
             AnalyticManager.CurrentLevel = 1;
             GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
-            difficultySelectionWindow.gameObject.SetActive(true);
+            ShowDifficultySelectionWindow();
         }
         else
         {
@@ -52,12 +52,18 @@ public class MainMenu : MonoBehaviour
         {
             AnalyticManager.CurrentLevel = 2;
             GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
-            difficultySelectionWindow.gameObject.SetActive(true);
+            ShowDifficultySelectionWindow();
         }
         else
         {
             OpenSceneNotExistWindow("The Scene doesn't exist");
         }
+    }
+
+    public void ShowDifficultySelectionWindow()
+    {
+        difficultySelectionWindow.gameObject.SetActive(true);
+        difficultySelectionWindow.messageText.text = string.Join(" ", GameData.songName.Split('_'));
     }
 
     public void Quit()
