@@ -27,20 +27,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    // public void PlayTutorial()
-    // {
-    //     if (Application.CanStreamedLevelBeLoaded("Tutorial"))
-    //     {
-    //         GameData.midiFileName = CommonParameter.midiFiles[0];  // Jiacheng
-    //         AnalyticManager.CurrentLevel = 0;
-    //         SceneManager.LoadScene("Tutorial");
-    //     }
-    //     else
-    //     {
-    //         OpenSceneNotExistWindow("The Scene doesn't exist");
-    //     }
-    // }
-
     public void PlayLevel1()
     {
         if (Application.CanStreamedLevelBeLoaded("FightingScene"))
@@ -74,4 +60,18 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    // public void PlayTutorial()
+    // {
+    //     if (Application.CanStreamedLevelBeLoaded("Tutorial"))
+    //     {
+    //         GameData.midiFileName = CommonParameter.midiFiles[0];  // Jiacheng
+    //         AnalyticManager.CurrentLevel = 0;
+    //         SceneManager.LoadScene("Tutorial");
+    //     }
+    //     else
+    //     {
+    //         OpenSceneNotExistWindow("The Scene doesn't exist");
+    //     }
+    // }
 }
