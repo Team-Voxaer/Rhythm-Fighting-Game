@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame(string name)
     {
+        SongManager.PauseSong();
         endGameWindow.gameObject.SetActive(true);
         endGameWindow.messageText.text = $"Congratulation, {name} Win !!";
         AnalyticManager.OnLevelEnd("playerDied"); //Send AnalyticsManager The Game Ended Because The Player Died
