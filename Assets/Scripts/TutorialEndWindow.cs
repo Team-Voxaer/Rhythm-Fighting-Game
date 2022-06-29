@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class TutorialEndWindow : MonoBehaviour
@@ -10,11 +11,11 @@ public class TutorialEndWindow : MonoBehaviour
 
     public void ReturnCliked()
     {
-        GameManager.ReturnToMenu();
+        SceneManager.LoadScene("Menu");
     }
 
     public void RestartClicked()
     {
-        GameManager.ReloadScene();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

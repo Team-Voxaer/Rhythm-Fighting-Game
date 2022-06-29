@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Created by Jiacheng
+ */
+
 public class MainMenu : MonoBehaviour
 {
-    private string midiFileName;
     [SerializeField] private SceneNotExistWindow sceneNotExistWindow;
+    [SerializeField] private DifficultySelectionWindow difficultySelectionWindow;
 
     private void OpenSceneNotExistWindow(string message)
     {
@@ -18,8 +22,8 @@ public class MainMenu : MonoBehaviour
     {
         if (Application.CanStreamedLevelBeLoaded("Tutorial"))
         {
-            GameData.midiFileName = "Tutorial.mid";  // This File Don't Exist, but we need this parameter
             AnalyticManager.CurrentLevel = 0;
+            GameData.midiFileName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
             SceneManager.LoadScene("Tutorial");
         }
         else
@@ -32,9 +36,9 @@ public class MainMenu : MonoBehaviour
     {
         if (Application.CanStreamedLevelBeLoaded("FightingScene"))
         {
-            GameData.midiFileName = CommonParameter.midiFiles[1];  // Jiacheng
             AnalyticManager.CurrentLevel = 1;
-            SceneManager.LoadScene("FightingScene");
+            GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            difficultySelectionWindow.gameObject.SetActive(true);
         }
         else
         {
@@ -42,14 +46,13 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    // Jiacheng
     public void PlayLevel2()
     {
         if (Application.CanStreamedLevelBeLoaded("FightingScene"))
         {
-            GameData.midiFileName = CommonParameter.midiFiles[2];
             AnalyticManager.CurrentLevel = 2;
-            SceneManager.LoadScene("FightingScene");
+            GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            difficultySelectionWindow.gameObject.SetActive(true);
         }
         else
         {
@@ -61,18 +64,4 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-
-    // public void PlayTutorial()
-    // {
-    //     if (Application.CanStreamedLevelBeLoaded("Tutorial"))
-    //     {
-    //         GameData.midiFileName = CommonParameter.midiFiles[0];  // Jiacheng
-    //         AnalyticManager.CurrentLevel = 0;
-    //         SceneManager.LoadScene("Tutorial");
-    //     }
-    //     else
-    //     {
-    //         OpenSceneNotExistWindow("The Scene doesn't exist");
-    //     }
-    // }
 }

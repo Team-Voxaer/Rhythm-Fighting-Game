@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager;
     public static bool AIEnabled;
     [SerializeField] private EndGameWindow endGameWindow;
+    [SerializeField] private DifficultySelectionWindow difficultySelectionWindow;
 
     private void Start()
     {
@@ -55,25 +56,25 @@ public class GameManager : MonoBehaviour
         return AIEnabled;
     }
 
-    public static void ReturnToMenu()
+    public void ReturnToMenu()
     {
         SceneManager.LoadScene("Menu");
     }
 
-    public static void ReloadScene()
+    public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public static void LoadNextScene()
+    public void LoadNextScene()
     {
         // int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
         // Jiacheng
         if (AnalyticManager.CurrentLevel + 1 < 3 && Application.CanStreamedLevelBeLoaded("FightingScene"))
         {
             AnalyticManager.CurrentLevel += 1;
-            GameData.midiFileName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
-            SceneManager.LoadScene("FightingScene");
+            GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            difficultySelectionWindow.gameObject.SetActive(true);
         }
         else
         {
