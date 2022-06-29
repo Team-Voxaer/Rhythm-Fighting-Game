@@ -5,4 +5,5 @@
 public class GameData
 {
     public static string midiFileName;
+    public static int AILevel = 0;
 }

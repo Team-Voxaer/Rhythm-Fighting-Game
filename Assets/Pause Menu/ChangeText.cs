@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ChangeText : MonoBehaviour
 {
-    public Text buttonText;
+    public TextMeshProUGUI buttonText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        buttonText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -17,8 +18,21 @@ public class ChangeText : MonoBehaviour
     {
         
     }
-    public void NewText()
+
+    public void SwitchAIMode()
     {
-        buttonText.text = "Disable AI";
+        if (GameData.AILevel == 0) {
+            buttonText.text = "Easy AI";
+            GameData.AILevel = 1;
+        } else if (GameData.AILevel == 1) {
+            buttonText.text = "Medium AI";
+            GameData.AILevel = 2;
+        } else if (GameData.AILevel == 2) {
+            buttonText.text = "Hard AI";
+            GameData.AILevel = 3;
+        } else if (GameData.AILevel == 3) {
+            buttonText.text = "AI Disabled";
+            GameData.AILevel = 0;
+        }      
     }
 }

@@ -74,9 +74,6 @@ public class Lane : MonoBehaviour
 
     private int isDefend = 0;
 
-    // TODO: to change this parameter to an API
-    private int AILevel = 0;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -124,18 +121,15 @@ public class Lane : MonoBehaviour
             // Current timestamp of audio
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
             
-            if (GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow) {
+            if (GameData.AILevel != 0 && inputKeyUp == KeyCode.UpArrow) {
                 // Use an AI script to operate the right fighter to fight against the left fighter
-                AILevel = 2;
-                if (AILevel == 1) {
+                if (GameData.AILevel == 1) {
                     AIEasy(audioTime, timeStamp, marginOfBad);
-                } else if (AILevel == 2) {
+                } else if (GameData.AILevel == 2) {
                     AIMedium(audioTime, timeStamp, marginOfBad);
-                } else if (AILevel == 3) {
+                } else if (GameData.AILevel == 3) {
                     AIHard(audioTime, timeStamp);
-                }
-                
-                   
+                } 
             } else {
 
                 // Check Direction Key Input
