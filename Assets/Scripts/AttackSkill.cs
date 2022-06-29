@@ -51,7 +51,7 @@ public class AttackSkill : MonoBehaviour
             // Debug.Log("we hit " + enemy.name);
             if (skillName == SKILL.sword)
             {
-                enemy.GetComponent<PlayerController>().TakenDamage(500);
+                enemy.GetComponent<PlayerController>().TakenDamage(50);
             }
             else if (skillName == SKILL.Thunder)
             {
