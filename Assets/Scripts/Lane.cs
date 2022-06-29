@@ -64,13 +64,15 @@ public class Lane : MonoBehaviour
 
     // Hitting Effect
     public HitEffect hitEffect;
-    public GameObject popUpHitLevel;
+    public GameObject hitLevelObj;
+    private Sprite goodLevel, badLevel;
 
-    //Score Effect
+    /*//Score Effect
     public GameObject floatingPoints;
     public GameObject perfect;
     public GameObject good;
-    public GameObject bad;
+    public GameObject bad;*/
+
 
     // Combo Display
     public TextMeshProUGUI comboText;
@@ -83,7 +85,9 @@ public class Lane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        UnityEngine.Object[] sprites = Resources.LoadAll("HitLevelImage/rankImage2");
+        goodLevel = (Sprite)sprites[3];
+        badLevel = (Sprite)sprites[4];
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
@@ -192,7 +196,7 @@ public class Lane : MonoBehaviour
         }       
     }
 
-    //My Score Function
+    /*//My Score Function
     void showScore(HitLevel hitLevel){
          if(hitLevel == Rhythm.HitLevel.Perfect){
             GameObject perfectText = Instantiate(perfect, gameObject.transform.position, Quaternion.identity);   
@@ -206,7 +210,7 @@ public class Lane : MonoBehaviour
         else{
             print("Miss");
         }
-    }
+    }*/
 
     private void Hit(Direction direction, HitLevel hitLevel)
     {
@@ -215,12 +219,21 @@ public class Lane : MonoBehaviour
 
         lastHitLevel = hitLevel;
 
-        GameObject hitLevelObj =  Instantiate(popUpHitLevel, hitEffect.transform.position, Quaternion.identity);
-        hitLevelObj.GetComponent<TextMeshPro>().text = hitLevel.ToString();
+        GameObject hitLevelInstance =  Instantiate(hitLevelObj, transform.position, Quaternion.identity);
+
+        if (lastHitLevel == HitLevel.Good)
+        {
+            hitLevelInstance.GetComponent<SpriteRenderer>().sprite = goodLevel;
+        }
+        else if (lastHitLevel == HitLevel.Bad)
+        {
+            hitLevelInstance.GetComponent<SpriteRenderer>().sprite = badLevel;
+        }
+
 
         hitEffect.ChangeColor((int) direction);
-        //Show Score Sprite
-        showScore(hitLevel);
+        /*//Show Score Sprite
+        showScore(hitLevel);*/
 
         scoreManager.Hit(direction, hitLevel, inputIndex); 
         if (!(GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow)){ // If this is not an AI Hit

@@ -3332,11 +3332,7 @@ MonoBehaviour:
   timeStamps: []
   scoreManager: {fileID: 32668165}
   hitEffect: {fileID: 617426951}
-  popUpHitLevel: {fileID: 8626500461163662690, guid: 8d53eef79f78c5446a13e8b0e33dc44e, type: 3}
-  floatingPoints: {fileID: 0}
-  perfect: {fileID: 393828528554979504, guid: d8d724e92b8ab3b44887240a7c21ff92, type: 3}
-  good: {fileID: 393828528554979504, guid: e449b47ccc52733448342befd619aad0, type: 3}
-  bad: {fileID: 8232101293621257271, guid: 654a0f7f6934970418340a075f710e83, type: 3}
+  hitLevelObj: {fileID: 8907849388856751537, guid: 36867638911043b408e231a9e9b494fd, type: 3}
   comboText: {fileID: 413583204}
 --- !u!4 &884347955
 Transform:
@@ -3394,11 +3390,7 @@ MonoBehaviour:
   timeStamps: []
   scoreManager: {fileID: 198269270}
   hitEffect: {fileID: 1900457382}
-  popUpHitLevel: {fileID: 8626500461163662690, guid: 8d53eef79f78c5446a13e8b0e33dc44e, type: 3}
-  floatingPoints: {fileID: 0}
-  perfect: {fileID: 393828528554979504, guid: d8d724e92b8ab3b44887240a7c21ff92, type: 3}
-  good: {fileID: 393828528554979504, guid: e449b47ccc52733448342befd619aad0, type: 3}
-  bad: {fileID: 8232101293621257271, guid: 654a0f7f6934970418340a075f710e83, type: 3}
+  hitLevelObj: {fileID: 8907849388856751537, guid: 36867638911043b408e231a9e9b494fd, type: 3}
   comboText: {fileID: 1767571163}
 --- !u!4 &892135474
 Transform:

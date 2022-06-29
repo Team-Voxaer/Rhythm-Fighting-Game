@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4222662289741168278}
   - component: {fileID: 847072081522294023}
   - component: {fileID: -8140208263976487750}
-  - component: {fileID: 2121930702353183657}
+  - component: {fileID: 8191462226729373810}
   m_Layer: 0
   m_Name: PopUpText
   m_TagString: Untagged
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -186,23 +186,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcac74cce2df74149896d555e0e61b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &2121930702353183657
-Animator:
-  serializedVersion: 4
+--- !u!111 &8191462226729373810
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8626500461163662690}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0d0a56f3f4de63642b3c4ba559a3da03, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: cffe97c51be1d044fa38872e283da3d0, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: cffe97c51be1d044fa38872e283da3d0, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
