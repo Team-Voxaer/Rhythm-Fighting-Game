@@ -227,6 +227,10 @@ public class AnalyticManager : MonoBehaviour
             ComboCounts[i] = 0;
         }
 
+        for(int i = 0; i < InputIndexDistribution.Count; i++){
+            InputIndexDistribution[i] = 0;
+        }
+
         for(int i = 0; i < DefenseCounts.Count; i++){
             DefenseCounts[i] = 0;
         }

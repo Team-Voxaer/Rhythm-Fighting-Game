@@ -600,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 566002124517895808, guid: af636cd135a6d9140aa61feee3c32615, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.97
+      value: 3.9
       objectReference: {fileID: 0}
     - target: {fileID: 566002124517895808, guid: af636cd135a6d9140aa61feee3c32615, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -964,6 +964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endGameWindow: {fileID: 1450283898}
   difficultySelectionWindow: {fileID: 256469102}
+  pauseMenu: {fileID: 387698792}
 --- !u!4 &235519881
 Transform:
   m_ObjectHideFlags: 0
@@ -2210,7 +2211,7 @@ PrefabInstance:
     - target: {fileID: 7140972778516635968, guid: 37b854cf22f65134d87c3f0a8d7aacc1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 609301605}
     - target: {fileID: 7140972778516635968, guid: 37b854cf22f65134d87c3f0a8d7aacc1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2271,6 +2272,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5381106380870673980, guid: 37b854cf22f65134d87c3f0a8d7aacc1, type: 3}
   m_PrefabInstance: {fileID: 609301601}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &609301604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3379061405571964209, guid: 37b854cf22f65134d87c3f0a8d7aacc1, type: 3}
+  m_PrefabInstance: {fileID: 609301601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &609301605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609301604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b39ce7793ff814195c84a2db9b0de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 0}
 --- !u!1 &617426950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2634,7 +2653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 566002124517895808, guid: af636cd135a6d9140aa61feee3c32615, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -4.03
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 566002124517895808, guid: af636cd135a6d9140aa61feee3c32615, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5865,9 +5884,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Hit element keys when notes reach white bar.
 
-    R: restart
+    Esc or hit the Pause
+    Button to Pause
 
-    X: menu'
+    Enable/Disable AI for Player 2 in Menu
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}

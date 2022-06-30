@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         if (m_isDead) return;
         physicalDefense += 100;
         Instantiate(grandCross, buffPoint.position, quaternion);
-        ShowTextPopUp("Defense++");
+        ShowTextPopUp("Defense++\n\n\n\n");
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
     }
 
@@ -257,6 +257,11 @@ public class PlayerController : MonoBehaviour
 
 
         healthText.text = "HP: " + curHealth.ToString();
+
+
+        if (physicalDefense > 0){
+            healthText.text += "\n Defense++";
+        }
         statusBar.UpdateStatusBar(curHealth);
         /*if (Input.GetKeyDown(KeyCode.J))
         {

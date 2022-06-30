@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static bool AIEnabled;
     [SerializeField] private EndGameWindow endGameWindow;
     [SerializeField] private DifficultySelectionWindow difficultySelectionWindow;
+    [SerializeField] private PauseMenu pauseMenu;
 
     private void Start()
     {
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* 
+        // Zhian Li: Delete Keys for Midterm
         if (Input.GetKeyDown(KeyCode.X))
         {
             SceneManager.LoadScene("Menu");
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
         {
             AIEnabled = !AIEnabled;
         }
+        
         // Jiacheng
         // P for pause the game, U for unpause the game
         if (Input.GetKeyDown(KeyCode.P))
@@ -42,8 +46,17 @@ public class GameManager : MonoBehaviour
         {
             SongManager.UnPauseSong();
         }
+        */
         // Jiacheng
-
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            if (Time.timeScale < 0.1f){
+                pauseMenu.Resume();
+            }
+            else{
+                pauseMenu.Pause();
+            }
+            
+        }
         // Zhian Li
         if (!SongManager.AudioEnded())
         { 
