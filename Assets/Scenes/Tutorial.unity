@@ -3171,7 +3171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 566002124517895808, guid: af636cd135a6d9140aa61feee3c32615, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -4.9
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 566002124517895808, guid: af636cd135a6d9140aa61feee3c32615, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4007,7 +4007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnButton: {fileID: 785430096}
-  NextButton: {fileID: 2111368493}
+  nextButton: {fileID: 0}
   messageText: {fileID: 925880619}
 --- !u!1 &1488044945
 GameObject:

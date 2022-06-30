@@ -264,8 +264,8 @@ public class Lane : MonoBehaviour
 
     void ShowHitlevel()
     {
-        string text = "Hit Level: " + lastHitLevel.ToString();
-        comboText.text = text;
+        // string text = "Hit Level: " + lastHitLevel.ToString();
+        // comboText.text = text;
     }
 
 
