@@ -24,5 +24,6 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(sceneID);
+        AnalyticManager.OnLevelEnd("playerQuit"); //Send AnalyticsManager The Game Ended Because Player Quit
     }
 }
