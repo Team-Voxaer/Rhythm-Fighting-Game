@@ -104,10 +104,12 @@ public class SongManager : MonoBehaviour
     // pause song
     public static void PauseSong() {
         Instance.audioSource.Pause();
+        Debug.Log("Pause");
     }
 
     // unpause song
     public static void UnPauseSong() {
         Instance.audioSource.UnPause();
+        Debug.Log("UnPause");
     }
 }

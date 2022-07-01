@@ -3587,7 +3587,7 @@ PrefabInstance:
       objectReference: {fileID: 331276077}
     - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 4920205284748129700, guid: 35102330d4af6c54d95a4a3a9408446c, type: 3}
       propertyPath: popUpText
@@ -5884,10 +5884,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Hit element keys when notes reach white bar.
 
-    Esc or hit the Pause
-    Button to Pause
+    Player 1: WASD    Player
+    2: Arrow Keys
 
-    Enable/Disable AI for Player 2 in Menu
+    AI for Player 2 in Menu (Pause Button or Esc)
 
 '
   m_isRightToLeft: 0
@@ -6368,7 +6368,7 @@ PrefabInstance:
       objectReference: {fileID: 508016610}
     - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: -8053219715408740662, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: popUpText
