@@ -60,6 +60,20 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void PlayLevel3()
+    {
+        if (Application.CanStreamedLevelBeLoaded("FightingScene"))
+        {
+            AnalyticManager.CurrentLevel = 3;
+            GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            ShowDifficultySelectionWindow();
+        }
+        else
+        {
+            OpenSceneNotExistWindow("The Scene doesn't exist");
+        }
+    }
+
     public void ShowDifficultySelectionWindow()
     {
         difficultySelectionWindow.gameObject.SetActive(true);

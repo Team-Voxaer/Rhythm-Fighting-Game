@@ -9,7 +9,8 @@ public static class CommonParameter
 
     public static string[] midiFiles = { "Tutorial.mid", 
                                          "Never_Gonna_Give_You_Up_", 
-                                         "All_The_Way_North_" };
+                                         "All_The_Way_North_",
+                                         "Lian_Xue_" };
 
     public static string[] midiDifficulty = { "Easy.mid", "Normal.mid", "Hard.mid" };
 
