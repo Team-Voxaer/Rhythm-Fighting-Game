@@ -250,17 +250,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteRestriction: 7
-  scoreText: {fileID: 0}
-  bandit: {fileID: 0}
+  player: {fileID: 0}
   inputKeyUp: 119
   inputKeyDown: 115
   inputKeyLeft: 97
   inputKeyRight: 100
-  inputKeyCast: 0
   notePrefab: {fileID: 1721378617231138213, guid: e3a426fd3cee0f94589dcf3a4963ff5d, type: 3}
   timeStamps: []
   scoreManager: {fileID: 2049863574}
   hitEffect: {fileID: 0}
+  comboText: {fileID: 0}
 --- !u!4 &179919839
 Transform:
   m_ObjectHideFlags: 0
@@ -434,7 +433,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
-  bandit: {fileID: 0}
+  player: {fileID: 0}
+  inputKeyCast: 0
+  visCombo1: {fileID: 0}
+  visCombo2: {fileID: 0}
+  visCombo3: {fileID: 0}
+  imgComboUp: {fileID: 0}
+  imgComboDown: {fileID: 0}
+  imgComboLeft: {fileID: 0}
+  imgComboRight: {fileID: 0}
 --- !u!4 &407885279
 Transform:
   m_ObjectHideFlags: 0
@@ -1064,17 +1071,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteRestriction: 7
-  scoreText: {fileID: 0}
-  bandit: {fileID: 0}
+  player: {fileID: 0}
   inputKeyUp: 0
   inputKeyDown: 0
   inputKeyLeft: 0
   inputKeyRight: 0
-  inputKeyCast: 0
   notePrefab: {fileID: 885671370697947387, guid: 5c83af6d080d3d24e8d7b43d07a6de0a, type: 3}
   timeStamps: []
   scoreManager: {fileID: 407885278}
   hitEffect: {fileID: 0}
+  comboText: {fileID: 0}
 --- !u!4 &1486331066
 Transform:
   m_ObjectHideFlags: 0
@@ -1164,7 +1170,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
-  bandit: {fileID: 0}
+  player: {fileID: 0}
+  inputKeyCast: 0
+  visCombo1: {fileID: 0}
+  visCombo2: {fileID: 0}
+  visCombo3: {fileID: 0}
+  imgComboUp: {fileID: 0}
+  imgComboDown: {fileID: 0}
+  imgComboLeft: {fileID: 0}
+  imgComboRight: {fileID: 0}
 --- !u!4 &2049863575
 Transform:
   m_ObjectHideFlags: 0
