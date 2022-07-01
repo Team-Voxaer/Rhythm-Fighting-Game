@@ -271,7 +271,7 @@ public class Lane : MonoBehaviour
 
     void AIEasy(double audioTime, double timeStamp, double marginOfBad) {
         Direction direction;
-        if (isDefend > 15) {
+        if (isDefend > 14) {
             isDefend = 0;
         }
         if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
@@ -304,7 +304,7 @@ public class Lane : MonoBehaviour
 
     void AIMedium(double audioTime, double timeStamp, double marginOfBad) {
         Direction direction;
-        if (isDefend > 15) {
+        if (isDefend > 14) {
             isDefend = 0;
         }
         if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
@@ -337,7 +337,7 @@ public class Lane : MonoBehaviour
 
     void AIHard(double audioTime, double timeStamp) {
         Direction direction;
-        if (isDefend > 15) {
+        if (isDefend > 14) {
             isDefend = 0;
         }
         if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
