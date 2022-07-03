@@ -18,6 +18,17 @@ public class MainMenu : MonoBehaviour
         sceneNotExistWindow.messageText.text = message;
     }
 
+    public void ShowDifficultySelectionWindow()
+    {
+        difficultySelectionWindow.gameObject.SetActive(true);
+        difficultySelectionWindow.messageText.text = string.Join(" ", GameData.songName.Split('_'));
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     public void PlayTutorial()
     {
         if (Application.CanStreamedLevelBeLoaded("Tutorial"))
@@ -74,14 +85,17 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void ShowDifficultySelectionWindow()
+    public void PlayLevel4()
     {
-        difficultySelectionWindow.gameObject.SetActive(true);
-        difficultySelectionWindow.messageText.text = string.Join(" ", GameData.songName.Split('_'));
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
+        if (Application.CanStreamedLevelBeLoaded("FightingScene"))
+        {
+            AnalyticManager.CurrentLevel = 4;
+            GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            ShowDifficultySelectionWindow();
+        }
+        else
+        {
+            OpenSceneNotExistWindow("The Scene doesn't exist");
+        }
     }
 }
