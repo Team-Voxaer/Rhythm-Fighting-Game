@@ -11,7 +11,8 @@ public static class CommonParameter
                                          "Never_Gonna_Give_You_Up_", 
                                          "All_The_Way_North_",
                                          "Love_Snow_",
-                                         "Common_Jasmine_Orange_" };
+                                         "Common_Jasmine_Orange_",
+                                         "Me_And_You_" };
 
     public static string[] midiDifficulty = { "Easy.mid", "Normal.mid", "Hard.mid" };
 

@@ -98,4 +98,18 @@ public class MainMenu : MonoBehaviour
             OpenSceneNotExistWindow("The Scene doesn't exist");
         }
     }
+
+    public void PlayLevel5()
+    {
+        if (Application.CanStreamedLevelBeLoaded("FightingScene"))
+        {
+            AnalyticManager.CurrentLevel = 5;
+            GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            ShowDifficultySelectionWindow();
+        }
+        else
+        {
+            OpenSceneNotExistWindow("The Scene doesn't exist");
+        }
+    }
 }
