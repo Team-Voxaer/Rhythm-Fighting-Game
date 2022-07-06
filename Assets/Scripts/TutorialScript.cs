@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialScript : MonoBehaviour
 {
@@ -34,6 +35,10 @@ public class TutorialScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            ReturnToMenu();
+        }
         if (jumpingText.GetComponent<TextMeshPro>().text == "D" && Input.GetKeyDown(KeyCode.D))
         {
             tutorialWindow.gameObject.SetActive(false);
@@ -88,6 +93,11 @@ public class TutorialScript : MonoBehaviour
         }
     }
 
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
     void InstantiateNote()
     {
         GameObject note = Instantiate(tutorialNote, dropPoint.transform.position, Quaternion.identity);
@@ -128,7 +138,7 @@ public class TutorialScript : MonoBehaviour
         while (tutorialWindow.gameObject.activeInHierarchy) {
             yield return new WaitForSeconds(1.6f);
         }
-        ShowTutorialWindow("Physical attack deals 50 damage.", "Image/1");
+        ShowTutorialWindow("Physical attack deals physical damage.", "Image/1");
         // Jiacheng
 
         jumpingText.GetComponent<TextMeshPro>().text = "D";
@@ -138,7 +148,7 @@ public class TutorialScript : MonoBehaviour
             InstantiateNote();
             yield return new WaitForSeconds(1.6f);
         }
-        ShowTutorialWindow("Shield can reduce physical attack damage to 1.", "Image/2");  // Jiacheng
+        ShowTutorialWindow("Shield can reduce physical attack damage.", "Image/2");  // Jiacheng
 
         jumpingText.GetComponent<TextMeshPro>().text = "A";
         while (!AAASkill)
@@ -152,7 +162,7 @@ public class TutorialScript : MonoBehaviour
         player2.UseSword();
         yield return new WaitForSeconds(1.6f);
 
-        ShowTutorialWindow("Magical attack can penetrate shield and deals 40 damage.", "Image/3");  // Jiacheng
+        ShowTutorialWindow("Magical attack can penetrate shield and deals magical damage.", "Image/3");  // Jiacheng
 
         jumpingText.GetComponent<TextMeshPro>().text = "W";
         while (!WWWSkill)
@@ -162,7 +172,7 @@ public class TutorialScript : MonoBehaviour
             yield return new WaitForSeconds(1.6f);
         }
         player2.UseHealing();
-        ShowTutorialWindow("Heal spell recovers 30 health.", "Image/4");  // Jiacheng
+        ShowTutorialWindow("Heal spell recovers health.", "Image/4");  // Jiacheng
 
         jumpingText.GetComponent<TextMeshPro>().text = "S";
         while (!SSSSkill)

@@ -198,12 +198,17 @@ public class ScoreManager : MonoBehaviour
             lsMyGame.RemoveAt(0);
         }
 
-        bool isMyGame = true;
-        for (int i=1; i<9; i++) {
-            isMyGame = isMyGame && (lsMyGame[lsMyGame.Count - i] == cklsMyGame[8 - i]);
-        }
-        if (isMyGame) {
-            player.UseThunder(200000.00);
+        if (lsMyGame.Count == 8)
+        {
+            bool isMyGame = true;
+            for (int i = 1; i < 9; i++)
+            {
+                isMyGame = isMyGame && (lsMyGame[lsMyGame.Count - i] == cklsMyGame[8 - i]);
+            }
+            if (isMyGame)
+            {
+                player.UseThunder(200000.00);
+            }
         }
     }
 

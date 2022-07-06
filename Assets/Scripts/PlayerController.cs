@@ -82,10 +82,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Instantiate(GameObject original, Vector3 position, Quaternion rotation, LayerMask enemyLayers)
+    void Instantiate(GameObject original, Vector3 position, Quaternion rotation, LayerMask enemyLayers, double ratio = 1)
     {
         GameObject gameObject = Instantiate(original, position, rotation);
         gameObject.GetComponent<AttackSkill>().SetEnemyLayers(enemyLayers);
+        gameObject.GetComponent<AttackSkill>().SetRatio(ratio);
 
     }
     public void UseGrandCross(double ratio=1)
@@ -108,12 +109,12 @@ public class PlayerController : MonoBehaviour
     public void UseSword(double ratio=1)
     {
         if (m_isDead) return;
-        Instantiate(sword, attackPoint.position + shortRange, quaternion, enemyLayers);
+        Instantiate(sword, attackPoint.position + shortRange, quaternion, enemyLayers, ratio);
     }
     public void UseThunder(double ratio=1)
     {
         if (m_isDead) return;
-        Instantiate(thunder, attackPoint.position + Range, quaternion, enemyLayers);
+        Instantiate(thunder, attackPoint.position + Range, quaternion, enemyLayers, ratio);
     }
 
     public void Attack()
@@ -193,8 +194,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                curHealth -= 1;
-                ShowDamageNumberPopUp(1);
+                curHealth -= 10;
+                ShowDamageNumberPopUp(10);
                 m_animator.SetTrigger("Defend");
                 if (!GameManager.CheckAI() || gameObject.name == "LightBandit"){
                     AnalyticManager.OnSuccessDefense(true);

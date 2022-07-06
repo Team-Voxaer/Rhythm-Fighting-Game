@@ -8,6 +8,7 @@ public class AttackSkill : MonoBehaviour
     private Animator animator;
     public float attackRange = 5;
     private LayerMask enemyLayers;
+    private double ratio = 1;
     public enum SKILL
     {
         sword,
@@ -42,6 +43,11 @@ public class AttackSkill : MonoBehaviour
         enemyLayers = layers;
     }
 
+    public void SetRatio(double r)
+    {
+        ratio = r;
+    }
+
     void Attack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers);
@@ -51,11 +57,11 @@ public class AttackSkill : MonoBehaviour
             // Debug.Log("we hit " + enemy.name);
             if (skillName == SKILL.sword)
             {
-                enemy.GetComponent<PlayerController>().TakenDamage(50);
+                enemy.GetComponent<PlayerController>().TakenDamage((int)(50 * ratio));
             }
             else if (skillName == SKILL.Thunder)
             {
-                enemy.GetComponent<PlayerController>().TakenDamage(40, false);
+                enemy.GetComponent<PlayerController>().TakenDamage((int)(40 * ratio), false);
             }
 
 
