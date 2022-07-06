@@ -1,4 +1,4 @@
-/*
+/**
  * Created by Jiacheng
  * This class is created to store shared game data.
  */

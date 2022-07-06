@@ -90,7 +90,7 @@ public class Lane : MonoBehaviour
         badLevel = (Sprite)sprites[4];
     }
 
-    public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
+    public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array, float songDelayInSeconds)
     {
         foreach (var note in array)
         {
@@ -99,7 +99,19 @@ public class Lane : MonoBehaviour
             {
                 // Convert Tempo to Metric Time
                 var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
-                timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+                /**
+                 * Jiacheng
+                 * If running on WebGL, we need to add "songDelayInSeconds" to match nodes with song delay time, 
+                 * and also an "offset" to counteract the WebGL delay;
+                 * If running locally, we cannot add "songDelayInSeconds" as well as "offset", otherwise would cause huge delay of notes.
+                 */
+                if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://")) {
+                    double offset = -.1f;
+                    timeStamps.Add((double)songDelayInSeconds + offset + 
+                    (double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+                } else {
+                    timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+                }
             }
         }
     }

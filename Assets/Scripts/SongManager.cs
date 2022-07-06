@@ -7,7 +7,7 @@ using System.IO;
 using UnityEngine.Networking;
 using System;
 
-/*
+/**
  * Created by Jiacheng
  */
 
@@ -19,6 +19,7 @@ public class SongManager : MonoBehaviour
     public AudioClip[] audioClip;  // store audio clips
     public Lane[] lanes;  // how many lanes of note
     public float songDelayInSeconds;  // delay playing song after a certain amount of time
+    public float songPausedTime;  // song paused time
     public double marginOfError;  // user mis-tap error line, in seconds
     public int inputDelayInMilliseconds;  // keyboard delay time in case of input delay
     public string fileLocation;  // file location of midi file
@@ -89,27 +90,28 @@ public class SongManager : MonoBehaviour
         var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
         notes.CopyTo(array, 0);
         foreach (var lane in lanes) {
-            lane.SetTimeStamps(array);
+            lane.SetTimeStamps(array, songDelayInSeconds);
         }
-        PauseSong();
-        Invoke(nameof(StartSong), songDelayInSeconds);
+        StartSong();
     }
 
     // start song
     public void StartSong() { 
         audioSource.clip = audioClip[AnalyticManager.CurrentLevel];
-        audioSource.Play();
+        audioSource.Pause();
+        audioSource.PlayScheduled(AudioSettings.dspTime + songDelayInSeconds);
     }
 
     // pause song
     public static void PauseSong() {
+        Instance.songPausedTime = Instance.audioSource.time;
         Instance.audioSource.Pause();
         Debug.Log("Pause");
     }
 
     // unpause song
     public static void UnPauseSong() {
-        Instance.audioSource.UnPause();
-        Debug.Log("UnPause");
+        Instance.audioSource.time = Instance.songPausedTime;
+        Instance.audioSource.Play();
     }
 }
