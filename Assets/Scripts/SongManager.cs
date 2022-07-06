@@ -106,7 +106,6 @@ public class SongManager : MonoBehaviour
     public static void PauseSong() {
         Instance.songPausedTime = Instance.audioSource.time;
         Instance.audioSource.Pause();
-        Debug.Log("Pause");
     }
 
     // unpause song
