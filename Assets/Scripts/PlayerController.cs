@@ -314,4 +314,10 @@ public class PlayerController : MonoBehaviour
     {
         isTutorial = true;
     }
+    private void Flip()
+    {
+        
+        transform.Rotate(0f, 180f, 0f);
+
+    }
 }
