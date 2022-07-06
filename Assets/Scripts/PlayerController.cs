@@ -8,28 +8,52 @@ public class PlayerController : MonoBehaviour
     /*[SerializeField] float m_speed = 4.0f;
     [SerializeField] float m_jumpForce = 7.5f;*/
 
+    public GameManager gameManager;
+
     private Animator m_animator;
     private Rigidbody2D m_body2d;
     private Sensor_Bandit m_groundSensor;
+
     private bool m_grounded = false;
-    /*private bool m_combatIdle = false;
-    private bool m_isDead = false;*/
+    private bool m_isDead = false;
+    private bool isTutorial = false;
+    // private bool m_combatIdle = false;
+
     public Transform attackPoint;
+    public Transform buffPoint;
     public float attackRange = 0.5f;
+
     public LayerMask enemyLayers;
+
     public int attackDamage = 30;
     public int maxHealth = 150;
-    private int defenseIncrease = 0;
+    public int healingAmount = 30;
+    private int physicalDefense = 0;
     private float buffDuration = 10;
 
     // Health Text
     public TextMeshProUGUI healthText;
+    // Health Bar
+    public FillStatusBar statusBar;
+    // Damage point Text
+    public GameObject popUpText;
 
     int curHealth;
 
+    public GameObject sword;
+    public GameObject grandCross;
+    public GameObject thunder;
+    public GameObject healing;
+    private Quaternion quaternion;
+
+    /*the range between attackPoint and the skill location*/
+    private Vector3 Range;
+    private Vector3 shortRange;
+
     enum BuffType
     {
-        DefenseIncrease
+        DefenseIncrease,
+        Healing
     }
 
 
@@ -37,21 +61,69 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         curHealth = maxHealth;
+        statusBar.SetMaxVal(maxHealth);
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Bandit>();
+        if (transform.localScale.x > 0)
+        {
+            quaternion = Quaternion.Euler(0, 180, 0);
+            Range = new Vector3(-3, 0, 0);
+            shortRange = new Vector3(-1, 0, 0);
+        }
+        else
+        {
+            quaternion = Quaternion.Euler(0, 0, 0);
+            Range = new Vector3(3, 0, 0);
+            shortRange = new Vector3(1, 0, 0);
+        }
+    }
+
+    void Instantiate(GameObject original, Vector3 position, Quaternion rotation, LayerMask enemyLayers)
+    {
+        GameObject gameObject = Instantiate(original, position, rotation);
+        gameObject.GetComponent<AttackSkill>().SetEnemyLayers(enemyLayers);
+
+    }
+    public void UseGrandCross()
+    {
+        if (m_isDead) return;
+        physicalDefense += 100;
+        Instantiate(grandCross, buffPoint.position, quaternion);
+        ShowTextPopUp("Defense++\n\n\n\n");
+        StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
+    }
+
+    public void UseHealing()
+    {
+        if (m_isDead) return;
+        curHealth = (curHealth + healingAmount > maxHealth) ? maxHealth : curHealth + healingAmount;
+        ShowDamageNumberPopUp(healingAmount, false);
+        Instantiate(healing, buffPoint.position, quaternion);
+    }
+    public void UseSword()
+    {
+        if (m_isDead) return;
+        Instantiate(sword, attackPoint.position + shortRange, quaternion, enemyLayers);
+    }
+    public void UseThunder()
+    {
+        if (m_isDead) return;
+        Instantiate(thunder, attackPoint.position + Range, quaternion, enemyLayers);
     }
 
     public void Attack()
     {
+        if (m_isDead) return;
         m_animator.SetTrigger("Attack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("we hit" + enemy.name);
+            // Debug.Log("we hit" + enemy.name);
             enemy.GetComponent<PlayerController>().TakenDamage(attackDamage);
 
         }
@@ -63,12 +135,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (buff == BuffType.DefenseIncrease)
         {
-            defenseIncrease = 0;
+            physicalDefense -= 100;
         }
     }
     public void Defend()
     {
-        defenseIncrease = 100;
+        if (m_isDead) return;
+        physicalDefense = 30;
         m_animator.SetTrigger("Defend");
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
     }
@@ -79,32 +152,90 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    public void TakenDamage(int damage)
+    void ShowDamageNumberPopUp(int num, bool isDamage = true)
     {
-        if (damage > defenseIncrease)
+        string text = isDamage == true ? "-" : "+";
+        GameObject textPopUp = Instantiate(popUpText, transform.position, Quaternion.identity);
+        if (isDamage)
         {
-            curHealth -= (damage - defenseIncrease);
-            m_animator.SetTrigger("Hurt");
+            textPopUp.GetComponent<TextMeshPro>().color = Color.red;
         }
         else
         {
-            curHealth -= 1;
-            m_animator.SetTrigger("Defend");
+            textPopUp.GetComponent<TextMeshPro>().color = Color.green;
+        }
+        textPopUp.GetComponent<TextMeshPro>().text = text + num.ToString();
+    }
+
+    void ShowTextPopUp(string text, Color? color = null)
+    {
+        GameObject textPopUp = Instantiate(popUpText, transform.position, Quaternion.identity);
+        textPopUp.GetComponent<TextMeshPro>().text = text;
+
+    }
+
+    // physicalDefense works on damageType True
+    public void TakenDamage(int damage, bool damageType = true)
+    {
+        if (damageType)
+        {
+            if (damage > physicalDefense)
+            {
+                curHealth -= (damage - physicalDefense);
+                ShowDamageNumberPopUp(damage - physicalDefense);
+                m_animator.SetTrigger("Hurt");
+                if (!GameManager.CheckAI() || gameObject.name == "LightBandit"){
+                    AnalyticManager.OnSuccessDefense(false);
+                }
+                
+            }
+            else
+            {
+                curHealth -= 1;
+                ShowDamageNumberPopUp(1);
+                m_animator.SetTrigger("Defend");
+                if (!GameManager.CheckAI() || gameObject.name == "LightBandit"){
+                    AnalyticManager.OnSuccessDefense(true);
+                }
+            }
+        }
+        else
+        {
+            curHealth -= damage;
+            ShowDamageNumberPopUp(damage);
+            m_animator.SetTrigger("Hurt");
         }
         if (curHealth <= 0)
         {
+            statusBar.UpdateStatusBar(curHealth);
             Die();
         }
     }
 
     void Die()
     {
+        if (isTutorial)
+        {
+            m_animator.SetTrigger("Death");
+            curHealth = maxHealth;
+            new WaitForSeconds(1);
+            m_animator.SetTrigger("Recover");
+            return;
+        }
         m_animator.SetTrigger("Death");
-        Debug.Log("Enemy died");
         GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         GetComponent<Collider2D>().enabled = false;
+        m_isDead = true;
         this.enabled = false;
         healthText.text = "HP: 0";
+        if (gameObject.name == "LightBandit")
+        {
+            gameManager.EndGame("Player 2");
+        }
+        else
+        {
+            gameManager.EndGame("Player 1");
+        }
     }
 
     // Update is called once per frame
@@ -126,6 +257,12 @@ public class PlayerController : MonoBehaviour
 
 
         healthText.text = "HP: " + curHealth.ToString();
+
+
+        if (physicalDefense > 0){
+            healthText.text += "\n Defense++";
+        }
+        statusBar.UpdateStatusBar(curHealth);
         /*if (Input.GetKeyDown(KeyCode.J))
         {
             Attack();
@@ -167,5 +304,14 @@ public class PlayerController : MonoBehaviour
         //Idle
         else
             m_animator.SetInteger("AnimState", 0);*/
+    }
+
+    public int GetCurHealth() {
+        return curHealth;
+    }
+
+    public void SetTutorial()
+    {
+        isTutorial = true;
     }
 }

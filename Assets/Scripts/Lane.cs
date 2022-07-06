@@ -4,23 +4,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Rhythm;
+using UnityEngine.Analytics;
+
+namespace Rhythm
+{
+    public enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right,
+        None
+    }
+
+    public enum HitLevel
+    {
+        Perfect,
+        Good,
+        Bad,
+        Invalid
+    }
+}
 
 
 
 public class Lane : MonoBehaviour
 {
-    public enum Direction
-    {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
+    
 
     // restrict note to certain Key
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
 
     public PlayerController player;
+    public PlayerController playerOther;
 
     // Key for this line
     public KeyCode inputKeyUp;
@@ -47,20 +64,30 @@ public class Lane : MonoBehaviour
 
     // Hitting Effect
     public HitEffect hitEffect;
+    public GameObject hitLevelObj;
+    private Sprite goodLevel, badLevel;
 
-    // Combo Queue
-    private Queue<string> comboQueue = new Queue<string>();
+    /*//Score Effect
+    public GameObject floatingPoints;
+    public GameObject perfect;
+    public GameObject good;
+    public GameObject bad;*/
+
 
     // Combo Display
     public TextMeshProUGUI comboText;
 
-    // Last Hit Level: Perfect / Good
-    private string lastHitLevel;
+    // Last Hit Level: Perfect / Good / Bad 
+    private HitLevel lastHitLevel;
+
+    private int isDefend = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        UnityEngine.Object[] sprites = Resources.LoadAll("HitLevelImage/rankImage2");
+        goodLevel = (Sprite)sprites[3];
+        badLevel = (Sprite)sprites[4];
     }
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
@@ -95,109 +122,137 @@ public class Lane : MonoBehaviour
         {
             // Timestamp of current note should be pressed in
             double timeStamp = timeStamps[inputIndex];
-            double marginOfError = SongManager.Instance.marginOfError;
-            double marginOfPerfect = marginOfError / 2;
+            
+            // Range: Perfect / Good / Bad / Invalid 
+            double marginOfGood = SongManager.Instance.marginOfError;
+            double marginOfPerfect = marginOfGood / 4;
+            double marginOfBad = marginOfGood + marginOfPerfect; 
+
             // Current timestamp of audio
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 1000.0);
-
-            if (Input.GetKeyDown(inputKeyUp)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
-                    Hit(Direction.UP, true);
-                }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
-                {
-                    Hit(Direction.UP, false);
-                }
-                else 
-                {
-                    print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-            } else if (Input.GetKeyDown(inputKeyDown)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
-                    Hit(Direction.DOWN, true);
-                }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
-                {
-                    Hit(Direction.DOWN, false);
-                }
-                else
-                {
-                    print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-            } else if (Input.GetKeyDown(inputKeyLeft)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
-                    Hit(Direction.LEFT, true);
-                }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
-                {
-                    Hit(Direction.LEFT, false);
-                }
-                else
-                {
-                    print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-            } else if (Input.GetKeyDown(inputKeyRight)) {
-                if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
-                    Hit(Direction.RIGHT, true);
-                }
-                else if (Math.Abs(audioTime - timeStamp) < marginOfError)
-                {
-                    Hit(Direction.RIGHT, false);
-                }
-                else
-                {
-                    print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
-                }
-            }
             
+            if (GameData.AILevel != 0 && inputKeyUp == KeyCode.UpArrow) {
+                // Use an AI script to operate the right fighter to fight against the left fighter
+                if (GameData.AILevel == 1) {
+                    AIEasy(audioTime, timeStamp, marginOfBad);
+                } else if (GameData.AILevel == 2) {
+                    AIMedium(audioTime, timeStamp, marginOfBad);
+                } else if (GameData.AILevel == 3) {
+                    AIHard(audioTime, timeStamp);
+                } 
+            } else {
 
-            if (timeStamp + marginOfError <= audioTime)
-            {
-                Miss();
-                print($"Missed {inputIndex} note");
-                inputIndex++;
-                // TODO: to add an animation for missing notes
+                // Check Direction Key Input
+                Direction direction;
+                if (Input.GetKeyDown(inputKeyUp)) {
+                    direction = Direction.Up;
+                } else if (Input.GetKeyDown(inputKeyDown)) {
+                    direction = Direction.Down;
+                } else if (Input.GetKeyDown(inputKeyLeft)) {
+                    direction = Direction.Left;
+                } else if (Input.GetKeyDown(inputKeyRight)) {
+                    direction = Direction.Right;
+                } else {
+                    direction = Direction.None;
+                }
+                
+                // Which means someone actually hit a direction key
+                if (direction != Direction.None) { 
+                    HitLevel hitLevel;
+                    if (Math.Abs(audioTime - timeStamp) < marginOfPerfect) {
+                        hitLevel = HitLevel.Perfect;
+                    }
+                    else if (Math.Abs(audioTime - timeStamp) < marginOfGood)
+                    {
+                        hitLevel = HitLevel.Good;
+                    }
+                    else if (Math.Abs(audioTime - timeStamp) < marginOfBad)
+                    {
+                        hitLevel = HitLevel.Bad;
+                    }
+                    else {
+                        hitLevel = HitLevel.Invalid;
+                    }
+
+                    if (hitLevel != HitLevel.Invalid) {
+                        Hit(direction, hitLevel);
+                    }
+
+                    print($"Input Direction {direction.ToString()} {hitLevel.ToString()} on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+
+
+                }
+
+                // If it is larger than Margin of Bad, so it can't even be hit anymore
+                if (timeStamp + marginOfBad <= audioTime)
+                {
+                    Miss();
+                    print($"Missed {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                    // TODO: to add an animation for missing notes
+                }
+
+                ShowHitlevel();
             }
-
-            ShowCombo();
         }       
     }
 
-    private void Hit(Direction direction, bool isPerfect)
+    /*//My Score Function
+    void showScore(HitLevel hitLevel){
+         if(hitLevel == Rhythm.HitLevel.Perfect){
+            GameObject perfectText = Instantiate(perfect, gameObject.transform.position, Quaternion.identity);   
+        }
+        else if(hitLevel == Rhythm.HitLevel.Good){
+            GameObject perfectText = Instantiate(good, gameObject.transform.position, Quaternion.identity); 
+        }
+        else if(hitLevel == Rhythm.HitLevel.Bad){
+            GameObject perfectText = Instantiate(bad, gameObject.transform.position, Quaternion.identity); 
+        }
+        else{
+            print("Miss");
+        }
+    }*/
+
+    private void Hit(Direction direction, HitLevel hitLevel)
     {
-        print($"Hit on {inputIndex} note");
+        // print($"Hit on {inputIndex} note");
         Destroy(notes[inputIndex].gameObject);
-        inputIndex++;
 
-        if (isPerfect) lastHitLevel = "Perfect";
-        else lastHitLevel = "Good";
+        lastHitLevel = hitLevel;
 
-        switch (direction)
+        GameObject hitLevelInstance =  Instantiate(hitLevelObj, transform.position, Quaternion.identity);
+
+        if (lastHitLevel == HitLevel.Good)
         {
-        case Direction.UP:
-            AddCombo("UP");
-            break;
-        case Direction.DOWN:
-            AddCombo("DOWN");
-            break;
-        case Direction.LEFT:
-            AddCombo("LEFT");
-            break;
-        case Direction.RIGHT:
-            AddCombo("RIGHT");
-            break;
+            hitLevelInstance.GetComponent<SpriteRenderer>().sprite = goodLevel;
+        }
+        else if (lastHitLevel == HitLevel.Bad)
+        {
+            hitLevelInstance.GetComponent<SpriteRenderer>().sprite = badLevel;
         }
 
+
         hitEffect.ChangeColor((int) direction);
-        scoreManager.Hit((int) direction); 
+        /*//Show Score Sprite
+        showScore(hitLevel);*/
+
+        scoreManager.Hit(direction, hitLevel, inputIndex); 
+        if (!(GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow)){ // If this is not an AI Hit
+            AnalyticManager.OnHitNotes(direction, hitLevel, inputIndex); // Send AnalyticsManager notehit data
+        }
+        inputIndex++;
     }
 
     private void Miss()
     {
-        scoreManager.Miss();
+        scoreManager.Miss(inputIndex);
+        if (!(GameManager.CheckAI() && inputKeyUp == KeyCode.UpArrow)){ // If this is not an AI Miss
+            AnalyticManager.OnMissNotes(inputIndex); //Send AnalyticsManager notemiss data
+        }
+        inputIndex++;
+        lastHitLevel = HitLevel.Invalid;
     }
 
-    void AddCombo(string combo)
+    /*void AddCombo(string combo)
     {
         if (comboQueue.Count == 3)
         {
@@ -205,11 +260,105 @@ public class Lane : MonoBehaviour
         }
         comboQueue.Enqueue(combo);
     }
+    */
 
-    void ShowCombo()
+    void ShowHitlevel()
     {
-        string text = "Input History:" + String.Join(" ", comboQueue) + "\nHit Level: " + lastHitLevel;
-        comboText.text = text;
+        // string text = "Hit Level: " + lastHitLevel.ToString();
+        // comboText.text = text;
+    }
+
+
+    void AIEasy(double audioTime, double timeStamp, double marginOfBad) {
+        Direction direction;
+        if (isDefend > 14) {
+            isDefend = 0;
+        }
+        if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+            direction = Direction.Down;
+        } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
+            direction = Direction.Up;
+        } else if (isDefend < 3) {
+            direction = Direction.Left;
+        } else {
+            direction = Direction.Right;
+        }
+
+        if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
+            double rndDouble = UnityEngine.Random.value;
+            if (rndDouble > 0.9) {
+                Hit(direction, HitLevel.Perfect);
+                isDefend = isDefend + 1;
+            } else if (rndDouble > 0.6) {
+                Hit(direction, HitLevel.Good);
+                isDefend = isDefend + 1;
+            } else if (rndDouble > 0.5) {
+                Hit(direction, HitLevel.Bad);
+                isDefend = isDefend + 1;
+            } else {
+                Miss();
+            }
+        }
+    }
+
+
+    void AIMedium(double audioTime, double timeStamp, double marginOfBad) {
+        Direction direction;
+        if (isDefend > 14) {
+            isDefend = 0;
+        }
+        if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+            direction = Direction.Down;
+        } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
+            direction = Direction.Up;
+        } else if (isDefend < 3) {
+            direction = Direction.Left;
+        } else {
+            direction = Direction.Right;
+        }
+
+        if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
+            double rndDouble = UnityEngine.Random.value;
+            if (rndDouble > 0.7) {
+                Hit(direction, HitLevel.Perfect);
+                isDefend = isDefend + 1;
+            } else if (rndDouble > 0.4) {
+                Hit(direction, HitLevel.Good);
+                isDefend = isDefend + 1;
+            } else if (rndDouble > 0.3) {
+                Hit(direction, HitLevel.Bad);
+                isDefend = isDefend + 1;
+            } else {
+                Miss();
+            }
+        }
+    }
+
+
+    void AIHard(double audioTime, double timeStamp) {
+        Direction direction;
+        if (isDefend > 14) {
+            isDefend = 0;
+        }
+        if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+            direction = Direction.Down;
+        } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
+            direction = Direction.Up;
+        } else if (isDefend < 3) {
+            direction = Direction.Left;
+        } else {
+            direction = Direction.Right;
+        }
+        
+        if (audioTime > timeStamp) {
+            if (inputIndex % 1 == 0){
+                // HitLevel, Direction = AI.Analyse(audioTime, timeStamp)
+                Hit(direction, HitLevel.Perfect);
+                isDefend = isDefend + 1;
+            } else {
+                Miss();
+            }
+        }
     }
 
 }

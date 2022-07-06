@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TutorialNote
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Player1
   - Player2
   - Emenies
-  - 
+  - Note
   - 
   - 
   - 
@@ -40,4 +41,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 117169441
+    locked: 0
+  - name: Skill Effect
+    uniqueID: 1359940933
+    locked: 0
+  - name: Player
+    uniqueID: 1549615603
+    locked: 0
+  - name: UI
+    uniqueID: 743402317
+    locked: 0
+  - name: PopUpWindow
+    uniqueID: 1418390555
     locked: 0
