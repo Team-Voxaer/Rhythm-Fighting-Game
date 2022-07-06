@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         gameObject.GetComponent<AttackSkill>().SetEnemyLayers(enemyLayers);
 
     }
-    public void UseGrandCross()
+    public void UseGrandCross(double ratio=1)
     {
         if (m_isDead) return;
         physicalDefense += 100;
@@ -96,19 +96,19 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
     }
 
-    public void UseHealing()
+    public void UseHealing(double ratio=1)
     {
         if (m_isDead) return;
         curHealth = (curHealth + healingAmount > maxHealth) ? maxHealth : curHealth + healingAmount;
         ShowDamageNumberPopUp(healingAmount, false);
         Instantiate(healing, buffPoint.position, quaternion);
     }
-    public void UseSword()
+    public void UseSword(double ratio=1)
     {
         if (m_isDead) return;
         Instantiate(sword, attackPoint.position + shortRange, quaternion, enemyLayers);
     }
-    public void UseThunder()
+    public void UseThunder(double ratio=1)
     {
         if (m_isDead) return;
         Instantiate(thunder, attackPoint.position + Range, quaternion, enemyLayers);

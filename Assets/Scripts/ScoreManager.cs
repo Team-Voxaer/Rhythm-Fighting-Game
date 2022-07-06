@@ -23,7 +23,11 @@ public class ScoreManager : MonoBehaviour
 
     // List of keys for skills
     protected List<Direction> lsKey = new List<Direction>();
+    protected List<int> lsPerf = new List<int>();
+    protected double[] cklsPerfRatio = new double[] {0.1, 0.4, 0.6, 0.9, 1.0, 1.2, 1.5};
+
     protected List<int> lsSkill = new List<int>();
+    protected List<int> lsSkillPerfLevel = new List<int>();
 
     public VisCombo visCombo1;
     public VisCombo visCombo2;
@@ -63,6 +67,18 @@ public class ScoreManager : MonoBehaviour
 
     public void Hit(Direction direction, HitLevel hitLevel, int index) {
         lsKey.Add(direction);
+        int perfInt;
+        if (hitLevel == HitLevel.Perfect) {
+            perfInt = 2;
+        } else if (hitLevel == HitLevel.Good) {
+            perfInt = 1;
+        } else if (hitLevel == HitLevel.Bad) {
+            perfInt = 0;
+        } else {
+            perfInt = 0;
+        }
+        lsPerf.Add(perfInt);
+
         noteIndex = index;
         comboScore += 10;
         
@@ -85,17 +101,17 @@ public class ScoreManager : MonoBehaviour
         if (lsSkill.Count > 0) {
 
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
-                player.Defend();
+                // player.Defend(cklsPerfRatio[lsSkillPerfLevel[0]]);
             } else if (lsSkill[0] == skillCodeAttack) {
-                player.Attack();
+                // player.Attack(cklsPerfRatio[lsSkillPerfLevel[0]]);
             } else if (lsSkill[0] == skillCodeSword) {
-                player.UseSword();
+                player.UseSword(cklsPerfRatio[lsSkillPerfLevel[0]]);
             } else if (lsSkill[0] == skillCodeGrandCross) {
-                player.UseGrandCross();
+                player.UseGrandCross(cklsPerfRatio[lsSkillPerfLevel[0]]);
             } else if (lsSkill[0] == skillCodeThunder) {
-                player.UseThunder();
+                player.UseThunder(cklsPerfRatio[lsSkillPerfLevel[0]]);
             } else if (lsSkill[0] == skillCodeHealing) {
-                player.UseHealing();
+                player.UseHealing(cklsPerfRatio[lsSkillPerfLevel[0]]);
             }
 
             // Zhian Li: We always upload the Analytic when the AI is disabled
@@ -112,6 +128,7 @@ public class ScoreManager : MonoBehaviour
             }
 
             lsSkill.RemoveAt(0);
+            lsSkillPerfLevel.RemoveAt(0);
 
             
         } else {
@@ -128,6 +145,12 @@ public class ScoreManager : MonoBehaviour
         // 2: left
         // 3: right
         if (lsKey.Count == 3) {
+            int perfLevel = 0;
+            for (int i=0; i<3; i++) {
+                perfLevel += lsPerf[i];
+            }
+            lsSkillPerfLevel.Add(perfLevel);
+
             if (lsKey[lsKey.Count - 1] == Direction.Up && lsKey[lsKey.Count - 2] == Direction.Up && lsKey[lsKey.Count - 3] == Direction.Up)  // Up Up Up -> Thunder / Water
             {
                 lsSkill.Add(skillCodeThunder);
