@@ -99,19 +99,22 @@ public class ScoreManager : MonoBehaviour
     public virtual void CastSkill() {
         
         if (lsSkill.Count > 0) {
+            double skillPerfRatio = cklsPerfRatio[lsSkillPerfLevel[0]];
+            print(lsSkillPerfLevel[0]);
+            print(skillPerfRatio);
 
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
                 // player.Defend(cklsPerfRatio[lsSkillPerfLevel[0]]);
             } else if (lsSkill[0] == skillCodeAttack) {
                 // player.Attack(cklsPerfRatio[lsSkillPerfLevel[0]]);
             } else if (lsSkill[0] == skillCodeSword) {
-                player.UseSword(cklsPerfRatio[lsSkillPerfLevel[0]]);
+                player.UseSword(skillPerfRatio);
             } else if (lsSkill[0] == skillCodeGrandCross) {
-                player.UseGrandCross(cklsPerfRatio[lsSkillPerfLevel[0]]);
+                player.UseGrandCross(skillPerfRatio);
             } else if (lsSkill[0] == skillCodeThunder) {
-                player.UseThunder(cklsPerfRatio[lsSkillPerfLevel[0]]);
+                player.UseThunder(skillPerfRatio);
             } else if (lsSkill[0] == skillCodeHealing) {
-                player.UseHealing(cklsPerfRatio[lsSkillPerfLevel[0]]);
+                player.UseHealing(skillPerfRatio);
             }
 
             // Zhian Li: We always upload the Analytic when the AI is disabled
@@ -139,6 +142,7 @@ public class ScoreManager : MonoBehaviour
     protected void CheckSkills() {
         while (lsKey.Count > 3) {
             lsKey.RemoveAt(0);
+            lsPerf.RemoveAt(0);
         }
         // 0: up
         // 1: down
@@ -146,8 +150,8 @@ public class ScoreManager : MonoBehaviour
         // 3: right
         if (lsKey.Count == 3) {
             int perfLevel = 0;
-            for (int i=0; i<3; i++) {
-                perfLevel += lsPerf[i];
+            for (int i=1; i<4; i++) {
+                perfLevel += lsPerf[lsKey.Count - i];
             }
             lsSkillPerfLevel.Add(perfLevel);
 
@@ -175,10 +179,9 @@ public class ScoreManager : MonoBehaviour
             {
                 lsSkill.Add(skillCodeAttack);
             }
-            for (int i=0; i<3; i++) {
-                // why 3 times?
-                lsKey.Clear();
-            }
+
+            lsKey.Clear();
+            lsPerf.Clear();
         }
     }
 

@@ -178,7 +178,7 @@ public class Lane : MonoBehaviour
                         Hit(direction, hitLevel);
                     }
 
-                    print($"Input Direction {direction.ToString()} {hitLevel.ToString()} on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                    // print($"Input Direction {direction.ToString()} {hitLevel.ToString()} on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
 
 
                 }
@@ -187,7 +187,7 @@ public class Lane : MonoBehaviour
                 if (timeStamp + marginOfBad <= audioTime)
                 {
                     Miss();
-                    print($"Missed {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                    // print($"Missed {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                     // TODO: to add an animation for missing notes
                 }
 

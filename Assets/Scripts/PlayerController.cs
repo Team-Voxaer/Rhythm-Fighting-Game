@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     public int attackDamage = 30;
     public int maxHealth = 150;
-    public int healingAmount = 30;
+    public int healingAmount = 40;
     private int physicalDefense = 0;
     private float buffDuration = 10;
 
@@ -99,8 +100,9 @@ public class PlayerController : MonoBehaviour
     public void UseHealing(double ratio=1)
     {
         if (m_isDead) return;
-        curHealth = (curHealth + healingAmount > maxHealth) ? maxHealth : curHealth + healingAmount;
-        ShowDamageNumberPopUp(healingAmount, false);
+        int curHealingAmount = Convert.ToInt32(healingAmount * ratio);
+        curHealth = (curHealth + curHealingAmount > maxHealth) ? maxHealth : curHealth + curHealingAmount;
+        ShowDamageNumberPopUp(curHealingAmount, false);
         Instantiate(healing, buffPoint.position, quaternion);
     }
     public void UseSword(double ratio=1)
