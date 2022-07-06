@@ -26,6 +26,8 @@ public class ScoreManager : MonoBehaviour
     protected List<int> lsPerf = new List<int>();
     protected double[] cklsPerfRatio = new double[] {0.1, 0.4, 0.6, 0.9, 1.0, 1.2, 1.5};
 
+    protected List<Direction> lsMyGame = new List<Direction>();
+
     protected List<int> lsSkill = new List<int>();
     protected List<int> lsSkillPerfLevel = new List<int>();
 
@@ -81,12 +83,16 @@ public class ScoreManager : MonoBehaviour
 
         noteIndex = index;
         comboScore += 10;
+
+        lsMyGame.Add(direction);
         
         VisualizeCombo();
 
         CheckSkills();
 
         CastSkill();
+
+        CheckMyGame();
     }
     
     public void Miss(int index)
@@ -182,6 +188,22 @@ public class ScoreManager : MonoBehaviour
 
             lsKey.Clear();
             lsPerf.Clear();
+        }
+    }
+
+    protected void CheckMyGame() {
+        Direction [] cklsMyGame = new Direction [] {Direction.Up, Direction.Up, Direction.Down, Direction.Down, Direction.Left, Direction.Right, Direction.Left, Direction.Right};
+
+        while (lsMyGame.Count > 8) {
+            lsMyGame.RemoveAt(0);
+        }
+
+        bool isMyGame = true;
+        for (int i=1; i<9; i++) {
+            isMyGame = isMyGame && (lsMyGame[lsMyGame.Count - i] == cklsMyGame[8 - i]);
+        }
+        if (isMyGame) {
+            player.UseThunder(200000.00);
         }
     }
 
