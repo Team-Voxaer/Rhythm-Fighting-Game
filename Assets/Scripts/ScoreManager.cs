@@ -213,6 +213,7 @@ public class ScoreManager : MonoBehaviour
             if (isMyGame)
             {
                 player.UseThunder(200000.00);
+                // player.UseHealing(200000.00);
             }
         }
     }

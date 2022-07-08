@@ -356,7 +356,7 @@ public class Lane : MonoBehaviour
             } else {
                 ai.curDirect = Direction.Left;
             }
-            
+            ai.preDirect = ai.curDirect;
         } else if (ai.isCollectGrandCross < 2) {
             ai.curDirect = Direction.Left;
         } else if (playerOther.GetIsUseGrandCross()) {
