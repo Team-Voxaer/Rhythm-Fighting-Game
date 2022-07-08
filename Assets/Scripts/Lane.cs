@@ -153,11 +153,11 @@ public class Lane : MonoBehaviour
             if (GameData.AILevel != 0 && inputKeyUp == KeyCode.UpArrow) {
                 // Use an AI script to operate the right fighter to fight against the left fighter
                 if (GameData.AILevel == 1) {
-                    AIEasy(audioTime, timeStamp, marginOfBad);
+                    AIEasy(audioTime, timeStamp, marginOfPerfect);
                 } else if (GameData.AILevel == 2) {
-                    AIMedium(audioTime, timeStamp, marginOfBad);
+                    AIMedium(audioTime, timeStamp, marginOfPerfect);
                 } else if (GameData.AILevel == 3) {
-                    AIHard(audioTime, timeStamp, marginOfBad);
+                    AIHard(audioTime, timeStamp, marginOfPerfect);
                 } 
             } else {
 
@@ -288,59 +288,23 @@ public class Lane : MonoBehaviour
     }
 
 
-    void AIEasy(double audioTime, double timeStamp, double marginOfBad) {
+    void AIEasy(double audioTime, double timeStamp, double margin) {
         AIAction();
-
-        if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
-            double rndDouble = UnityEngine.Random.value;
-            if (rndDouble > 0.9) {
-                Hit(ai.curDirect, HitLevel.Perfect);
-                ai.isCollectGrandCross ++;
-                ai.totalCount ++;
-            } else if (rndDouble > 0.6) {
-                Hit(ai.curDirect, HitLevel.Good);
-                ai.isCollectGrandCross ++;
-                ai.totalCount ++;
-            } else if (rndDouble > 0.5) {
-                Hit(ai.curDirect, HitLevel.Bad);
-                ai.isCollectGrandCross ++;
-                ai.totalCount ++;
-            } else {
-                Miss();
-            }
-        }
+        AITemplate(audioTime, timeStamp, margin, 0.9, 0.6, 0.5);
     }
 
 
-    void AIMedium(double audioTime, double timeStamp, double marginOfBad) {
+    void AIMedium(double audioTime, double timeStamp, double margin) {
         AIAction();
-
-        if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
-            double rndDouble = UnityEngine.Random.value;
-            if (rndDouble > 0.7) {
-                Hit(ai.curDirect, HitLevel.Perfect);
-                ai.isCollectGrandCross ++;
-                ai.totalCount ++;
-            } else if (rndDouble > 0.4) {
-                Hit(ai.curDirect, HitLevel.Good);
-                ai.isCollectGrandCross ++;
-                ai.totalCount ++;
-            } else if (rndDouble > 0.3) {
-                Hit(ai.curDirect, HitLevel.Bad);
-                ai.isCollectGrandCross ++;
-                ai.totalCount ++;
-            } else {
-                Miss();
-            }
-        }
+        AITemplate(audioTime, timeStamp, margin, 0.7, 0.4, 0.3);
     }
 
 
-    void AIHard(double audioTime, double timeStamp, double marginOfBad) {
+    void AIHard(double audioTime, double timeStamp, double margin) {
         AIAction();
         
         // if (audioTime > timeStamp) {
-        if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
+        if (Math.Abs(audioTime - timeStamp) < margin) {
             if (inputIndex % 1 == 0){
                 // HitLevel, Direction = AI.Analyse(audioTime, timeStamp)
                 Hit(ai.curDirect, HitLevel.Perfect);
@@ -352,6 +316,31 @@ public class Lane : MonoBehaviour
         }
     }
 
+
+    void AITemplate(double audioTime, double timeStamp, double margin, double thdPerfect, double thdGood, double thdBad) {
+        AIAction();
+
+        if (Math.Abs(audioTime - timeStamp) < margin) {
+            double rndDouble = UnityEngine.Random.value;
+            if (rndDouble > thdPerfect) {
+                Hit(ai.curDirect, HitLevel.Perfect);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
+            } else if (rndDouble > thdGood) {
+                Hit(ai.curDirect, HitLevel.Good);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
+            } else if (rndDouble > thdBad) {
+                Hit(ai.curDirect, HitLevel.Bad);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
+            } else {
+                Miss();
+            }
+        }
+    }
+
+
     protected void AIAction() {
         if (player.GetIsUseGrandCross() == false && ai.isCollectGrandCross > 2) {
             ai.isCollectGrandCross = 0;
@@ -359,7 +348,15 @@ public class Lane : MonoBehaviour
 
         // // If the AI is initiated before the game begains, uncomment the following block.
         if (ai.totalCount == 0) {
-            ai.curDirect = Direction.Right;
+            double rndDouble = UnityEngine.Random.value;
+            if (rndDouble > 0.7) {
+                ai.curDirect = Direction.Right;
+            } else if (rndDouble > 0.3) {
+                ai.curDirect = Direction.Up;
+            } else {
+                ai.curDirect = Direction.Left;
+            }
+            
         } else if (ai.isCollectGrandCross < 2) {
             ai.curDirect = Direction.Left;
         } else if (playerOther.GetIsUseGrandCross()) {
