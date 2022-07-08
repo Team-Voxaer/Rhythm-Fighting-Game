@@ -317,4 +317,8 @@ public class PlayerController : MonoBehaviour
     {
         isTutorial = true;
     }
+
+    public bool GetIsUseGrandCross() {
+        return (physicalDefense > 0);
+    }
 }

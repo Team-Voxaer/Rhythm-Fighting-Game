@@ -106,8 +106,8 @@ public class ScoreManager : MonoBehaviour
         
         if (lsSkill.Count > 0) {
             double skillPerfRatio = cklsPerfRatio[lsSkillPerfLevel[0]];
-            print(lsSkillPerfLevel[0]);
-            print(skillPerfRatio);
+            // print(lsSkillPerfLevel[0]);
+            // print(skillPerfRatio);
 
             if (lsSkill[0] == skillCodeDefend) { // Todo: Change to heal
                 // player.Defend(cklsPerfRatio[lsSkillPerfLevel[0]]);
@@ -143,6 +143,11 @@ public class ScoreManager : MonoBehaviour
         } else {
             // TODO: a visualization for no skills when casting
         }
+    }
+
+    
+    public int GetSkillListLen() {
+        return lsSkill.Count;
     }
 
     protected void CheckSkills() {

@@ -27,6 +27,13 @@ namespace Rhythm
     }
 }
 
+struct AI {
+    public Direction curDirect;
+    public Direction preDirect;
+    public int isCollectGrandCross;
+    public int totalCount;
+}
+
 
 
 public class Lane : MonoBehaviour
@@ -80,7 +87,7 @@ public class Lane : MonoBehaviour
     // Last Hit Level: Perfect / Good / Bad 
     private HitLevel lastHitLevel;
 
-    private int isDefend = 0;
+    private AI ai = new AI{isCollectGrandCross = 0, totalCount = 0};
 
     // Start is called before the first frame update
     void Start()
@@ -150,7 +157,7 @@ public class Lane : MonoBehaviour
                 } else if (GameData.AILevel == 2) {
                     AIMedium(audioTime, timeStamp, marginOfBad);
                 } else if (GameData.AILevel == 3) {
-                    AIHard(audioTime, timeStamp);
+                    AIHard(audioTime, timeStamp, marginOfBad);
                 } 
             } else {
 
@@ -282,31 +289,48 @@ public class Lane : MonoBehaviour
 
 
     void AIEasy(double audioTime, double timeStamp, double marginOfBad) {
-        Direction direction;
-        if (isDefend > 14) {
-            isDefend = 0;
+        if (player.GetIsUseGrandCross() == false && ai.isCollectGrandCross > 3) {
+            ai.isCollectGrandCross = 0;
         }
-        if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
-            direction = Direction.Down;
-        } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
-            direction = Direction.Up;
-        } else if (isDefend < 3) {
-            direction = Direction.Left;
+
+        // // If the AI is initiated before the game begains, uncomment the following block.
+        if (ai.totalCount == 0) {
+            ai.curDirect = Direction.Right;
+        } else if (ai.isCollectGrandCross < 2) {
+            ai.curDirect = Direction.Left;
+        } else if (playerOther.GetIsUseGrandCross()) {
+            ai.curDirect = Direction.Up;
         } else {
-            direction = Direction.Right;
+            ai.curDirect = Direction.Right;
+        } 
+        // The logic to call healing. For now, we do not use it.
+        // if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+        //     ai.curDirect = Direction.Down;
+        // }
+
+        // If this time step is in the process of collecting another skill, still to the previous skill.
+        if (ai.totalCount % 3 == 0) {
+            // The previous skill has been collected and casted. Start to collect new skills.
+            ai.preDirect = ai.curDirect;
+        } else {
+            // The previous skill is still in the collection process. Stick to the previous skill.
+            ai.curDirect = ai.preDirect;
         }
 
         if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
             double rndDouble = UnityEngine.Random.value;
             if (rndDouble > 0.9) {
-                Hit(direction, HitLevel.Perfect);
-                isDefend = isDefend + 1;
+                Hit(ai.curDirect, HitLevel.Perfect);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
             } else if (rndDouble > 0.6) {
-                Hit(direction, HitLevel.Good);
-                isDefend = isDefend + 1;
+                Hit(ai.curDirect, HitLevel.Good);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
             } else if (rndDouble > 0.5) {
-                Hit(direction, HitLevel.Bad);
-                isDefend = isDefend + 1;
+                Hit(ai.curDirect, HitLevel.Bad);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
             } else {
                 Miss();
             }
@@ -315,31 +339,48 @@ public class Lane : MonoBehaviour
 
 
     void AIMedium(double audioTime, double timeStamp, double marginOfBad) {
-        Direction direction;
-        if (isDefend > 14) {
-            isDefend = 0;
+        if (player.GetIsUseGrandCross() == false && ai.isCollectGrandCross > 3) {
+            ai.isCollectGrandCross = 0;
         }
-        if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
-            direction = Direction.Down;
-        } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
-            direction = Direction.Up;
-        } else if (isDefend < 3) {
-            direction = Direction.Left;
+
+        // // If the AI is initiated before the game begains, uncomment the following block.
+        if (ai.totalCount == 0) {
+            ai.curDirect = Direction.Right;
+        } else if (ai.isCollectGrandCross < 2) {
+            ai.curDirect = Direction.Left;
+        } else if (playerOther.GetIsUseGrandCross()) {
+            ai.curDirect = Direction.Up;
         } else {
-            direction = Direction.Right;
+            ai.curDirect = Direction.Right;
+        } 
+        // The logic to call healing. For now, we do not use it.
+        // if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+        //     ai.curDirect = Direction.Down;
+        // }
+
+        // If this time step is in the process of collecting another skill, still to the previous skill.
+        if (ai.totalCount % 3 == 0) {
+            // The previous skill has been collected and casted. Start to collect new skills.
+            ai.preDirect = ai.curDirect;
+        } else {
+            // The previous skill is still in the collection process. Stick to the previous skill.
+            ai.curDirect = ai.preDirect;
         }
 
         if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
             double rndDouble = UnityEngine.Random.value;
             if (rndDouble > 0.7) {
-                Hit(direction, HitLevel.Perfect);
-                isDefend = isDefend + 1;
+                Hit(ai.curDirect, HitLevel.Perfect);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
             } else if (rndDouble > 0.4) {
-                Hit(direction, HitLevel.Good);
-                isDefend = isDefend + 1;
+                Hit(ai.curDirect, HitLevel.Good);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
             } else if (rndDouble > 0.3) {
-                Hit(direction, HitLevel.Bad);
-                isDefend = isDefend + 1;
+                Hit(ai.curDirect, HitLevel.Bad);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
             } else {
                 Miss();
             }
@@ -347,26 +388,42 @@ public class Lane : MonoBehaviour
     }
 
 
-    void AIHard(double audioTime, double timeStamp) {
-        Direction direction;
-        if (isDefend > 14) {
-            isDefend = 0;
+    void AIHard(double audioTime, double timeStamp, double marginOfBad) {
+        if (player.GetIsUseGrandCross() == false && ai.isCollectGrandCross > 2) {
+            ai.isCollectGrandCross = 0;
         }
-        if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
-            direction = Direction.Down;
-        } else if (playerOther.GetCurHealth() <= player.maxHealth * 0.1) {
-            direction = Direction.Up;
-        } else if (isDefend < 3) {
-            direction = Direction.Left;
+
+        // // If the AI is initiated before the game begains, uncomment the following block.
+        if (ai.totalCount == 0) {
+            ai.curDirect = Direction.Right;
+        } else if (ai.isCollectGrandCross < 2) {
+            ai.curDirect = Direction.Left;
+        } else if (playerOther.GetIsUseGrandCross()) {
+            ai.curDirect = Direction.Up;
         } else {
-            direction = Direction.Right;
+            ai.curDirect = Direction.Right;
+        } 
+        // The logic to call healing. For now, we do not use it.
+        // if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+        //     ai.curDirect = Direction.Down;
+        // }
+
+        // If this time step is in the process of collecting another skill, still to the previous skill.
+        if (ai.totalCount % 3 == 0) {
+            // The previous skill has been collected and casted. Start to collect new skills.
+            ai.preDirect = ai.curDirect;
+        } else {
+            // The previous skill is still in the collection process. Stick to the previous skill.
+            ai.curDirect = ai.preDirect;
         }
         
-        if (audioTime > timeStamp) {
+        // if (audioTime > timeStamp) {
+        if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
             if (inputIndex % 1 == 0){
                 // HitLevel, Direction = AI.Analyse(audioTime, timeStamp)
-                Hit(direction, HitLevel.Perfect);
-                isDefend = isDefend + 1;
+                Hit(ai.curDirect, HitLevel.Perfect);
+                ai.isCollectGrandCross ++;
+                ai.totalCount ++;
             } else {
                 Miss();
             }
