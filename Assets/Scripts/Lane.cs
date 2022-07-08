@@ -289,33 +289,7 @@ public class Lane : MonoBehaviour
 
 
     void AIEasy(double audioTime, double timeStamp, double marginOfBad) {
-        if (player.GetIsUseGrandCross() == false && ai.isCollectGrandCross > 3) {
-            ai.isCollectGrandCross = 0;
-        }
-
-        // // If the AI is initiated before the game begains, uncomment the following block.
-        if (ai.totalCount == 0) {
-            ai.curDirect = Direction.Right;
-        } else if (ai.isCollectGrandCross < 2) {
-            ai.curDirect = Direction.Left;
-        } else if (playerOther.GetIsUseGrandCross()) {
-            ai.curDirect = Direction.Up;
-        } else {
-            ai.curDirect = Direction.Right;
-        } 
-        // The logic to call healing. For now, we do not use it.
-        // if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
-        //     ai.curDirect = Direction.Down;
-        // }
-
-        // If this time step is in the process of collecting another skill, still to the previous skill.
-        if (ai.totalCount % 3 == 0) {
-            // The previous skill has been collected and casted. Start to collect new skills.
-            ai.preDirect = ai.curDirect;
-        } else {
-            // The previous skill is still in the collection process. Stick to the previous skill.
-            ai.curDirect = ai.preDirect;
-        }
+        AIAction();
 
         if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
             double rndDouble = UnityEngine.Random.value;
@@ -339,33 +313,7 @@ public class Lane : MonoBehaviour
 
 
     void AIMedium(double audioTime, double timeStamp, double marginOfBad) {
-        if (player.GetIsUseGrandCross() == false && ai.isCollectGrandCross > 3) {
-            ai.isCollectGrandCross = 0;
-        }
-
-        // // If the AI is initiated before the game begains, uncomment the following block.
-        if (ai.totalCount == 0) {
-            ai.curDirect = Direction.Right;
-        } else if (ai.isCollectGrandCross < 2) {
-            ai.curDirect = Direction.Left;
-        } else if (playerOther.GetIsUseGrandCross()) {
-            ai.curDirect = Direction.Up;
-        } else {
-            ai.curDirect = Direction.Right;
-        } 
-        // The logic to call healing. For now, we do not use it.
-        // if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
-        //     ai.curDirect = Direction.Down;
-        // }
-
-        // If this time step is in the process of collecting another skill, still to the previous skill.
-        if (ai.totalCount % 3 == 0) {
-            // The previous skill has been collected and casted. Start to collect new skills.
-            ai.preDirect = ai.curDirect;
-        } else {
-            // The previous skill is still in the collection process. Stick to the previous skill.
-            ai.curDirect = ai.preDirect;
-        }
+        AIAction();
 
         if (Math.Abs(audioTime - timeStamp) < marginOfBad) {
             double rndDouble = UnityEngine.Random.value;
@@ -427,6 +375,36 @@ public class Lane : MonoBehaviour
             } else {
                 Miss();
             }
+        }
+    }
+
+    protected void AIAction() {
+        if (player.GetIsUseGrandCross() == false && ai.isCollectGrandCross > 2) {
+            ai.isCollectGrandCross = 0;
+        }
+
+        // // If the AI is initiated before the game begains, uncomment the following block.
+        if (ai.totalCount == 0) {
+            ai.curDirect = Direction.Right;
+        } else if (ai.isCollectGrandCross < 2) {
+            ai.curDirect = Direction.Left;
+        } else if (playerOther.GetIsUseGrandCross()) {
+            ai.curDirect = Direction.Up;
+        } else {
+            ai.curDirect = Direction.Right;
+        } 
+        // The logic to call healing. For now, we do not use it.
+        // if (player.GetCurHealth() < player.maxHealth && player.GetCurHealth() >= player.maxHealth * 0.9) {
+        //     ai.curDirect = Direction.Down;
+        // }
+
+        // If this time step is in the process of collecting another skill, still to the previous skill.
+        if (ai.totalCount % 3 == 0) {
+            // The previous skill has been collected and casted. Start to collect new skills.
+            ai.preDirect = ai.curDirect;
+        } else {
+            // The previous skill is still in the collection process. Stick to the previous skill.
+            ai.curDirect = ai.preDirect;
         }
     }
 

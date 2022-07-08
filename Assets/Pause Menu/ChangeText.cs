@@ -22,13 +22,13 @@ public class ChangeText : MonoBehaviour
     public void SwitchAIMode()
     {
         if (GameData.AILevel == 0) {
-            buttonText.text = "Hard AI";
+            buttonText.text = "Invincible AI";
             GameData.AILevel = 3;
         } else if (GameData.AILevel == 3) {
             buttonText.text = "Medium AI";
             GameData.AILevel = 2;
         } else if (GameData.AILevel == 2) {
-            buttonText.text = "Easy AI";
+            buttonText.text = "Newbie AI";
             GameData.AILevel = 1;
         } else if (GameData.AILevel == 1) {
             buttonText.text = "AI Disabled";
