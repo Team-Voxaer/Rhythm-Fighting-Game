@@ -2088,6 +2088,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1150320421}
     m_Modifications:
+    - target: {fileID: 989776567490116037, guid: 37b854cf22f65134d87c3f0a8d7aacc1, type: 3}
+      propertyPath: m_text
+      value: Switch AI
+      objectReference: {fileID: 0}
     - target: {fileID: 1423953303684304998, guid: 37b854cf22f65134d87c3f0a8d7aacc1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
