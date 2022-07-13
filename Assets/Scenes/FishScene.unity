@@ -6524,7 +6524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5338756000176499777, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: m_Name
-      value: HeavyBandit
+      value: RightFish
       objectReference: {fileID: 0}
     - target: {fileID: 5389633228965013301, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: m_Size.x
@@ -6558,6 +6558,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 22.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5424090212942086297, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: bb9c5ab43f612af428b110bf9432db73, type: 2}
     - target: {fileID: 7249153402817471030, guid: 2d1f56a2507ed5246b0057db52b8973e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 5.1
