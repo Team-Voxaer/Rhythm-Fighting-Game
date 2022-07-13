@@ -112,4 +112,20 @@ public class MainMenu : MonoBehaviour
             OpenSceneNotExistWindow("The Scene doesn't exist");
         }
     }
+
+    public void PlayFish()
+    {
+        if (Application.CanStreamedLevelBeLoaded("FishScene"))
+        {
+            AnalyticManager.CurrentLevel = 1;
+            GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            GameData.difficulty = CommonParameter.midiDifficulty[0].Split('.')[0];
+            GameData.midiFileName = GameData.songName + CommonParameter.midiDifficulty[0];
+            SceneManager.LoadScene("FishScene");
+        }
+        else
+        {
+            OpenSceneNotExistWindow("The Scene doesn't exist");
+        }
+    }
 }
