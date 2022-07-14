@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3221987151840151125}
   - component: {fileID: 3221987151840151123}
   - component: {fileID: -938619457318750890}
-  - component: {fileID: -6181338775736246794}
   m_Layer: 7
   m_Name: Sword
   m_TagString: Untagged
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1359940933
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1306572410, guid: 68dda4561ff11764d841e80c1e021bd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -144,29 +143,3 @@ MonoBehaviour:
   rb: {fileID: 3221987151840151125}
   attackRange: 5
   skillName: 0
---- !u!61 &-6181338775736246794
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3221987151840151120}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.0772649, y: 0.16812068}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 1, y: 0.5}
-    oldSize: {x: 1.4166666, y: 0.5208333}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.1545298, y: 0.8570746}
-  m_EdgeRadius: 0

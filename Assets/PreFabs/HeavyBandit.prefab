@@ -320,3 +320,5 @@ MonoBehaviour:
   grandCross: {fileID: 8318631505020191050, guid: 304aadcd62e2076418a6025b63a3661c, type: 3}
   thunder: {fileID: 7674381195626045742, guid: f37f402070b3ad543814fb3096aad6b4, type: 3}
   healing: {fileID: 4967514570206004544, guid: 4f98b3ad198ce8645af02d453b85157a, type: 3}
+  Range: {x: -3, y: 0, z: 0}
+  shortRange: {x: -1, y: 0, z: 0}
