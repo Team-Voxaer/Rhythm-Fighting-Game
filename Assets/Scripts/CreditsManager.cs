@@ -24,7 +24,7 @@ public class CreditsManager : MonoBehaviour
 
         creditsText = GameObject.Find("CreditsText");
         // print(creditsText);
-        if(destroyed == true){
+        if(transform.localPosition.y > 900.0){
             print("creditsText is null now");
             SceneManager.LoadScene("Menu");
         }
@@ -34,7 +34,7 @@ public class CreditsManager : MonoBehaviour
     public void DestroyCredits(){
         //Destroy(gameObject.transform.parent.gameObject);
         destroyed = true;
-        Destroy(gameObject);
+        // Destroy(gameObject);
         
     }
 }
