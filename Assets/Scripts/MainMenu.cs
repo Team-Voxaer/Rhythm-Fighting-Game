@@ -128,4 +128,34 @@ public class MainMenu : MonoBehaviour
             OpenSceneNotExistWindow("The Scene doesn't exist");
         }
     }
+
+    public void PlayLevel7KingOfFighters() {
+        if (Application.CanStreamedLevelBeLoaded("KingOfFightersScene"))
+        {
+            AnalyticManager.CurrentLevel = 1;
+            GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            GameData.difficulty = CommonParameter.midiDifficulty[0].Split('.')[0];
+            GameData.midiFileName = GameData.songName + CommonParameter.midiDifficulty[0];
+            SceneManager.LoadScene("KingOfFightersScene");
+        }
+        else
+        {
+            OpenSceneNotExistWindow("The Scene doesn't exist");
+        }
+    }
+
+    public void PlayCreditScene() {
+        if (Application.CanStreamedLevelBeLoaded("Credits"))
+        {
+            // AnalyticManager.CurrentLevel = 1;
+            // GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
+            // GameData.difficulty = CommonParameter.midiDifficulty[0].Split('.')[0];
+            // GameData.midiFileName = GameData.songName + CommonParameter.midiDifficulty[0];
+            SceneManager.LoadScene("Credits");
+        }
+        else
+        {
+            OpenSceneNotExistWindow("The Scene doesn't exist");
+        }
+    }
 }
