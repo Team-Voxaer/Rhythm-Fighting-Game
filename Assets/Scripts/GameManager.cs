@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     {
         // int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
         // Jiacheng
-        if (AnalyticManager.CurrentLevel + 1 < 3 && Application.CanStreamedLevelBeLoaded("FightingScene"))
+        if (AnalyticManager.CurrentLevel < 5 && Application.CanStreamedLevelBeLoaded("FightingScene"))
         {
             AnalyticManager.CurrentLevel += 1;
             GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
