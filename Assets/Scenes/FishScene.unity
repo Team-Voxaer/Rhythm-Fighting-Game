@@ -4360,8 +4360,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171535385}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.49, z: 0}
-  m_LocalScale: {x: 24, y: 10, z: 10}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.56, y: 0.56, z: 0.56}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 304871931}
@@ -4408,8 +4408,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 0ce96aa6462620e47ac56eccbb027deb, type: 3}
-  m_Color: {r: 0.03529412, g: 0.28627452, b: 0.42352945, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4a7cabe8b2be2f149a41ee2a4992b331, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6666667}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5982,12 +5982,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hit element keys when notes reach white bar.
+  m_text: 'Hit element keys when notes reach ground
 
-    Player 1: WASD    Player
-    2: Arrow Keys
-
-    AI for Player 2 in Menu (Pause Button or Esc)
+    AI for Player 2 in Menu
+    (Pause Button or Esc)
 
 '
   m_isRightToLeft: 0
