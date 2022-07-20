@@ -23,7 +23,7 @@ public class CreditsManager : MonoBehaviour
             SceneManager.LoadScene("Menu");
         }
 
-        if(creditsText.transform.localPosition.y > 1320.0){
+        if(creditsText.transform.localPosition.y > 1580.0){
             print("creditsText is null now");
             SceneManager.LoadScene("Menu");
         }

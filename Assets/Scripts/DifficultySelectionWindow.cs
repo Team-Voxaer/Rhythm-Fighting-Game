@@ -57,6 +57,10 @@ public class DifficultySelectionWindow : MonoBehaviour
         else if (AnalyticManager.CurrentLevel == 5){
             SceneManager.LoadScene("FishScene");
         }
+        else if (AnalyticManager.CurrentLevel == 42){
+            SceneManager.LoadScene("KingOfFightersScene");
+            AnalyticManager.CurrentLevel = 1;
+        }
         else{
             SceneManager.LoadScene("FightingScene");
         }

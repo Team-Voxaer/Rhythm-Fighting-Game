@@ -113,30 +113,13 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void PlayFish()
-    {
-        if (Application.CanStreamedLevelBeLoaded("FishScene"))
-        {
-            AnalyticManager.CurrentLevel = 1;
-            GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
-            GameData.difficulty = CommonParameter.midiDifficulty[0].Split('.')[0];
-            GameData.midiFileName = GameData.songName + CommonParameter.midiDifficulty[0];
-            SceneManager.LoadScene("FishScene");
-        }
-        else
-        {
-            OpenSceneNotExistWindow("The Scene doesn't exist");
-        }
-    }
-
     public void PlayLevel7KingOfFighters() {
         if (Application.CanStreamedLevelBeLoaded("KingOfFightersScene"))
         {
-            AnalyticManager.CurrentLevel = 1;
+            AnalyticManager.CurrentLevel = 1; // Let Gamedata read the correct song name
             GameData.songName = CommonParameter.midiFiles[AnalyticManager.CurrentLevel];
-            GameData.difficulty = CommonParameter.midiDifficulty[0].Split('.')[0];
-            GameData.midiFileName = GameData.songName + CommonParameter.midiDifficulty[0];
-            SceneManager.LoadScene("KingOfFightersScene");
+            AnalyticManager.CurrentLevel = 42; // Zhian Li: Hack around difficulty menu
+            ShowDifficultySelectionWindow();
         }
         else
         {
