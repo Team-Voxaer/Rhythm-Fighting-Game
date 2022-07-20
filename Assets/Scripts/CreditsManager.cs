@@ -7,7 +7,8 @@ public class CreditsManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    GameObject creditsText;
+    public AudioSource audioSource;  // to play audio, imported from UnityEngine
+    public GameObject creditsText;
     bool destroyed;
     void Start()
     {
@@ -22,19 +23,14 @@ public class CreditsManager : MonoBehaviour
             SceneManager.LoadScene("Menu");
         }
 
-        creditsText = GameObject.Find("CreditsText");
-        // print(creditsText);
-        if(transform.localPosition.y > 900.0){
+        if(creditsText.transform.localPosition.y > 1320.0){
             print("creditsText is null now");
             SceneManager.LoadScene("Menu");
         }
         
     }
 
-    public void DestroyCredits(){
-        //Destroy(gameObject.transform.parent.gameObject);
-        destroyed = true;
-        // Destroy(gameObject);
-        
+    public void LoadMainmenu() {
+        SceneManager.LoadScene("Menu");
     }
 }
