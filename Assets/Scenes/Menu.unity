@@ -2741,9 +2741,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Rhythm Fighting Game
+  m_text: 'Lethal Tempo
 
-    Midterm ver. - Team Voxaer
+    Final Ver. -- Team Voxaer
 
 '
   m_isRightToLeft: 0
