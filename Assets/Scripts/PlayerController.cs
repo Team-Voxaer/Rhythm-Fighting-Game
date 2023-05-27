@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     public void UseGrandCross(double ratio=1)
     {
         if (m_isDead) return;
-        physicalDefense += 100;
+        physicalDefense += 210;
         Instantiate(grandCross, buffPoint.position, quaternion);
         ShowTextPopUp("Defense++\n\n\n\n");
         StartCoroutine(RemoveBuff(buffDuration, BuffType.DefenseIncrease));
@@ -268,10 +268,6 @@ public class PlayerController : MonoBehaviour
             healthText.text += "\n Defense++";
         }
         statusBar.UpdateStatusBar(curHealth);
-        /*if (Input.GetKeyDown(KeyCode.J))
-        {
-            Attack();
-        }*/
 
         /*// -- Handle input and movement --
         float inputX = Input.GetAxis("Horizontal");
